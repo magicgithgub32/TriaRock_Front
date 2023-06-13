@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300;400;500;600;700;800;900&family=League+Spartan:wght@300;700&family=Montserrat:wght@100;200;300;400;500;600;800&display=swap');
+
+
+:root {
+  --main-bg-color: whitesmoke;
+  --area-bg-color: #f44034;
+  --button-color: #008ab8;
+  --highliting-color: #fbc02d;
+  --stroke: #9ccc66;
+  --primary-text-color: #020202;
+  --button-text-color: whitesmoke;
+
+  /* --transition: 0.8s ease-in-out; */
+
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--main-bg-color);
+  color: var(--primary-text-color);
+  min-height: 100%;
+}
+
+button {
+  background-color: var(--button-color);
+  color: var(--button-text-color);
+  padding: .3rem;
+  width: 150px;
+  height: auto;
+  font-size: 20px;
+
+}
