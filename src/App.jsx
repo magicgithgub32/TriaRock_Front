@@ -1,8 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
-import './App.css';
 import React from 'react';
 import Home from './pages/Home/Home';
-import Register_Login from './pages/Register_Login/Register_Login';
+import RegisterLogin from './pages/RegisterLogin/RegisterLogin';
 import Cycling from './pages/Cycling/Cycling';
 import Running from './pages/Running/Running';
 import Swimming from './pages/Swimming/Swimming';
@@ -13,7 +12,7 @@ const App = () => {
     <>
       <Routes>
         <Route path="/" element={<Home />}></Route>
-        <Route path="/register_login" element={<Register_Login />}></Route>
+        <Route path="/registerlogin" element={<RegisterLogin />}></Route>
         <Route path="/cycling" element={<Cycling />}></Route>
         <Route path="/running" element={<Running />}></Route>
         <Route path="/swimming" element={<Swimming />}></Route>

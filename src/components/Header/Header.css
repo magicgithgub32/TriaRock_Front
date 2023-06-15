@@ -1,0 +1,35 @@
+.first-header-section {
+    height: 20vh;
+    display: flex;
+    width: 100vw;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.logo-section {
+    display: flex;
+    justify-content: center;
+    gap: .5rem;
+}
+
+
+.logo {
+    width: 35px;
+    height: 35px; 
+}
+
+.search-section{
+    display: flex;
+    height: 35px;
+    gap: .5rem;
+}
+
+.category-navbar {
+    display: flex;
+    justify-content: space-around;
+}
+
+.category-link {
+    text-decoration: none;
+}
+
