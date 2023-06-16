@@ -1,19 +1,17 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './CategoryCard.css';
 import { categoryFetch } from '../../services/categoryFetch';
 
 const CategoryCard = () => {
-  const { categoriesData } = categoryFetch();
-  console.log(categoriesData);
 
-  //antes del {categoriesData} he quitado el símbolo del $ y le he puesto un ? después de categoriesData
-
+  const categoriesData  = categoryFetch();
+   
   return (
     <>
       {categoriesData?.map((categoryData) => (
-        <div>
+        <div key={categoryData.id}>
           <img
-            src="https://s1.abcstatics.com/media/bienestar/2020/01/09/running-principiante-1-kSD--1248x698@abc.jpg"
+            src={categoryData.image}
             alt={categoryData.name}
             className="category-image"
           />

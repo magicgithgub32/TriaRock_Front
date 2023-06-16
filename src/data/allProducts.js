@@ -1,5 +1,4 @@
-const allProducts = () => {
-  return [
+const allProducts = [
     {
       _id: '64899afdf26833d20c74a87a',
       name: 'TRIFUNCIÓN TRIATLÓN CORTA DISTANCIA MANGA CORTA MUJER',
@@ -445,6 +444,6 @@ const allProducts = () => {
       category: 'cycling'
     }
   ];
-};
 
 export default allProducts;
+
