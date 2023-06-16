@@ -1,24 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import './ProductCard.css';
 import allProducts from '../../data/allProducts';
+import { productFetch } from '../../services/productFetch';
 
 const ProductCard = () => {
-  const [allProducts, setAllProducts] = useState();
+  // const [allProducts, setAllProducts] = useState();
 
-  const getProducts = async () => {
-    const result = await fetch('http://localhost:3000/api/products/');
+  // const getProducts = async () => {
+  //   const result = await fetch('http://localhost:3000/api/products/');
 
-    const res = await result.json();
+  //   const res = await result.json();
 
-    getProducts();
+  //   getProducts();
 
-    setAllProducts(res);
+  //   setAllProducts(res);
 
-    // useEffect(() => {
-    //   getProducts();
-    //   setAllProducts(res);
-    // }, []);
-};
+  // useEffect(() => {
+  //   getProducts();
+  //   setAllProducts(res);
+  // }, []);
+
+  const getProducts = productFetch();
 
   return (
     <div className="product-card-wrapper">
