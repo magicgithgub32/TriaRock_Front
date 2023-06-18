@@ -1,17 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300;400;500;600;700;800;900&family=League+Spartan:wght@300;700&family=Montserrat:wght@100;200;300;400;500;600;800&display=swap');
 
-
 :root {
   --main-bg-color: whitesmoke;
-  --area-bg-color: #f44034;
-  --button-color: #008ab8;
-  --highliting-color: #fbc02d;
-  --stroke: rgb(243, 243, 11);
+  --color-primary: #008ab8; /* --button-color*/  
+  --color-secondary: rgb(243, 243, 11); /* --stroke*/  
+  --color-terciary: #fbc02d; /* --highliting-color*/
+ 
+  --color-red: #f44034; /*area-bg-color*/
   --primary-text-color: #020202;
-  --button-text-color: whitesmoke;
 
   --transition: 0.8s ease-in-out;
-
 }
 
 * {
@@ -20,11 +18,7 @@
   box-sizing: border-box;
   list-style: none;
   text-decoration: none;
-  font-family: 'Montserrat', sans-serif;;
-}
-
-a {
-  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
 }
 
 html {
@@ -38,11 +32,16 @@ body {
 }
 
 button {
-  background-color: var(--button-color);
-  color: var(--button-text-color);
-  padding: .3rem;
-  width: 150px;
+  padding: .3rem .5rem;
   height: auto;
   font-size: 20px;
+  font-weight: 600;
+  border-radius: .5rem;
+  background-color: var(--color-secondary);
+  border: 2px solid var(--color-terciary);
+  color: var(--color-primary)
+}
 
+button:hover {
+  background-color: var(--color-terciary);
 }

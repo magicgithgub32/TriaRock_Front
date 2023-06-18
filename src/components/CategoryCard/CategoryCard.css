@@ -1,9 +1,6 @@
-/*meter al index*/
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;600;700&display=swap');
-
 .categories-banner {
-  font-family: 'Oswald', sans-serif;
   display: grid;
+  grid-gap: 22px;
   grid-template-columns: 1fr 1fr 1fr;
   padding: 40px 20px;
 }
@@ -12,7 +9,6 @@ figure {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 90%;
 }
 
 .category-image {
@@ -22,11 +18,10 @@ figure {
 
 .category-cta {
   text-transform: uppercase;
-  text-decoration: none;
   font-weight: 600;
-  font-size:48px;
+  font-size:32px;
     position: absolute;
-    top: 57%;
+    top: 62%;
     color: white;
     background-color: rgba(0, 0, 0, 0.3);
     padding: 0 10px;

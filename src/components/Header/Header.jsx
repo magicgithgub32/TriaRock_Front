@@ -3,9 +3,6 @@ import './Header.css';
 import React from 'react';
 import RegisterLogin from '../../pages/RegisterLogin/RegisterLogin';
 import Favorites from '../../pages/Favorites/Favorites';
-import Cycling from '../../pages/Cycling/Cycling';
-import Running from '../../pages/Running/Running';
-import Swimming from '../../pages/Swimming/Swimming';
 
 const Header = () => {
   return (
@@ -13,7 +10,7 @@ const Header = () => {
       <div className="first-header-section">
         <div className="logo-section">
           <img className="logo" src="./corriendo.png" alt="logo" />
-          <p>TRIAROCK</p>
+          <p className="brand">TRIAROCK</p>
         </div>
         <div className="search-section">
           <input type="text" className="search-product-input" placeholder="Find your product" />
@@ -21,7 +18,7 @@ const Header = () => {
         </div>
         <div className="my-account-section">
           <Link to={RegisterLogin}>
-            <button className="my-TriaRock" type="button">
+            <button className="my-triarock" type="button">
               MY TRIAROCK
             </button>
           </Link>
@@ -36,14 +33,14 @@ const Header = () => {
       </div>
 
       <nav className="category-navbar">
-        <NavLink className="category-link" to="/cycling">
-          CYCLING
-        </NavLink>
-        <NavLink className="category-link" to="running">
-          RUNNING
-        </NavLink>
-        <NavLink className="category-link" to="swimming">
+        <NavLink className="category-link" to="/swimming">
           SWIMMING
+        </NavLink>
+        <NavLink className="category-link" to="/cycling">
+           CYCLING
+        </NavLink>
+        <NavLink className="category-link" to="/running">
+        RUNNING
         </NavLink>
       </nav>
     </header>

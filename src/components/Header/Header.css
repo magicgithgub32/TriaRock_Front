@@ -1,15 +1,16 @@
 .first-header-section {
-    height: 20vh;
+    height: 18vh;
     display: flex;
     width: 100vw;
     justify-content: space-around;
     align-items: center;
+    background-color: var(--color-primary);
 }
 
 .logo-section {
     display: flex;
     justify-content: center;
-    gap: .5rem;
+    gap: 1rem;
 }
 
 
@@ -18,18 +19,41 @@
     height: 35px; 
 }
 
+.brand {
+color: var(--color-secondary);
+font-weight: 700;
+font-size: 40px;
+}
+
 .search-section{
     display: flex;
     height: 35px;
     gap: .5rem;
+    width: 25%
+}
+
+.search-product-input {
+    border-radius: .5rem;
+    padding: 0 6px;
+    width: 100%;
+    background-color: var(--main-bg-color);
 }
 
 .category-navbar {
     display: flex;
     justify-content: space-around;
+    padding: 20px 10px;
+    background-color: var(--color-secondary);
 }
 
 .category-link {
     text-decoration: none;
+    color: var(--color-primary); 
+    font-size: 20px;
+    font-weight: 600;
+    transition: transform 0.3s ease;
 }
 
+.category-link:hover {
+  transform: scale(1.1);
+}
