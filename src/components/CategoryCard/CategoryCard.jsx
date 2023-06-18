@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './CategoryCard.css';
 import { categoryFetch } from '../../services/categoryFetch';
+import { Link } from 'react-router-dom';
 
 const CategoryCard = () => {
 
@@ -8,16 +9,20 @@ const CategoryCard = () => {
    
   return (
     <>
+    <section className="categories-banner">
       {categoriesData?.map((categoryData) => (
-        <div key={categoryData.id}>
+        <figure key={categoryData.id}>
           <img
             src={categoryData.image}
             alt={categoryData.name}
             className="category-image"
           />
-          <p>SHOP {categoryData.name}</p>
-        </div>
+          <Link to={categoryData.name} className="category-cta">
+          SHOP {categoryData.name}
+          </Link>
+        </figure>
       ))}
+      </section>
     </>
   );
 };

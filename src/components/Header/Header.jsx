@@ -36,13 +36,13 @@ const Header = () => {
       </div>
 
       <nav className="category-navbar">
-        <NavLink className="category-link" to={Cycling}>
+        <NavLink className="category-link" to="/cycling">
           CYCLING
         </NavLink>
-        <NavLink className="category-link" to={Running}>
+        <NavLink className="category-link" to="running">
           RUNNING
         </NavLink>
-        <NavLink className="category-link" to={Swimming}>
+        <NavLink className="category-link" to="swimming">
           SWIMMING
         </NavLink>
       </nav>
