@@ -1,33 +1,60 @@
-import React, {useLocation} from 'react'; 
+import React, { useState, useEffect } from 'react'; 
+import { useLocation } from 'react-router-dom'; 
 import './CategoryPage.css';
 import Header from '../../components/Header/Header';
-import Hero from '../../components/Hero/Hero';
 import Footer from '../../components/Footer/Footer';
-import ProductCard from '../../components/ProductCard/ProductCard';
+// import ProductCard from '../../components/ProductCard/ProductCard';
+import { categoryFetch } from '../../services/categoryFetch'
 
-const CategoryPage = ( {category} ) => {
+const CategoryPage = () => {
 
-//     const [ filteredProducts, setFilteredProducts ] = useState()
+const categoriesData  = categoryFetch();
 
-//     const getFilteredProducts = (category) => {
-//       allProducts.filter((product) => product.category === category)
-//   }
- 
-  
-//     const [category, setCategory] = useState();
-//     const location = useLocation();
-//     const currentPath = location.pathname;
+const location = useLocation();
+const currentPath = location.pathname;
 
-//   useEffect(() => {
-//    if (currentPath === '/swimming') { setCategory('swimming') } 
-//    else if (currentPath === '/cycling') { setCategory('cycling') } 
-//    else if (currentPath === '/running') { setCategory('running') } 
-//     }, [currentPath])
+useEffect(() => {
+    categoriesData?.filter((category) => {
+        if (category.name === currentPath.slice(1,currentPath.length)) {
+        setProductsToRender(category.items)
+        }
+})
+}, [categoriesData]);
+
 
   return (
     <div>
       <Header />
-      <ProductCard category={category}/>
+      <div className="product-card-wrapper">
+      
+      {productsToRender?.map((product) => (
+        <figure className="product-card" key={product.name}>
+          <div className="product-img-price-wrapper">
+            <div className="product-img-wrapper">
+              <img className="product-Img" src={product.image} alt={product.name} />
+            </div>
+            {product.promo ? (
+              <div className="promo-container">
+                <div className={`product-price ${product.promo ? 'promo-price' : ''}`}>
+                  <p>{product.price}</p>
+                </div>
+                <span className="promo-label">SALE</span>
+              </div>
+            ) : (
+              <div className={`product-price ${product.promo ? 'promo-price' : ''}`}>
+                <p>{product.price}</p>
+              </div>
+            )}
+          </div>
+
+          <div className="product-description">
+            <p>{product.name}</p>
+          </div>
+        </figure>
+      ))}
+    </div>
+
+      {/* <ProductCard category={category}/> ponerle prop o let productsToRender or printProducts*/} 
       <Footer />
     </div>
   )

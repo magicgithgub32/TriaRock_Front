@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import React, {createContext} from 'react';
+import React, {createContext, useState} from 'react';
 import Home from './pages/Home/Home';
 // import Cycling from './pages/Cycling/Cycling';
 // import Running from './pages/Running/Running';
@@ -14,12 +14,14 @@ export const ProductContext = createContext();
 
 const App = () => {
   const allProducts = productFetch();
+  const [ productsToRender, setProductsToRender ] = useState([])
   
 return (    
     <>
      <ProductContext.Provider
         value={{
-          allProducts: allProducts
+          allProducts: allProducts,
+          productsToRender: productsToRender
         }}
       >
 
