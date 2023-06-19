@@ -1,10 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './ProductCard.css';
 import allProducts from '../../data/allProducts';
 import { productFetch } from '../../services/productFetch';
 
 const ProductCard = () => {
-  const getProducts = productFetch();
+  const allProducts = productFetch();
+  const [ filteredProducts, setFilteredProducts ] = useState()
+
+  const getFilteredProducts = (category) => {
+    allProducts.filter((product) => product.category === category)
+}
 
   return (
     <div className="product-card-wrapper">

@@ -1,5 +1,13 @@
+import React from 'react'; 
 import './Swimming.css';
 
-const Swimming = () => {};
 
-export default Swimming;
+const Swimming = () => {
+  return (
+    <div>
+
+    </div>
+  )
+}
+
+export default Swimming
