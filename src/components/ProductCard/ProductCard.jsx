@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './ProductCard.css';
-import allProducts from '../../data/allProducts';
 import { productFetch } from '../../services/productFetch';
 
 const ProductCard = () => {
