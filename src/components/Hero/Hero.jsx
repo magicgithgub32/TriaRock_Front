@@ -7,7 +7,7 @@ const Hero = () => {
   return (
     <>
 {/* <CategoryCard /> */}
-      <ProductCard />
+      <ProductCard/>
     </>
   );
 };

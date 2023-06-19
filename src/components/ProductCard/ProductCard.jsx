@@ -1,18 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 import './ProductCard.css';
 import { productFetch } from '../../services/productFetch';
+import { ProductContext } from '../../App';
 
 const ProductCard = () => {
-  const allProducts = productFetch();
-  const [ filteredProducts, setFilteredProducts ] = useState()
-
-  const getFilteredProducts = (category) => {
-    allProducts.filter((product) => product.category === category)
-}
+  const { allProducts } = useContext(ProductContext);
 
   return (
     <div className="product-card-wrapper">
-      {console.log(allProducts)}
+      
       {allProducts?.map((product) => (
         <figure className="product-card" key={product.name}>
           <div className="product-img-price-wrapper">

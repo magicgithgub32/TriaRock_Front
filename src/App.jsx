@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import { React, useState } from 'react';
+import React, {createContext} from 'react';
 import Home from './pages/Home/Home';
 // import Cycling from './pages/Cycling/Cycling';
 // import Running from './pages/Running/Running';
@@ -8,13 +8,23 @@ import CategoryPage from './pages/CategoryPage/CategoryPage';
 
 import RegisterLogin from './pages/RegisterLogin/RegisterLogin';
 import Favorites from './pages/Favorites/Favorites';
+import { productFetch } from '../src/services/productFetch';
+
+export const ProductContext = createContext();
 
 const App = () => {
-
+  const allProducts = productFetch();
+  
 return (    
     <>
+     <ProductContext.Provider
+        value={{
+          allProducts: allProducts
+        }}
+      >
+
       <Routes>
-        <Route path="/" element={<Home />}></Route>
+      <Route path="/" element={<Home/>}></Route>
         <Route path="/registerlogin" element={<RegisterLogin />}></Route>
         
         {/* <Route path="/swimming" element={<Swimming/>}></Route>
@@ -23,10 +33,11 @@ return (
          */}
         <Route path="/swimming" element={<CategoryPage/>}></Route>
         <Route path="/cycling" element={<CategoryPage/>}></Route>
-        <Route path="/running" element={<CategoryPage/>}></Route>
+        <Route path="/running" element={<CategoryPage />}></Route>
 
-        <Route path="/favorites" element={<Favorites />}></Route>
+        <Route path="/favorites" element={<Favorites/>}></Route>
       </Routes>
+      </ProductContext.Provider>
     </>
   );
 };
