@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import './ProductCard.css';
-import allProducts from '../../data/allProducts';
 import { productFetch } from '../../services/productFetch';
 
 const ProductCard = () => {
-  const getProducts = productFetch();
+  const allProducts = productFetch();
 
   return (
     <div className="product-card-wrapper">
