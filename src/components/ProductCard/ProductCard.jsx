@@ -1,15 +1,14 @@
 import React, { useContext } from 'react';
 import './ProductCard.css';
-import { productFetch } from '../../services/productFetch';
 import { ProductContext } from '../../App';
 
 const ProductCard = () => {
-  const { allProducts } = useContext(ProductContext);
+  const { productsToRender, setProductsToRender } = useContext(ProductContext);
 
   return (
     <div className="product-card-wrapper">
       
-      {allProducts?.map((product) => (
+      {productsToRender?.map((product) => (
         <figure className="product-card" key={product.name}>
           <div className="product-img-price-wrapper">
             <div className="product-img-wrapper">

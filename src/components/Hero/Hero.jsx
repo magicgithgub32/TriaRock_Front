@@ -7,8 +7,7 @@ import React from 'react';
 const Hero = () => {
   return (
     <>
-      {/* <CategoryCard /> */}
-      {/* <ProductCard /> */}
+      <CategoryCard />
       <BestSeller />
     </>
   );

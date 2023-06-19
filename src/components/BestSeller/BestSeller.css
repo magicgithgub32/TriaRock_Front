@@ -1,12 +1,10 @@
 .best-seller-wrapper {
     display: flex;
-    flex-direction: column;
-    text-align: center;
-    
+    flex-direction: column; 
 }
 
 .best-seller-text {
-    
+    text-align: center;
     background-color: var(--color-primary);
     color: var(--color-secondary);
     font-weight: 600;

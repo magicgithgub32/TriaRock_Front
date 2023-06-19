@@ -21,7 +21,8 @@ return (
      <ProductContext.Provider
         value={{
           allProducts: allProducts,
-          productsToRender: productsToRender
+          productsToRender: productsToRender,
+          setProductsToRender: setProductsToRender
         }}
       >
 
