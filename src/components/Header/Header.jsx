@@ -9,7 +9,7 @@ const Header = () => {
     <header>
       <div className="first-header-section">
         <div className="logo-section">
-          <img className="logo" src="./corriendo.png" alt="logo" />
+          <img className="logo" src="./triarock-logo.png" alt="logo" />
           <p className="brand">TRIAROCK</p>
         </div>
         <div className="search-section">

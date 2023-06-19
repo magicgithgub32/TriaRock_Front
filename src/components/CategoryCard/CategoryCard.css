@@ -13,7 +13,7 @@ figure {
 
 .category-image {
   width: 100%;
-  border-radius: 0.5rem;
+  border-radius: var(--border-radius)
 }
 
 .category-cta {
@@ -21,9 +21,9 @@ figure {
   font-weight: 600;
   font-size:32px;
     position: absolute;
-    top: 62%;
+    top: 68%;
     color: white;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.15);
     padding: 0 10px;
-    border-radius: 0.5rem;
+    border-radius: var(--border-radius)
   }

@@ -10,18 +10,20 @@
 .logo-section {
     display: flex;
     justify-content: center;
-    gap: 1rem;
+    align-items: center;
+    
 }
 
 
 .logo {
-    width: 35px;
-    height: 35px; 
+       height: 55px;
+    margin-bottom: 14px;
+    padding-right: 6px;
 }
 
 .brand {
 color: var(--color-secondary);
-font-weight: 700;
+font-weight: 600;
 font-size: 40px;
 }
 
@@ -33,7 +35,7 @@ font-size: 40px;
 }
 
 .search-product-input {
-    border-radius: .5rem;
+    border-radius: var(--border-radius);
     padding: 0 6px;
     width: 100%;
     background-color: var(--main-bg-color);
