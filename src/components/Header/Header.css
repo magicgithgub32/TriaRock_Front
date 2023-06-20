@@ -53,7 +53,9 @@ font-size: 40px;
     color: var(--color-primary); 
     font-size: 20px;
     font-weight: 600;
-    transition: transform 0.3s ease;
+    /* transition: transform 0.3s ease; */
+    transition: var(--transition)
+
 }
 
 .category-link:hover {

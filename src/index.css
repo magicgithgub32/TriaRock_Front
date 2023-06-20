@@ -42,6 +42,8 @@ button {
   background-color: var(--color-secondary);
   border: 2px solid var(--color-tertiary);
   color: var(--color-primary);
+  cursor: pointer;
+  transition: var(--transition);
 }
 
 button:hover {

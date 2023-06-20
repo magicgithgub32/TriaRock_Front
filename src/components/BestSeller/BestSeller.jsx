@@ -5,11 +5,11 @@ import ProductCard from '../ProductCard/ProductCard';
 
 const BestSeller = () => {
   const { allProducts, setProductsToRender } = useContext(ProductContext);
-  
+
   useEffect(() => {
     const bestSellerProducts = allProducts?.filter((product) => product.bestSeller === true);
-   setProductsToRender(bestSellerProducts)     
-}, [allProducts]);
+    setProductsToRender(bestSellerProducts);
+  }, [allProducts]);
 
   return (
     <div className="best-seller-wrapper">
