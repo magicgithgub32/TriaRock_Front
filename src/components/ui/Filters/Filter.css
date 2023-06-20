@@ -1,0 +1,17 @@
+.filter-label-and-options {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 12px;
+}
+
+.filter-label {
+   text-transform: uppercase;
+   font-weight: 600;
+}
+
+.filter-options {
+    display: flex;
+    gap: 6px;
+    text-transform: uppercase;
+}
