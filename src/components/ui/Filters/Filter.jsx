@@ -1,7 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import './Filter.css';
+import { ProductContext } from '../../../App';
 
-const Filter = ({ inputTitle, inputOptions }) => {
+const Filter = ({ inputTitle, inputOptions, categoriesData }) => {
+
+const { productsToRender, setProductsToRender } = useContext(ProductContext);
+const [selectedOptions, setSelectedOptions] = useState([]);
+
+const handleCheckbox = (ev) => {
+  const inputOption = ev.target.value;
+  setSelectedOptions((prevOptions) => [...prevOptions, inputOption]);
+  const filteredProducts = productsToRender.filter((product) => product.name.split(' ')[0] === inputOption)
+  setProductsToRender(filteredProducts)
+}
+
   return (
     <div className="filter-label-and-options">
       <label htmlFor={inputOptions} className="filter-label">
@@ -9,7 +21,9 @@ const Filter = ({ inputTitle, inputOptions }) => {
       </label>
       {inputOptions.map((option, index) => (
         <div className="filter-options" key={index}>
-          <input type="checkbox" id={option} name={inputTitle} value={option} />
+          <input type="checkbox" id={option} name={inputTitle} value={option} 
+          onChange={handleCheckbox} 
+          />
           <label htmlFor={option}>{option}</label>
         </div>
       ))}

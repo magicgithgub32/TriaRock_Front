@@ -1,9 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import React, { createContext, useState } from 'react';
 import Home from './pages/Home/Home';
-// import Cycling from './pages/Cycling/Cycling';
-// import Running from './pages/Running/Running';
-// import Swimming from './pages/Swimming/Swimming';
 import CategoryPage from './pages/CategoryPage/CategoryPage';
 
 import RegisterLogin from './pages/RegisterLogin/RegisterLogin';
@@ -12,13 +9,11 @@ import { productFetch } from '../src/services/productFetch';
 import ProductDetail from './pages/ProductDetail/ProductDetail';
 
 export const ProductContext = createContext();
-
 export const ProductSelectedContext = createContext();
 
 const App = () => {
   const allProducts = productFetch();
   const [productsToRender, setProductsToRender] = useState([]);
-
   const [productSelected, setProductSelected] = useState([]);
 
   return (
@@ -51,6 +46,7 @@ const App = () => {
             <Route path="/favorites" element={<Favorites />}></Route>
             <Route path="/productDetail" element={<ProductDetail />}></Route>
           </Routes>
+        
         </ProductSelectedContext.Provider>
       </ProductContext.Provider>
     </>
