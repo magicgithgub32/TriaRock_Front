@@ -14,7 +14,10 @@ const Header = () => {
         </div>
         <div className="search-section">
           <input type="text" className="search-product-input" placeholder="Find your product" />
-          <img src="./src/assets/searchIcon.png" className="searchIcon" />
+          <img src="./src/assets/search.svg" className="search-icon" />
+        </div>
+        <div className="home-section">
+          <img src="./src/assets/home-2.svg" className="home-icon" />
         </div>
         <div className="my-account-section">
           <Link to={RegisterLogin}>
