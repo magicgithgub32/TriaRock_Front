@@ -37,10 +37,10 @@ const Header = () => {
           SWIMMING
         </NavLink>
         <NavLink className="category-link" to="/cycling">
-           CYCLING
+          CYCLING
         </NavLink>
         <NavLink className="category-link" to="/running">
-        RUNNING
+          RUNNING
         </NavLink>
       </nav>
     </header>

@@ -1,0 +1,41 @@
+.product-detail-logo-wrapper {
+    display: flex;
+    background-color: var(--color-primary);
+    padding: 10px;
+}
+
+.product-detail-logo {
+    width: 50px;
+}
+
+.product-detail-wrapper {
+    display: flex;
+    align-items: center; 
+   justify-content: center;
+   margin: 2rem;
+}
+
+.product-detail-image {
+    height: 400px;
+}
+
+
+.product-detail-text {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.product-detail-text > p {
+    font-weight: 600;
+}
+
+.product-detail-price {
+    background-color: var(--color-secondary);
+    height: 25%;
+    width: 28%;
+    border-radius: 5px;
+    
+}
