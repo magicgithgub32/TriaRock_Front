@@ -7,8 +7,9 @@ import ProductCard from '../../components/ProductCard/ProductCard';
 import { categoryFetch } from '../../services/categoryFetch';
 
 import { ProductContext } from '../../App';
-import Filter from '../../components/ui/Filters/Filter';
-import PriceFilter from '../../components/ui/Filters/PriceFilter';
+import ProductTypeFilter from '../../components/ui/Filters/ProductTypeFilter/ProductTypeFilter';
+import GenderFilter from '../../components/ui/Filters/GenderFilter/GenderFilter';
+import PriceFilter from '../../components/ui/Filters/PriceFilter/PriceFilter';
 
 const CategoryPage = () => {
   const categoriesData = categoryFetch();
@@ -36,14 +37,16 @@ const CategoryPage = () => {
 
       <main>
         <section className="filter-section">
-          <Filter
+          <ProductTypeFilter
             inputTitle="tipo de producto"
             inputOptions={productTypes}
             setProductTypes={setProductTypes}
             categoriesData={categoriesData}
             currentPath={currentPath}
           />
-          <Filter inputTitle="género" inputOptions={genders} />
+          <GenderFilter inputTitle="género" inputOptions={genders} 
+           categoriesData={categoriesData}
+           currentPath={currentPath}/>
           {/* <PriceFilter/> */}
           {/* promo y bestseller */}
         </section>

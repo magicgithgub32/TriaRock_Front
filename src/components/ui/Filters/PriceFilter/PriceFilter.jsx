@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { ProductContext } from '../../../App';
+import { ProductContext } from '../../../../App';
 
 const PriceFilter = () => {
     const { productsToRender } = useContext(ProductContext);
