@@ -3,22 +3,25 @@ import './Header.css';
 import React from 'react';
 import RegisterLogin from '../../pages/RegisterLogin/RegisterLogin';
 import Favorites from '../../pages/Favorites/Favorites';
+import Home from '../../pages/Home/Home';
+import BackHome from '../ui/BackHome/BackHome';
 
 const Header = () => {
   return (
-    <header>
+    <header className="header-section">
       <div className="first-header-section">
-        <div className="logo-section">
-          <img className="logo" src="./triarock-logo.png" alt="logo" />
-          <p className="brand">TRIAROCK</p>
-        </div>
+        <Link to="/">
+          <div className="logo-section">
+            <img className="logo" src="./triarock-logo.png" alt="logo" />
+            <p className="brand">TRIAROCK</p>
+          </div>
+        </Link>
         <div className="search-section">
           <input type="text" className="search-product-input" placeholder="Find your product" />
           <img src="./src/assets/search.svg" className="search-icon" />
         </div>
-        <div className="home-section">
-          <img src="./src/assets/home-2.svg" className="home-icon" />
-        </div>
+
+        <BackHome />
         <div className="my-account-section">
           <Link to={RegisterLogin}>
             <button className="my-triarock" type="button">

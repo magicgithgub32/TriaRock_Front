@@ -1,6 +1,7 @@
+
 .first-header-section {
-    height: 18vh;
     display: flex;
+    height: 18vh;
     width: 100vw;
     justify-content: space-around;
     align-items: center;
@@ -36,13 +37,15 @@ font-size: 40px;
 
 .search-product-input {
     border-radius: var(--border-radius);
+    border: none;
     padding: 0 6px;
     width: 100%;
-    background-color: var(--main-bg-color);
+    background-color: var(--color-input);
 }
 
 .category-navbar {
     display: flex;
+    height: 10vh;
     justify-content: space-around;
     padding: 20px 10px;
     background-color: var(--color-secondary);

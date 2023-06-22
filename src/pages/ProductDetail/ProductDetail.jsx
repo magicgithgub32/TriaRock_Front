@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import './ProductDetail.css';
 import Header from '../../components/Header/Header';
 import { ProductSelectedContext } from '../../App';
+import Footer from '../../components/Footer/Footer';
 
 const ProductDetail = () => {
   const productSelectedContext = useContext(ProductSelectedContext);
@@ -11,10 +12,6 @@ const ProductDetail = () => {
   return (
     <>
       <Header />
-      {/* <div className="product-detail-logo-wrapper">
-        <img className="product-detail-logo" src="./triarock-logo.png" alt="logo" />
-        <p className="brand">TRIAROCK</p>
-      </div> */}
       <section className="product-detail">
         {productSelected ? (
           <figure className="product-detail-figure">
@@ -25,13 +22,35 @@ const ProductDetail = () => {
                 alt={productSelected.name}
               />
               <div className="product-detail-text">
-                <h2 className="product-detail-name">{productSelected.name}</h2>
-                <h2 className="product-detail-price">{productSelected.price}</h2>
+                <h3 className="product-detail-name">{productSelected.name}</h3>
+
+                {productSelected.promo ? (
+                  <div className="promo-container">
+                    <div
+                      className={`product-detail-price ${
+                        productSelected.promo ? 'promo-detail-price' : ''
+                      }`}
+                    >
+                      <h3>{productSelected.price}</h3>
+                    </div>
+                    <h3 className="promo-label">SALE</h3>
+                  </div>
+                ) : (
+                  <div
+                    className={`product-detail-price ${
+                      productSelected.promo ? 'promo-detail-price' : ''
+                    }`}
+                  >
+                    <h3>{productSelected.price}</h3>
+                  </div>
+                )}
+                <p>{productSelected.description}</p>
               </div>
             </div>
           </figure>
         ) : null}
       </section>
+      <Footer />
     </>
   );
 };
