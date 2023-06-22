@@ -26,6 +26,7 @@ const ProductDetail = () => {
               />
               <div className="product-detail-text">
                 <h2 className="product-detail-name">{productSelected.name}</h2>
+                <p className="product-detail-description">{productSelected.description}</p>
                 <h2 className="product-detail-price">{productSelected.price}</h2>
               </div>
             </div>

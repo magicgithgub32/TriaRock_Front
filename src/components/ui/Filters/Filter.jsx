@@ -8,11 +8,10 @@ const { productsToRender, setProductsToRender } = useContext(ProductContext);
 const [selectedOptions, setSelectedOptions] = useState([]);
 
 const handleCheckbox = (ev) => {
-  const inputOption = ev.target.value;
-  setSelectedOptions((prevOptions) => [...prevOptions, inputOption]);
-  const filteredProducts = productsToRender.filter((product) => product.name.split(' ')[0] === inputOption)
-  setProductsToRender(filteredProducts)
+const filteredProducts = productsToRender.filter((product) => product.name.split(' ')[0] === ev.target.value)
+setProductsToRender(filteredProducts)
 }
+
 
   return (
     <div className="filter-label-and-options">
