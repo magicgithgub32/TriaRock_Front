@@ -3,27 +3,18 @@ import './GenderFilter.css';
 import { ProductContext } from '../../../../App';
 
 const GenderFilter = ({ inputTitle, inputOptions, currentPath, categoriesData }) => {
-  const { setProductsToRender } = useContext(ProductContext);
-  //inputOptions: hombre, mujer...
+  const { productsToRender, setProductsToRender } = useContext(ProductContext);
 
 const handleCheckbox = (ev) => {
-   
-const selectedOption = ev.target.value;
+const gendersToExclude = inputOptions.filter((inputOption) => inputOption !== ev.target.value);
 
-if (categoriesData) {
-    const currentCategory = categoriesData?.filter((category) => 
-  category.name === currentPath.slice(1, currentPath.length));
-  
-  
-  const filteredProducts = currentCategory[0].items.filter((item) => 
-  item.name.split(' ').filter((word) => 
-  word === selectedOption))
-  
-  
-  console.log(filteredProducts)
-    setProductsToRender(filteredProducts)
-  }
+const filteredProducts = productsToRender.filter(product => {
+  const productName = product.name.toLowerCase();
+  const containsExcludedWords = gendersToExclude.some(word => productName.includes(word.toLowerCase()));
+  return !containsExcludedWords;
+});
 
+console.log(filteredProducts)
 }
 
 
