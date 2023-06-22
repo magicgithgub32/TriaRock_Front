@@ -3,16 +3,15 @@ import './Filter.css';
 import { ProductContext } from '../../../App';
 
 const Filter = ({ inputTitle, inputOptions, categoriesData }) => {
+  const { productsToRender, setProductsToRender } = useContext(ProductContext);
+  const [selectedOptions, setSelectedOptions] = useState([]);
 
-const { productsToRender, setProductsToRender } = useContext(ProductContext);
-const [selectedOptions, setSelectedOptions] = useState([]);
-
-const handleCheckbox = (ev) => {
-  const inputOption = ev.target.value;
-  setSelectedOptions((prevOptions) => [...prevOptions, inputOption]);
-  const filteredProducts = productsToRender.filter((product) => product.name.split(' ')[0] === inputOption)
-  setProductsToRender(filteredProducts)
-}
+  const handleCheckbox = (ev) => {
+    const filteredProducts = productsToRender.filter(
+      (product) => product.name.split(' ')[0] === ev.target.value
+    );
+    setProductsToRender(filteredProducts);
+  };
 
   return (
     <div className="filter-label-and-options">
@@ -21,8 +20,12 @@ const handleCheckbox = (ev) => {
       </label>
       {inputOptions.map((option, index) => (
         <div className="filter-options" key={index}>
-          <input type="checkbox" id={option} name={inputTitle} value={option} 
-          onChange={handleCheckbox} 
+          <input
+            type="checkbox"
+            id={option}
+            name={inputTitle}
+            value={option}
+            onChange={handleCheckbox}
           />
           <label htmlFor={option}>{option}</label>
         </div>
