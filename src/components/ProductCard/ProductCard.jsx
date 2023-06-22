@@ -11,11 +11,19 @@ const ProductCard = () => {
   const productSelectedContext = useContext(ProductSelectedContext);
   const { setProductSelected } = productSelectedContext;
 
+  const [favoriteProducts, setFavoriteProducts] = useState([]);
+
   const handleClick = (product) => {
     setProductSelected(product);
-
-    console.log('Product Detail at ProductCard', product);
   };
+
+  const handleHeart = (product) => {
+    setFavoriteProducts([...favoriteProducts, product]);
+  };
+
+  useEffect(() => {
+    console.log('favoriteProducts', favoriteProducts);
+  }, [favoriteProducts]);
 
   return (
     <div className="product-card-wrapper">
@@ -38,10 +46,24 @@ const ProductCard = () => {
                   <p>{product.price}</p>
                 </div>
                 <span className="promo-label">SALE</span>
+                <img
+                  src="../../src/assets/heart.svg"
+                  className="heart"
+                  alt="heart"
+                  onClick={() => handleHeart(product)}
+                />
               </div>
             ) : (
-              <div className={`product-price ${product.promo ? 'promo-price' : ''}`}>
-                <p>{product.price}</p>
+              <div className="product-container">
+                <div className={`product-price ${product.promo ? 'promo-price' : ''}`}>
+                  <p>{product.price}</p>
+                </div>
+                <img
+                  src="../../src/assets/heart.svg"
+                  className="heart"
+                  alt="heart"
+                  onClick={() => handleHeart(product)}
+                />
               </div>
             )}
           </div>
