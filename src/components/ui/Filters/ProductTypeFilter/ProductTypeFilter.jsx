@@ -6,8 +6,14 @@ const ProductTypeFilter = ({ inputTitle, inputOptions, currentPath, categoriesDa
   const { setProductsToRender } = useContext(ProductContext);
   const [selectedOptions, setSelectedOptions] = useState([]);
 
+
 const handleCheckbox = (ev) => {
-setSelectedOptions([...selectedOptions, ev.target.value])
+  if (ev.target.checked) {
+  setSelectedOptions([...selectedOptions, ev.target.value])
+} else {
+  const selectedOptionsUpdated = selectedOptions.filter((selectedOption)=> selectedOption !== ev.target.value)
+  setSelectedOptions([...selectedOptionsUpdated])
+}
 }
 
 useEffect(() => {
