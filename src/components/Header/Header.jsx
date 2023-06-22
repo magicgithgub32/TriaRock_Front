@@ -3,7 +3,6 @@ import './Header.css';
 import React from 'react';
 import RegisterLogin from '../../pages/RegisterLogin/RegisterLogin';
 import Favorites from '../../pages/Favorites/Favorites';
-import Home from '../../pages/Home/Home';
 import BackHome from '../ui/BackHome/BackHome';
 import Logo from '../ui/BackHome/Logo';
 

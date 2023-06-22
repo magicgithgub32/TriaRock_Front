@@ -31,6 +31,8 @@ body {
   background-color: var(--main-bg-color);
   color: var(--primary-text-color);
   min-height: 100%;
+  transition: var(--transition);
+
 }
 
 button {
@@ -48,4 +50,8 @@ button {
 
 button:hover {
   background-color: var(--color-tertiary);
+}
+
+a, link {
+  transition: var(--transition);
 }
