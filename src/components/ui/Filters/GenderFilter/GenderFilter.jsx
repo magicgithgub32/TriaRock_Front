@@ -4,18 +4,30 @@ import { ProductContext } from '../../../../App';
 
 const GenderFilter = ({ inputTitle, inputOptions, currentPath, categoriesData }) => {
   const { productsToRender, setProductsToRender } = useContext(ProductContext);
+  const [filteredProducts, setFilteredProducts] = useState([])
+  const [excludedProducts, setExcludedProducts] = useState([])
+  const [selectedOption, setSelectedOption] = useState()
+  
 
 const handleCheckbox = (ev) => {
-const gendersToExclude = inputOptions.filter((inputOption) => inputOption !== ev.target.value);
+const gendersToExclude = inputOptions.filter((inputOption) => inputOption !== ev.target.value)
+if (ev.target.checked) {
+setSelectedOption(ev.target.value)
 
-const filteredProducts = productsToRender.filter(product => {
+  productsToRender.filter(product => {
   const productName = product.name.toLowerCase();
   const containsExcludedWords = gendersToExclude.some(word => productName.includes(word.toLowerCase()));
-  return !containsExcludedWords;
-});
-
-console.log(filteredProducts)
+  return !containsExcludedWords
+  })
 }
+  setFilteredProducts(!containsExcludedWords)
+  // setExcludedProducts(containsExcludedWords)
+}
+
+useEffect(() => {
+  const backProducts = [...filteredProducts, ...excludedProducts] 
+  setProductsToRender(backProducts)
+},[selectedOption, excludedProducts])
 
 
   return (
