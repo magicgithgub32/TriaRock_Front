@@ -24,7 +24,7 @@ const Header = () => {
           </Link>
         </div>
         <div className="my-favs-section">
-          <Link to={Favorites}>
+          <Link to="/favorites">
             <button className="my-favs" type="button">
               MY FAVS
             </button>

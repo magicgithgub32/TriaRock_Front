@@ -10,11 +10,13 @@ import ProductDetail from './pages/ProductDetail/ProductDetail';
 
 export const ProductContext = createContext();
 export const ProductSelectedContext = createContext();
+export const FavoriteProductsContext = createContext();
 
 const App = () => {
   const allProducts = productFetch();
   const [productsToRender, setProductsToRender] = useState([]);
   const [productSelected, setProductSelected] = useState([]);
+  const [favoriteProducts, setFavoriteProducts] = useState([]);
 
   return (
     <>
@@ -31,22 +33,28 @@ const App = () => {
             setProductSelected: setProductSelected
           }}
         >
-          <Routes>
-            <Route path="/" element={<Home />}></Route>
-            <Route path="/registerlogin" element={<RegisterLogin />}></Route>
+          <FavoriteProductsContext.Provider
+            value={{
+              favoriteProducts: favoriteProducts,
+              setFavoriteProducts: setFavoriteProducts
+            }}
+          >
+            <Routes>
+              <Route path="/" element={<Home />}></Route>
+              <Route path="/registerlogin" element={<RegisterLogin />}></Route>
 
-            {/* <Route path="/swimming" element={<Swimming/>}></Route>
+              {/* <Route path="/swimming" element={<Swimming/>}></Route>
         <Route path="/cycling" element={<Cycling />}></Route>
         <Route path="/running" element={<Running />}></Route>
          */}
-            <Route path="/swimming" element={<CategoryPage />}></Route>
-            <Route path="/cycling" element={<CategoryPage />}></Route>
-            <Route path="/running" element={<CategoryPage />}></Route>
+              <Route path="/swimming" element={<CategoryPage />}></Route>
+              <Route path="/cycling" element={<CategoryPage />}></Route>
+              <Route path="/running" element={<CategoryPage />}></Route>
 
-            <Route path="/favorites" element={<Favorites />}></Route>
-            <Route path="/productDetail" element={<ProductDetail />}></Route>
-          </Routes>
-        
+              <Route path="/favorites" element={<Favorites />}></Route>
+              <Route path="/productDetail" element={<ProductDetail />}></Route>
+            </Routes>
+          </FavoriteProductsContext.Provider>
         </ProductSelectedContext.Provider>
       </ProductContext.Provider>
     </>

@@ -1,8 +1,9 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import './ProductCard.css';
-import { ProductContext, ProductSelectedContext } from '../../App';
+import { FavoriteProductsContext, ProductContext, ProductSelectedContext } from '../../App';
 import ProductDetail from '../../pages/ProductDetail/ProductDetail';
 import { Link } from 'react-router-dom';
+import Favorites from '../../pages/Favorites/Favorites';
 
 const ProductCard = () => {
   const productContext = useContext(ProductContext);
@@ -11,14 +12,15 @@ const ProductCard = () => {
   const productSelectedContext = useContext(ProductSelectedContext);
   const { setProductSelected } = productSelectedContext;
 
-  const [favoriteProducts, setFavoriteProducts] = useState([]);
+  const favoriteProductsContext = useContext(FavoriteProductsContext);
+  const { favoriteProducts, setFavoriteProducts } = favoriteProductsContext;
 
   const handleClick = (product) => {
     setProductSelected(product);
   };
 
   const handleHeart = (product) => {
-    setFavoriteProducts([...favoriteProducts, product]);
+    setFavoriteProducts((prevFavoriteProducts) => [...prevFavoriteProducts, product]);
   };
 
   useEffect(() => {
