@@ -14,20 +14,21 @@ const gendersToExclude = inputOptions.filter((inputOption) => inputOption !== ev
 if (ev.target.checked) {
 setSelectedOption(ev.target.value)
 
-  productsToRender.filter(product => {
+setExcludedProducts(productsToRender.filter(product => {
   const productName = product.name.toLowerCase();
-  const containsExcludedWords = gendersToExclude.some(word => productName.includes(word.toLowerCase()));
-  return !containsExcludedWords
-  })
+  const containsExcludedWords  = gendersToExclude.some(word => productName.includes(word.toLowerCase()));
+  return !containsExcludedWords 
+}))
+
 }
-  setFilteredProducts(!containsExcludedWords)
-  // setExcludedProducts(containsExcludedWords)
 }
 
+
 useEffect(() => {
+  console.log(excludedProducts)
   const backProducts = [...filteredProducts, ...excludedProducts] 
   setProductsToRender(backProducts)
-},[selectedOption, excludedProducts])
+},[selectedOption])
 
 
   return (
