@@ -1,9 +1,19 @@
 import React from 'react';
-import './Button.css'
+import { Link } from 'react-router-dom';
+import './Button.css';
+import RegisterLogin from '../../../pages/RegisterLogin/RegisterLogin'
 
-const Button = () => {
+
+const Button = ({buttonLink, buttonText}) => {
+
   return (
-    <div>Button</div>
+    <>
+          <Link to={buttonLink}>
+            <button type="button" buttonText={buttonText}>{buttonText}
+            </button>
+          </Link>
+
+    </>
   )
 }
 

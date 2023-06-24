@@ -1,0 +1,16 @@
+.icon-button-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.icon-text {
+    color: var(--color-secondary);
+    font-weight: 600;
+    font-size: 14px
+}
+
+.icon-button-image {
+    height: 60%
+}

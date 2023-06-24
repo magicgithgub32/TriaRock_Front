@@ -35,23 +35,6 @@ body {
 
 }
 
-button {
-  padding: .3rem .5rem;
-  height: auto;
-  font-size: 18px;
-  font-weight: 600;
-  border-radius: var(--border-radius);
-  background-color: var(--color-secondary);
-  border: 2px solid var(--color-tertiary);
-  color: var(--color-primary);
-  cursor: pointer;
-  transition: var(--transition);
-}
-
-button:hover {
-  background-color: var(--color-tertiary);
-}
-
 a, link {
   transition: var(--transition);
 }

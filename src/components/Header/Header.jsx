@@ -1,10 +1,10 @@
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './Header.css';
 import React from 'react';
-import RegisterLogin from '../../pages/RegisterLogin/RegisterLogin';
-import Favorites from '../../pages/Favorites/Favorites';
 import BackHome from '../ui/BackHome/BackHome';
 import Logo from '../ui/BackHome/Logo';
+import Button from '../ui/Button/Button';
+import IconButton from '../ui/IconButton/IconButton';
 
 const Header = () => {
   return (
@@ -15,21 +15,21 @@ const Header = () => {
           <input type="text" className="search-product-input" placeholder="Find your product" />
           <img src="./src/assets/search.svg" className="search-icon" />
         </div>
-        <BackHome />
-        <div className="my-account-section">
-          <Link to={RegisterLogin}>
-            <button className="my-triarock" type="button">
-              MY TRIAROCK
-            </button>
-          </Link>
-        </div>
-        <div className="my-favs-section">
-          <Link to="/favorites">
-            <button className="my-favs" type="button">
-              MY FAVS
-            </button>
-          </Link>
-        </div>
+         <div className="icons-section">
+        {/* <BackHome /> */}
+        <IconButton buttonLink="/" buttonText="HOME"
+        srcImage="./src/assets/home-2.svg"/>
+        {/* <div className="my-account-section"> */}
+        {/* <Button buttonLink="/registerlogin" buttonText="MY TRIAROCK"/> */}
+        <IconButton buttonLink="/registerlogin" buttonText="MY TRIAROCK"
+        srcImage="./src/assets/user-circle.svg"/>
+        {/* </div> */}
+        {/* <div className="my-favs-section"> */}
+        {/* <Button buttonLink="/favorites" buttonText="MY FAVS"/> */}
+        <IconButton buttonLink="/favorites" buttonText="MY FAVS"
+        srcImage="./src/assets/heart.svg"/>
+       {/* </div> */}
+       </div>
       </div>
 
       <nav className="category-navbar">
