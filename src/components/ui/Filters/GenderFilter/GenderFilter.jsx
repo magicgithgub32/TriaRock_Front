@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useRef } from 'react';
 import './GenderFilter.css';
 import { ProductContext } from '../../../../App';
 
@@ -6,29 +6,42 @@ const GenderFilter = ({ inputTitle, inputOptions, currentPath, categoriesData })
   const { productsToRender, setProductsToRender } = useContext(ProductContext);
   const [filteredProducts, setFilteredProducts] = useState([])
   const [excludedProducts, setExcludedProducts] = useState([])
-  const [selectedOption, setSelectedOption] = useState()
-  
+  const [genderIsSelected, setGenderIsSelected] = useState(false)
 
+  const genderRefs = useRef([]);
+    
+  
 const handleCheckbox = (ev) => {
+ 
+genderRefs.current.map((genderRef) => {
+    if (genderRef.value !== ev.target.value && ev.target.checked) {
+      genderRef.disabled = true
+    } else if (genderRef.value !== ev.target.value && !ev.target.checked) {
+      genderRef.disabled = false}
+  })
+
 const gendersToExclude = inputOptions.filter((inputOption) => inputOption !== ev.target.value)
 if (ev.target.checked) {
-setSelectedOption(ev.target.value)
-
+setGenderIsSelected(true)
+setFilteredProducts(productsToRender.filter(product => {
+  const productName = product.name.toLowerCase();
+  const containsExcludedWords = gendersToExclude.some(word => productName.includes(word.toLowerCase()));
+  return !containsExcludedWords
+  }))
 setExcludedProducts(productsToRender.filter(product => {
   const productName = product.name.toLowerCase();
-  const containsExcludedWords  = gendersToExclude.some(word => productName.includes(word.toLowerCase()));
-  return !containsExcludedWords 
-}))
-
+  const containsExcludedWords = gendersToExclude.some(word => productName.includes(word.toLowerCase()));
+  return containsExcludedWords
+  }))
+} else {
+setGenderIsSelected(false)
+setFilteredProducts([...filteredProducts, ...excludedProducts])
 }
 }
-
 
 useEffect(() => {
-  console.log(excludedProducts)
-  const backProducts = [...filteredProducts, ...excludedProducts] 
-  setProductsToRender(backProducts)
-},[selectedOption])
+  setProductsToRender(filteredProducts)
+},[genderIsSelected])
 
 
   return (
@@ -44,6 +57,7 @@ useEffect(() => {
             name={inputTitle}
             value={option}
             onChange={handleCheckbox}
+            ref={(el) => (genderRefs.current[index] = el)}
           />
           <label htmlFor={option}>{option}</label>
         </div>
