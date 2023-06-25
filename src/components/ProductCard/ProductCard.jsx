@@ -20,7 +20,13 @@ const ProductCard = () => {
   };
 
   const handleHeart = (product) => {
-    setFavoriteProducts((prevFavoriteProducts) => [...prevFavoriteProducts, product]);
+    if (!favoriteProducts.includes(product)) {
+      setFavoriteProducts((prevFavoriteProducts) => [...prevFavoriteProducts, product]);
+    } else {
+      setFavoriteProducts((prevFavoriteProducts) =>
+        prevFavoriteProducts.filter((favProduct) => favProduct !== product)
+      );
+    }
   };
 
   useEffect(() => {

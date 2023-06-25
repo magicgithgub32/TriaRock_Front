@@ -1,0 +1,25 @@
+.favorite-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-primary);
+    color: var(--color-secondary);
+    padding: 1rem;
+}
+
+.favorite-product-Img {
+    width: 150px;
+    height: 150px;
+}
+
+.favorite-products-wrapper {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+
+.no-favorite-products {
+    background-color: var(--color-tertiary);
+    /* color: var(--main-bg-color); */
+}
