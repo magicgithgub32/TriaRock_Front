@@ -24,19 +24,27 @@ const Favorites = () => {
                 />
                 {favoriteProduct.promo ? (
                   <div className="promo-container">
-                    <div className={`product-price ${favoriteProduct.promo ? 'promo-price' : ''}`}>
+                    <div
+                      className={`fav-product-price ${
+                        favoriteProduct.promo ? 'fav-promo-price' : ''
+                      }`}
+                    >
                       <p>{favoriteProduct.price}</p>
                     </div>
                     <span className="promo-label">SALE</span>
                   </div>
                 ) : (
                   <div className="product-container">
-                    <div className={`product-price ${favoriteProduct.promo ? 'promo-price' : ''}`}>
+                    <div
+                      className={`fav-product-price ${
+                        favoriteProduct.promo ? 'fav-promo-price' : ''
+                      }`}
+                    >
                       <p>{favoriteProduct.price}</p>
                     </div>
                   </div>
                 )}
-                <div className="product-description">
+                <div className="fav-product-description">
                   <p>{favoriteProduct.name}</p>
                 </div>
               </figure>

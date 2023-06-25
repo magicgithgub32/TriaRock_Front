@@ -12,13 +12,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* background-color: rgb(255, 248, 248); */
-    border-radius: 10px;
-  
-
 }
-
-
 
 .product-img-price-wrapper {
 display: flex; 
@@ -47,7 +41,18 @@ display: flex;
     border-radius: 5px;
 }
 
+.hearts-container {
+    display: flex;
+}
+
 .heart {
+    display: flex;
+    height: 25px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.red-heart {
     display: flex;
     height: 25px;
     cursor: pointer;

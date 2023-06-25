@@ -6,6 +6,13 @@
     color: var(--color-secondary);
     padding: 1rem;
 }
+.favorite-products-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
 
 .favorite-product-Img {
     width: 150px;
@@ -17,6 +24,39 @@
     justify-content: space-around;
     flex-wrap: wrap;
     margin-top: 1rem;
+}
+
+.fav-product-price {
+    background-color: var(--color-secondary);
+    font-weight: 800;
+    /* height: 50%; */
+    width: 120%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+}
+
+.fav-promo-price {
+    background-color: var(--color-tertiary);
+    font-weight: 800;
+    height: 50%;
+    width: 140%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+}
+
+.fav-product-description {
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+    align-items: center; 
+    justify-content: center;
+    max-width: 200px;
+    text-align: center;
+    padding-top: 10px
 }
 
 .no-favorite-products {

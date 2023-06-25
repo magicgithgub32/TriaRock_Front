@@ -54,24 +54,40 @@ const ProductCard = () => {
                   <p>{product.price}</p>
                 </div>
                 <span className="promo-label">SALE</span>
-                <img
-                  src="../../src/assets/heart.svg"
-                  className="heart"
-                  alt="heart"
-                  onClick={() => handleHeart(product)}
-                />
+                <div className="hearts-container">
+                  <img
+                    src="../../src/assets/heart.svg"
+                    className="heart"
+                    alt="heart"
+                    onClick={() => handleHeart(product)}
+                  />
+                  <img
+                    src="../../src/assets/corazon.png"
+                    className="red-heart"
+                    alt="heart"
+                    onClick={() => handleHeart(product)}
+                  />
+                </div>
               </div>
             ) : (
               <div className="product-container">
                 <div className={`product-price ${product.promo ? 'promo-price' : ''}`}>
                   <p>{product.price}</p>
                 </div>
-                <img
-                  src="../../src/assets/heart.svg"
-                  className="heart"
-                  alt="heart"
-                  onClick={() => handleHeart(product)}
-                />
+                <div className="hearts-container">
+                  <img
+                    src="../../src/assets/heart.svg"
+                    className="heart"
+                    alt="heart"
+                    onClick={() => handleHeart(product)}
+                  />
+                  <img
+                    src="../../src/assets/corazon.png"
+                    className="red-heart"
+                    alt="heart"
+                    onClick={() => handleHeart(product)}
+                  />
+                </div>
               </div>
             )}
           </div>
