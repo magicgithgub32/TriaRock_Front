@@ -45,18 +45,15 @@ display: flex;
     display: flex;
 }
 
-.heart {
+.heart-visible {
     display: flex;
     height: 25px;
     cursor: pointer;
     margin-top: 5px;
 }
 
-.red-heart {
-    display: flex;
-    height: 25px;
-    cursor: pointer;
-    margin-top: 5px;
+.heart-invisible {
+    display: none;
 }
 
 .promo-container {

@@ -1,9 +1,7 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import './ProductCard.css';
 import { FavoriteProductsContext, ProductContext, ProductSelectedContext } from '../../App';
-import ProductDetail from '../../pages/ProductDetail/ProductDetail';
 import { Link } from 'react-router-dom';
-import Favorites from '../../pages/Favorites/Favorites';
 
 const ProductCard = () => {
   const productContext = useContext(ProductContext);
@@ -15,11 +13,13 @@ const ProductCard = () => {
   const favoriteProductsContext = useContext(FavoriteProductsContext);
   const { favoriteProducts, setFavoriteProducts } = favoriteProductsContext;
 
+
   const handleClick = (product) => {
     setProductSelected(product);
   };
 
-  const handleHeart = (product) => {
+  const handleHeart = (product) => {  
+                    
     if (!favoriteProducts.includes(product)) {
       setFavoriteProducts((prevFavoriteProducts) => [...prevFavoriteProducts, product]);
     } else {
@@ -27,6 +27,7 @@ const ProductCard = () => {
         prevFavoriteProducts.filter((favProduct) => favProduct !== product)
       );
     }
+  
   };
 
   useEffect(() => {
@@ -35,7 +36,7 @@ const ProductCard = () => {
 
   return (
     <div className="product-card-wrapper">
-      {productsToRender?.map((product) => (
+      {productsToRender?.map((product, index) => (
         <figure className="product-card" key={product.name}>
           <div className="product-img-price-wrapper">
             <div className="product-img-wrapper">
@@ -55,15 +56,15 @@ const ProductCard = () => {
                 </div>
                 <span className="promo-label">SALE</span>
                 <div className="hearts-container">
-                  <img
+                <img
                     src="../../src/assets/heart.svg"
-                    className="heart"
+                    className="heart-visible"
                     alt="heart"
                     onClick={() => handleHeart(product)}
                   />
                   <img
                     src="../../src/assets/corazon.png"
-                    className="red-heart"
+                    className="heart-invisible"
                     alt="heart"
                     onClick={() => handleHeart(product)}
                   />
@@ -77,13 +78,13 @@ const ProductCard = () => {
                 <div className="hearts-container">
                   <img
                     src="../../src/assets/heart.svg"
-                    className="heart"
+                    className="heart-visible"
                     alt="heart"
                     onClick={() => handleHeart(product)}
                   />
                   <img
                     src="../../src/assets/corazon.png"
-                    className="red-heart"
+                    className="heart-invisible"
                     alt="heart"
                     onClick={() => handleHeart(product)}
                   />

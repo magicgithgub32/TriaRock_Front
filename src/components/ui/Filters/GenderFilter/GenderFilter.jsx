@@ -12,7 +12,7 @@ const GenderFilter = ({ inputTitle, inputOptions, currentPath, categoriesData })
     
   
 const handleCheckbox = (ev) => {
- 
+
 genderRefs.current.map((genderRef) => {
     if (genderRef.value !== ev.target.value && ev.target.checked) {
       genderRef.disabled = true
