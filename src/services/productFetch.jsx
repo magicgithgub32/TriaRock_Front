@@ -5,7 +5,8 @@ export const productFetch = () => {
 
   useEffect(() => {
     const getData = async () => {
-      const res = await fetch('http://localhost:3000/api/products');
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/products`);
+
       const data = await res.json();
       return data;
     };

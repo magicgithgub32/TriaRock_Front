@@ -13,13 +13,11 @@ const ProductCard = () => {
   const favoriteProductsContext = useContext(FavoriteProductsContext);
   const { favoriteProducts, setFavoriteProducts } = favoriteProductsContext;
 
-
   const handleClick = (product) => {
     setProductSelected(product);
   };
 
-  const handleHeart = (product) => {  
-                    
+  const handleHeart = (product) => {
     if (!favoriteProducts.includes(product)) {
       setFavoriteProducts((prevFavoriteProducts) => [...prevFavoriteProducts, product]);
     } else {
@@ -27,7 +25,6 @@ const ProductCard = () => {
         prevFavoriteProducts.filter((favProduct) => favProduct !== product)
       );
     }
-  
   };
 
   useEffect(() => {
@@ -36,7 +33,7 @@ const ProductCard = () => {
 
   return (
     <div className="product-card-wrapper">
-      {productsToRender?.map((product, index) => (
+      {productsToRender?.map((product) => (
         <figure className="product-card" key={product.name}>
           <div className="product-img-price-wrapper">
             <div className="product-img-wrapper">
@@ -56,7 +53,7 @@ const ProductCard = () => {
                 </div>
                 <span className="promo-label">SALE</span>
                 <div className="hearts-container">
-                <img
+                  <img
                     src="../../src/assets/heart.svg"
                     className="heart-visible"
                     alt="heart"
