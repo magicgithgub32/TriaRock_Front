@@ -4,6 +4,7 @@ import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import { FavoriteProductsContext } from '../../App';
 import ProductCard from '../../components/ProductCard/ProductCard';
+import CategoryCard from '../../components/CategoryCard/CategoryCard';
 
 const Favorites = () => {
   const { favoriteProducts } = useContext(FavoriteProductsContext);
@@ -16,7 +17,7 @@ const Favorites = () => {
         <div className="favorite-products-wrapper">
           {favoriteProducts.length > 0 ? (
             favoriteProducts.map((favoriteProduct) => (
-              <figure className="favorite-products-section" key={favoriteProduct?.id}>
+              <figure className="favorite-products-section" key={favoriteProduct.name}>
                 <img
                   className="favorite-product-Img"
                   src={favoriteProduct.image}
@@ -56,6 +57,8 @@ const Favorites = () => {
           )}
         </div>
       </article>
+
+      <CategoryCard />
       <Footer />
     </section>
   );

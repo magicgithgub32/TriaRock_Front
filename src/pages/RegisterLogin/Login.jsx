@@ -1,19 +1,24 @@
 import React, { useState } from 'react';
 import './Login.css';
 import Header from '../../components/Header/Header';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Footer from '../../components/Footer/Footer';
 
 const Login = () => {
+  const navigate = useNavigate();
+
   const [user, setUser] = useState({
     email: '',
     password: ''
   });
 
   const handleFormSubmit = (event) => {
-    event.preventDefault(); // Prevent the default form submission behavior
+    event.preventDefault();
+    setUser({ email: '', password: '' });
 
-    fetch(`${import.meta.env.VITE_API_URL}/users`, {
+    navigate('/favorites');
+
+    fetch(`${import.meta.env.VITE_API_URL}/users/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
