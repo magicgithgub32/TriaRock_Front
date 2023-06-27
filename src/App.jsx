@@ -12,12 +12,18 @@ import Register from './pages/RegisterLogin/Register';
 export const ProductContext = createContext();
 export const ProductSelectedContext = createContext();
 export const FavoriteProductsContext = createContext();
+export const UserContext = createContext();
 
 const App = () => {
   const allProducts = productFetch();
   const [productsToRender, setProductsToRender] = useState([]);
   const [productSelected, setProductSelected] = useState([]);
   const [favoriteProducts, setFavoriteProducts] = useState([]);
+  const [user, setUser] = useState({
+    email: '',
+    password: ''
+  });
+  const [emailUserLoggedIn, setEmailUserLoggedIn] = useState(); //que sea el correo
 
   return (
     <>
@@ -40,15 +46,17 @@ const App = () => {
               setFavoriteProducts: setFavoriteProducts
             }}
           >
+             <UserContext.Provider
+            value={{
+              user: user,
+              setUser: setUser,
+              emailUserLoggedIn: emailUserLoggedIn
+            }}
+          >
             <Routes>
               <Route path="/" element={<Home />}></Route>
               <Route path="/login" element={<Login />}></Route>
               <Route path="/register" element={<Register />}></Route>
-
-              {/* <Route path="/swimming" element={<Swimming/>}></Route>
-        <Route path="/cycling" element={<Cycling />}></Route>
-        <Route path="/running" element={<Running />}></Route>
-         */}
               <Route path="/swimming" element={<CategoryPage />}></Route>
               <Route path="/cycling" element={<CategoryPage />}></Route>
               <Route path="/running" element={<CategoryPage />}></Route>
@@ -56,6 +64,7 @@ const App = () => {
               <Route path="/favorites" element={<Favorites />}></Route>
               <Route path="/productDetail" element={<ProductDetail />}></Route>
             </Routes>
+            </UserContext.Provider>
           </FavoriteProductsContext.Provider>
         </ProductSelectedContext.Provider>
       </ProductContext.Provider>

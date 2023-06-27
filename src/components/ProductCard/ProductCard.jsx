@@ -1,7 +1,8 @@
 import React, { useContext, useEffect } from 'react';
 import './ProductCard.css';
-import { FavoriteProductsContext, ProductContext, ProductSelectedContext } from '../../App';
+import { FavoriteProductsContext, ProductContext, ProductSelectedContext, UserContext } from '../../App';
 import { Link } from 'react-router-dom';
+import { userFetch } from '../../services/userFetch'
 
 const ProductCard = () => {
   const productContext = useContext(ProductContext);
@@ -13,28 +14,55 @@ const ProductCard = () => {
   const favoriteProductsContext = useContext(FavoriteProductsContext);
   const { favoriteProducts, setFavoriteProducts } = favoriteProductsContext;
 
-  const handleClick = (product) => {
+  const userContext = useContext(UserContext);
+  const { user, setUser } = userContext;
+
+    const handleClick = (product) => {
     setProductSelected(product);
   };
 
   const handleHeart = (product) => {
-    if (!favoriteProducts.includes(product)) {
-      setFavoriteProducts((prevFavoriteProducts) => [...prevFavoriteProducts, product]);
-    } else {
-      setFavoriteProducts((prevFavoriteProducts) =>
-        prevFavoriteProducts.filter((favProduct) => favProduct !== product)
-      );
-    }
+    
+    setFavoriteProducts(userDataFromDB.favs) //traerlo por props de pág. login
+
+    // if (!favoriteProducts.includes(product)) {
+      
+    //   console.log('producto no repetido')
+    //   setFavoriteProducts((prevFavoriteProducts) => [...prevFavoriteProducts, product]);
+    // } else {
+    //   console.log('producto repetido')
+    //   setFavoriteProducts((prevFavoriteProducts) => {
+    //   console.log('prev', prevFavoriteProducts)
+    //     prevFavoriteProducts.filter((favProduct) => favProduct !== product)
+    //   });
+    // }
+
+    fetch(`${import.meta.env.VITE_API_URL}/users/${user._id}/fav`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(product)
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
   };
 
   useEffect(() => {
+    // setProductsToRender(favoriteProducts); esta es otra opción para renderizar los favoritos en la
+    //pág de favoritos
     console.log('favoriteProducts', favoriteProducts);
   }, [favoriteProducts]);
 
   return (
     <div className="product-card-wrapper">
       {productsToRender?.map((product) => (
-        <figure className="product-card" key={product.name}>
+        <figure className="product-card" key={product._id}>
           <div className="product-img-price-wrapper">
             <div className="product-img-wrapper">
               <Link to="/ProductDetail">

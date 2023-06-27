@@ -1,22 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import './Login.css';
 import Header from '../../components/Header/Header';
 import { Link, useNavigate } from 'react-router-dom';
 import Footer from '../../components/Footer/Footer';
+import { UserContext } from '../../App'
+import { userFetch } from '../../services/userFetch'
 
 const Login = () => {
+
   const navigate = useNavigate();
 
-  const [user, setUser] = useState({
-    email: '',
-    password: ''
-  });
+  const userContext = useContext(UserContext);
+  const { user, setUser } = userContext;
+  const userDataFromDB = userFetch();
+
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    setUser({ email: '', password: '' });
+    setUser({ email: '', password: '' }); //este sería userLogged
 
-    navigate('/favorites');
+   navigate('/favorites'); //comprobar si existe en la BD, ahora deja entrar a cualquiera
 
     fetch(`${import.meta.env.VITE_API_URL}/users/login`, {
       method: 'POST',
@@ -52,7 +55,7 @@ const Login = () => {
           type="text"
           placeholder="email address"
           name="email"
-          value={user.email}
+          value={user?.email}
           onChange={handleInputChange}
         />
         <input
@@ -60,7 +63,7 @@ const Login = () => {
           type="password"
           placeholder="password"
           name="password"
-          value={user.password}
+          value={user?.password}
           onChange={handleInputChange}
         />
         <button type="submit">Submit</button>

@@ -15,7 +15,7 @@ const CategoryCard = () => {
     <>
       <section className="categories-banner">
         {orderedCategories?.map((categoryData) => (
-          <figure key={categoryData.image}>
+          <figure key={categoryData._id}>
             <img src={categoryData.image} alt={categoryData.name} className="category-image" />
             <Link to={categoryData.name} className="category-cta">
               SHOP {categoryData.name}

@@ -17,7 +17,7 @@ const Favorites = () => {
         <div className="favorite-products-wrapper">
           {favoriteProducts.length > 0 ? (
             favoriteProducts.map((favoriteProduct) => (
-              <figure className="favorite-products-section" key={favoriteProduct.name}>
+              <figure className="favorite-products-section" key={favoriteProduct._id}>
                 <img
                   className="favorite-product-Img"
                   src={favoriteProduct.image}
