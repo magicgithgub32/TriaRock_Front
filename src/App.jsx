@@ -23,7 +23,11 @@ const App = () => {
     email: '',
     password: ''
   });
-  const [emailUserLoggedIn, setEmailUserLoggedIn] = useState(); //que sea el correo
+  const [userLogged, setUserLogged] = useState({
+    email: '',
+    password: ''
+  });
+  const [userValidEmail, setUserValidEmail] = useState();
 
   return (
     <>
@@ -46,24 +50,25 @@ const App = () => {
               setFavoriteProducts: setFavoriteProducts
             }}
           >
-             <UserContext.Provider
-            value={{
-              user: user,
-              setUser: setUser,
-              emailUserLoggedIn: emailUserLoggedIn
-            }}
-          >
-            <Routes>
-              <Route path="/" element={<Home />}></Route>
-              <Route path="/login" element={<Login />}></Route>
-              <Route path="/register" element={<Register />}></Route>
-              <Route path="/swimming" element={<CategoryPage />}></Route>
-              <Route path="/cycling" element={<CategoryPage />}></Route>
-              <Route path="/running" element={<CategoryPage />}></Route>
+            <UserContext.Provider
+              value={{
+                user: user,
+                setUser: setUser,
+                userLogged: userLogged,
+                setUserLogged: setUserLogged
+              }}
+            >
+              <Routes>
+                <Route path="/" element={<Home />}></Route>
+                <Route path="/login" element={<Login />}></Route>
+                <Route path="/register" element={<Register />}></Route>
+                <Route path="/swimming" element={<CategoryPage />}></Route>
+                <Route path="/cycling" element={<CategoryPage />}></Route>
+                <Route path="/running" element={<CategoryPage />}></Route>
 
-              <Route path="/favorites" element={<Favorites />}></Route>
-              <Route path="/productDetail" element={<ProductDetail />}></Route>
-            </Routes>
+                <Route path="/favorites" element={<Favorites />}></Route>
+                <Route path="/productDetail" element={<ProductDetail />}></Route>
+              </Routes>
             </UserContext.Provider>
           </FavoriteProductsContext.Provider>
         </ProductSelectedContext.Provider>

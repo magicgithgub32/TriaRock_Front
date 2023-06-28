@@ -3,49 +3,49 @@ import './Login.css';
 import Header from '../../components/Header/Header';
 import { Link, useNavigate } from 'react-router-dom';
 import Footer from '../../components/Footer/Footer';
-import { UserContext } from '../../App'
-import { userFetch } from '../../services/userFetch'
+import { UserContext } from '../../App';
+import { userFetch } from '../../services/userFetch';
 
 const Login = () => {
-
   const navigate = useNavigate();
 
   const userContext = useContext(UserContext);
   const { user, setUser } = userContext;
-  const userDataFromDB = userFetch();
-
+  const { userLogged, setUserLogged } = userContext;
+  const userValidEmail = userFetch();
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    setUser({ email: '', password: '' }); //este sería userLogged
 
-   navigate('/favorites'); //comprobar si existe en la BD, ahora deja entrar a cualquiera
-
-    fetch(`${import.meta.env.VITE_API_URL}/users/login`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(user)
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
+    if (userLogged.email === userValidEmail) {
+      navigate('/favorites');
+      fetch(`${import.meta.env.VITE_API_URL}/users/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(userLogged)
       })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+        })
+        .catch((error) => {
+          console.error('error:', error);
+        });
 
-    event.target.reset();
+      event.target.reset();
+    } else {
+      alert('This email is not registered yet. Please try again');
+    }
   };
 
   const handleInputChange = (event) => {
-    setUser({
-      ...user,
+    setUserLogged({
+      ...userLogged,
       [event.target.name]: event.target.value
     });
   };
-
   return (
     <div className="register-login">
       <Header />
@@ -55,7 +55,7 @@ const Login = () => {
           type="text"
           placeholder="email address"
           name="email"
-          value={user?.email}
+          value={userLogged?.email}
           onChange={handleInputChange}
         />
         <input
@@ -63,7 +63,7 @@ const Login = () => {
           type="password"
           placeholder="password"
           name="password"
-          value={user?.password}
+          value={userLogged?.password}
           onChange={handleInputChange}
         />
         <button type="submit">Submit</button>
