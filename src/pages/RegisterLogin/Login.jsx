@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import './Login.css';
 import Header from '../../components/Header/Header';
 import { Link, useNavigate } from 'react-router-dom';
@@ -12,12 +12,14 @@ const Login = () => {
   const userContext = useContext(UserContext);
   const { user, setUser } = userContext;
   const { userLogged, setUserLogged } = userContext;
-  const userValidEmail = userFetch();
+  const userValid = userFetch();
+  
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-
-    if (userLogged.email === userValidEmail) {
+    console.log(userValid)
+    console.log(userLogged === userValid)
+    if (userLogged.email === userValid.email && userLogged.password === userValid.password) {
       navigate('/favorites');
       fetch(`${import.meta.env.VITE_API_URL}/users/login`, {
         method: 'POST',
@@ -36,7 +38,8 @@ const Login = () => {
 
       event.target.reset();
     } else {
-      alert('This email is not registered yet. Please try again');
+      alert('Please check your email and password and try again');
+      event.target.reset();
     }
   };
 

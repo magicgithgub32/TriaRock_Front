@@ -27,7 +27,10 @@ const App = () => {
     email: '',
     password: ''
   });
-  const [userValidEmail, setUserValidEmail] = useState();
+  const [userValid, setUserValid] = useState({
+    email: '',
+    password: ''
+  })
 
   return (
     <>
@@ -55,7 +58,9 @@ const App = () => {
                 user: user,
                 setUser: setUser,
                 userLogged: userLogged,
-                setUserLogged: setUserLogged
+                setUserLogged: setUserLogged,
+                userValid: userValid,
+                setUserValid: setUserValid
               }}
             >
               <Routes>
