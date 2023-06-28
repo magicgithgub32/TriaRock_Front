@@ -17,8 +17,7 @@ const Login = () => {
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    console.log(userValid)
-    console.log(userLogged === userValid)
+   
     if (userLogged.email === userValid.email && userLogged.password === userValid.password) {
       navigate('/favorites');
       fetch(`${import.meta.env.VITE_API_URL}/users/login`, {
