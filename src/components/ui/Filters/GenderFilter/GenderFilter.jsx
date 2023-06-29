@@ -47,14 +47,14 @@ useEffect(() => {
   return (
     <div className="filter-label-and-options">
       <label htmlFor={inputOptions} className="filter-label">
-        {inputTitle}
+        género
       </label>
       {inputOptions.map((option, index) => (
         <div className="filter-options" key={index}>
           <input
             type="checkbox"
             id={option}
-            name={inputTitle}
+            name="género"
             value={option}
             onChange={handleCheckbox}
             ref={(el) => (genderRefs.current[index] = el)}

@@ -38,16 +38,15 @@ const CategoryPage = () => {
       <main>
         <section className="filter-section">
           <ProductTypeFilter
-            inputTitle="tipo de producto"
             inputOptions={productTypes}
             setProductTypes={setProductTypes}
             categoriesData={categoriesData}
             currentPath={currentPath}
           />
-          <GenderFilter inputTitle="género" inputOptions={genders} 
+          <GenderFilter inputOptions={genders} 
            categoriesData={categoriesData}
            currentPath={currentPath}/>
-          {/* <PriceFilter/> */}
+          <PriceFilter/>
           {/* promo y bestseller */}
         </section>
         <section className="products-section">

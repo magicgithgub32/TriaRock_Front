@@ -31,14 +31,14 @@ category.name === currentPath.slice(1, currentPath.length));
   return (
     <div className="filter-label-and-options">
       <label htmlFor={inputOptions} className="filter-label">
-        {inputTitle}
+        tipo de producto
       </label>
       {inputOptions.map((option, index) => (
         <div className="filter-options" key={index}>
           <input
             type="checkbox"
             id={option}
-            name={inputTitle}
+            name="tipo de producto"
             value={option}
             onChange={handleCheckbox}
           />

@@ -17,6 +17,10 @@ const Login = () => {
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
+
+    // const passwordA = '$2b$10$4s.zwO10TNxczQZ2SD/kMeXtkjOZkbZH5BtnXAhkJFSFvDkGUTKCe'
+    // const hashPassword = bcrypt.hash(passwordA, 10);
+    // console.log('hashPassword', hashPassword)
    
     if (userLogged.email === userValid.email && userLogged.password === userValid.password) {
       navigate('/favorites');
