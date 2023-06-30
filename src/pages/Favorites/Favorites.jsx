@@ -7,8 +7,10 @@ import ProductCard from '../../components/ProductCard/ProductCard';
 import CategoryCard from '../../components/CategoryCard/CategoryCard';
 
 const Favorites = () => {
+  
   const { favoriteProducts } = useContext(FavoriteProductsContext);
-  console.log(favoriteProducts);
+  console.log('favoriteProducts en pág favs', favoriteProducts)
+
   return (
     <section className="favorite-products-page">
       <Header />
@@ -16,8 +18,8 @@ const Favorites = () => {
         <h3 className="favorite-title">MY FAVORITE PRODUCTS</h3>
         <div className="favorite-products-wrapper">
           {favoriteProducts.length > 0 ? (
-            favoriteProducts.map((favoriteProduct) => (
-              <figure className="favorite-products-section" key={favoriteProduct._id}>
+            favoriteProducts?.map((favoriteProduct) => (
+              <figure className="favorite-products-section" key={favoriteProduct?._id}>
                 <img
                   className="favorite-product-Img"
                   src={favoriteProduct.image}

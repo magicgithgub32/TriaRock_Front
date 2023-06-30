@@ -48,7 +48,7 @@ const CategoryPage = () => {
             categoriesData={categoriesData}
             currentPath={currentPath}
           />
-          <PriceFilter categoriesData={categoriesData} />
+          {/* <PriceFilter categoriesData={categoriesData} /> */}
           {/* promo y bestseller */}
         </section>
         <section className="products-section">

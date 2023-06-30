@@ -4,7 +4,7 @@ import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
 
 const Register = () => {
-  const [user, setUser] = useState({
+  const [userRegistered, setUserRegistered] = useState({
     email: '',
     password: ''
   });
@@ -17,7 +17,7 @@ const Register = () => {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(user)
+      body: JSON.stringify(userRegistered)
     })
       .then((response) => response.json())
       .then((data) => {
@@ -31,8 +31,8 @@ const Register = () => {
   };
 
   const handleInputChange = (event) => {
-    setUser({
-      ...user,
+    setUserRegistered({
+      ...userRegistered,
       [event.target.name]: event.target.value
     });
   };
@@ -46,7 +46,7 @@ const Register = () => {
           type="text"
           placeholder="email address"
           name="email"
-          value={user.email}
+          value={userRegistered.email}
           onChange={handleInputChange}
         />
         <input
@@ -54,7 +54,7 @@ const Register = () => {
           type="password"
           placeholder="password"
           name="password"
-          value={user.password}
+          value={userRegistered.password}
           onChange={handleInputChange}
         />
         <button type="submit">Submit</button>

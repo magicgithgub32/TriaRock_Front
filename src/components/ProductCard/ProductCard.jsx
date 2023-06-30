@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './ProductCard.css';
 import { FavoriteProductsContext, ProductContext, ProductSelectedContext, UserContext } from '../../App';
 import { Link } from 'react-router-dom';
@@ -15,49 +15,45 @@ const ProductCard = () => {
   const { favoriteProducts, setFavoriteProducts } = favoriteProductsContext;
 
   const userContext = useContext(UserContext);
-  const { user, setUser } = userContext;
+  const { user, setUser, userValid } = userContext;
+
+  const [favoriteSelected, setFavoriteSelected] = useState(false)
 
     const handleClick = (product) => {
     setProductSelected(product);
   };
 
   const handleHeart = (product) => {
+    setFavoriteSelected(!favoriteSelected)
+    console.log('product id', product._id)
+
+    const bodyData = {fav: product._id}
     
-    setFavoriteProducts(userDataFromDB.favs) //traerlo por props de pág. login
+console.log('user id', userValid._id)
 
-    // if (!favoriteProducts.includes(product)) {
-      
-    //   console.log('producto no repetido')
-    //   setFavoriteProducts((prevFavoriteProducts) => [...prevFavoriteProducts, product]);
-    // } else {
-    //   console.log('producto repetido')
-    //   setFavoriteProducts((prevFavoriteProducts) => {
-    //   console.log('prev', prevFavoriteProducts)
-    //     prevFavoriteProducts.filter((favProduct) => favProduct !== product)
-    //   });
-    // }
 
-    fetch(`${import.meta.env.VITE_API_URL}/users/${user._id}/fav`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(product)
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
+fetch(`${import.meta.env.VITE_API_URL}/users/${userValid._id}/fav`, {
+  method: 'PUT',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(bodyData)
+})
+  .then((response) => response.json())
+  .then((data) => {
+    console.log('data', data);
+    setFavoriteProducts(data.favs)
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+  });
+
   };
 
-  useEffect(() => {
-    // setProductsToRender(favoriteProducts); esta es otra opción para renderizar los favoritos en la
-    //pág de favoritos
-    console.log('favoriteProducts', favoriteProducts);
-  }, [favoriteProducts]);
+  // useEffect(() => {
+  //   // setFavoriteProducts(userValid.favs)
+  //   console.log('favoriteProducts', userValid.favs);
+  // }, [favoriteSelected]);
 
   return (
     <div className="product-card-wrapper">

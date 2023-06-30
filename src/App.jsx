@@ -19,7 +19,7 @@ const App = () => {
   const [productsToRender, setProductsToRender] = useState([]);
   const [productSelected, setProductSelected] = useState([]);
   const [favoriteProducts, setFavoriteProducts] = useState([]);
-  const [user, setUser] = useState({
+  const [userRegistered, setUserRegistered] = useState({
     email: '',
     password: ''
   });
@@ -28,8 +28,9 @@ const App = () => {
     password: ''
   });
   const [userValid, setUserValid] = useState({
-    email: '',
-    password: ''
+    email: 'customer@triarok.com',
+    password: 'Customer1',
+    _id: '649e837ffeb74d99a606b814'
   })
 
   return (
@@ -55,8 +56,8 @@ const App = () => {
           >
             <UserContext.Provider
               value={{
-                user: user,
-                setUser: setUser,
+                userRegistered: userRegistered,
+                setUserRegistered: setUserRegistered,
                 userLogged: userLogged,
                 setUserLogged: setUserLogged,
                 userValid: userValid,
