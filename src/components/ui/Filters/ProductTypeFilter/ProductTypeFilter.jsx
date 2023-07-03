@@ -2,12 +2,9 @@ import React, { useState, useEffect, useContext } from 'react';
 import './ProductTypeFilter.css';
 import { ProductContext } from '../../../../App';
 
-const ProductTypeFilter = ({ inputTitle, inputOptions, currentPath, categoriesData }) => {
-  const { productsToRender, setProductsToRender } = useContext(ProductContext);
+const ProductTypeFilter = ({ inputOptions,  excludedProducts, setExcludedProducts }) => {
+  const { productsToRender, setProductsToRender, filteredProducts, setFilteredProducts } = useContext(ProductContext);
   const [selectedOptions, setSelectedOptions] = useState([]);
-
-  const [filteredProducts, setFilteredProducts] = useState([]);
-  const [excludedProducts, setExcludedProducts] = useState([]);
   const [typeIsSelected, setTypeIsSelected] = useState(false);
 
   const handleCheckbox = (ev) => {
@@ -45,7 +42,6 @@ const ProductTypeFilter = ({ inputTitle, inputOptions, currentPath, categoriesDa
       setFilteredProducts([...filteredProducts, ...excludedProducts]);
     }
   };
-  console.log('selectedOptions', selectedOptions);
 
   useEffect(() => {
     setProductsToRender(filteredProducts);

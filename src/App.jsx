@@ -19,6 +19,8 @@ const App = () => {
   const [productsToRender, setProductsToRender] = useState([]);
   const [productSelected, setProductSelected] = useState([]);
   const [favoriteProducts, setFavoriteProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+
   const [userRegistered, setUserRegistered] = useState({
     email: '',
     password: ''
@@ -39,7 +41,9 @@ const App = () => {
         value={{
           allProducts: allProducts,
           productsToRender: productsToRender,
-          setProductsToRender: setProductsToRender
+          setProductsToRender: setProductsToRender,
+          filteredProducts: filteredProducts,
+          setFilteredProducts: setFilteredProducts
         }}
       >
         <ProductSelectedContext.Provider

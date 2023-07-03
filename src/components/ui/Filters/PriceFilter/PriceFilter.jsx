@@ -1,18 +1,14 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { ProductContext } from '../../../../App';
 
-const PriceFilter = ({ categoriesData, currentPath }) => {
-  const { productsToRender, setProductsToRender } = useContext(ProductContext);
-  const [filteredProducts, setFilteredProducts] = useState([]);
-
+const PriceFilter = ( {categoriesData, currentPath} ) => {
+  const { productsToRender, setProductsToRender, filteredProducts, setFilteredProducts } = useContext(ProductContext);
+    
   const getLowestPrice = () => {
     if (categoriesData) {
-      console.log('categoriesData', categoriesData);
       const currentCategory = categoriesData?.filter(
         (category) => category.name === currentPath.slice(1, currentPath.length)
       );
-
-      console.log('currentCateg.', currentCategory);
 
       const prices = currentCategory[0].items.map((product) =>
         Number(product.price.slice(0, -2).replace(',', '.'))
@@ -28,7 +24,6 @@ const PriceFilter = ({ categoriesData, currentPath }) => {
 
   const getHighestPrice = () => {
     if (categoriesData) {
-      console.log('categoriesData', categoriesData);
       const currentCategory = categoriesData?.filter(
         (category) => category.name === currentPath.slice(1, currentPath.length)
       );
@@ -45,15 +40,13 @@ const PriceFilter = ({ categoriesData, currentPath }) => {
   const roundedHighestPrice = highestPrice && Math.ceil(highestPrice);
 
   const [priceInput, setPriceInput] = useState(200);
-  const roundedPriceInput = priceInput && Math.ceil(priceInput);
 
   const handlePriceChange = (event) => {
-    console.log('event:', event);
-
     setPriceInput(event.target.value);
   };
 
   useEffect(() => {
+    //ver cómo hacer el filter sobre los productsToRender
     if (categoriesData) {
       const currentCategory = categoriesData?.filter(
         (category) => category.name === currentPath.slice(1, currentPath.length)
@@ -89,7 +82,7 @@ const PriceFilter = ({ categoriesData, currentPath }) => {
       <div className="price-numbers">
         <p>{`${roundedLowestPrice} €`}</p>
         <p>{`${roundedHighestPrice} €`}</p>
-        <p>{`${roundedPriceInput} €`}</p>
+        <p>{`${priceInput} €`}</p>
       </div>
     </div>
   );

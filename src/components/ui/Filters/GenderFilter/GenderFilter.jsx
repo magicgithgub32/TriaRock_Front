@@ -2,10 +2,8 @@ import React, { useState, useEffect, useContext, useRef } from 'react';
 import './GenderFilter.css';
 import { ProductContext } from '../../../../App';
 
-const GenderFilter = ({ inputTitle, inputOptions, currentPath, categoriesData }) => {
-  const { productsToRender, setProductsToRender } = useContext(ProductContext);
-  const [filteredProducts, setFilteredProducts] = useState([])
-  const [excludedProducts, setExcludedProducts] = useState([])
+const GenderFilter = ({ inputOptions, excludedProducts, setExcludedProducts }) => {
+  const { productsToRender, setProductsToRender, filteredProducts, setFilteredProducts } = useContext(ProductContext);
   const [genderIsSelected, setGenderIsSelected] = useState(false)
 
   const genderRefs = useRef([]);

@@ -16,6 +16,7 @@ const CategoryPage = () => {
 
   const { productsToRender, setProductsToRender } = useContext(ProductContext);
   const [productTypes, setProductTypes] = useState([]);
+  const [excludedProducts, setExcludedProducts] = useState([])
   const genders = ['hombre', 'mujer', 'niño', 'niña'];
   const location = useLocation();
   const currentPath = location.pathname;
@@ -39,16 +40,17 @@ const CategoryPage = () => {
         <section className="filter-section">
           <ProductTypeFilter
             inputOptions={productTypes}
-            setProductTypes={setProductTypes}
-            categoriesData={categoriesData}
-            currentPath={currentPath}
+            excludedProducts={excludedProducts}
+            setExcludedProducts={setExcludedProducts}
           />
           <GenderFilter
             inputOptions={genders}
-            categoriesData={categoriesData}
-            currentPath={currentPath}
+            excludedProducts={excludedProducts}
+            setExcludedProducts={setExcludedProducts}
           />
-          <PriceFilter categoriesData={categoriesData} currentPath={currentPath} />
+          <PriceFilter categoriesData={categoriesData} 
+          currentPath={currentPath}
+          excludedProducts={excludedProducts} />
           {/* promo y bestseller */}
         </section>
         <section className="products-section">
