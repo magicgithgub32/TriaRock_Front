@@ -1,33 +1,45 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { ProductContext } from '../../../../App';
 
-const PriceFilter = ({ categoriesData }) => {
+const PriceFilter = ({ categoriesData, currentPath }) => {
   const { productsToRender, setProductsToRender } = useContext(ProductContext);
   const [filteredProducts, setFilteredProducts] = useState([]);
 
-  useEffect(() => {
-    const getLowestPrice = () => {
-      if (categoriesData) {
-        const prices = categoriesData?.map((product) =>
-          Number(product.price.slice(0, -2).replace(',', '.'))
-        );
-        const ascendingPrices = prices?.sort((a, b) => a - b);
-        const lowestPrice = ascendingPrices[0];
-        return lowestPrice;
-      }
-    };
+  const getLowestPrice = () => {
+    if (categoriesData) {
+      console.log('categoriesData', categoriesData);
+      const currentCategory = categoriesData?.filter(
+        (category) => category.name === currentPath.slice(1, currentPath.length)
+      );
 
-    const lowestPrice = getLowestPrice();
-    const roundedLowestPrice = lowestPrice && Math.floor(lowestPrice);
-  }, []);
+      console.log('currentCateg.', currentCategory);
+
+      const prices = currentCategory[0].items.map((product) =>
+        Number(product.price.slice(0, -2).replace(',', '.'))
+      );
+      const ascendingPrices = prices?.sort((a, b) => a - b);
+      const lowestPrice = ascendingPrices[0];
+      return lowestPrice;
+    }
+  };
+
+  const lowestPrice = getLowestPrice();
+  const roundedLowestPrice = lowestPrice && Math.floor(lowestPrice);
 
   const getHighestPrice = () => {
-    const prices = productsToRender.map((product) =>
-      Number(product.price.slice(0, -2).replace(',', '.'))
-    );
-    const descendingPrices = prices.sort((a, b) => b - a);
-    const highestPrice = descendingPrices[0];
-    return highestPrice;
+    if (categoriesData) {
+      console.log('categoriesData', categoriesData);
+      const currentCategory = categoriesData?.filter(
+        (category) => category.name === currentPath.slice(1, currentPath.length)
+      );
+
+      const prices = currentCategory[0].items.map((product) =>
+        Number(product.price.slice(0, -2).replace(',', '.'))
+      );
+      const descendingPrices = prices.sort((a, b) => b - a);
+      const highestPrice = descendingPrices[0];
+      return highestPrice;
+    }
   };
   const highestPrice = getHighestPrice();
   const roundedHighestPrice = highestPrice && Math.ceil(highestPrice);
@@ -36,24 +48,28 @@ const PriceFilter = ({ categoriesData }) => {
   const roundedPriceInput = priceInput && Math.ceil(priceInput);
 
   const handlePriceChange = (event) => {
-    const newMaxPrice = parseInt(event.target.value);
+    console.log('event:', event);
+
     setPriceInput(event.target.value);
-    setFilteredProducts(
-      productsToRender.filter((product) => {
-        const productPrice = Number(product.price.slice(0, -2).replace(',', '.'));
-        return productPrice <= newMaxPrice;
-      })
-    );
-    console.log('filteredProducts', filteredProducts);
   };
 
-  // useEffect(() => {
-  //   const setPrice = async () => {
-  //     await setPriceInput(roundedHighestPrice);
-  //   };
+  useEffect(() => {
+    if (categoriesData) {
+      const currentCategory = categoriesData?.filter(
+        (category) => category.name === currentPath.slice(1, currentPath.length)
+      );
+      const newMaxPrice = parseInt(priceInput);
 
-  //   setPrice();
-  // }, [roundedHighestPrice]);
+      const filteredProducts = currentCategory[0].items.filter((item) => {
+        const productPrice = Number(item.price.slice(0, -2).replace(',', '.'));
+        return productPrice <= newMaxPrice;
+      });
+
+      console.log('filteredProducts', filteredProducts);
+
+      setProductsToRender(filteredProducts);
+    }
+  }, [priceInput]);
 
   useEffect(() => {
     setProductsToRender(filteredProducts);
