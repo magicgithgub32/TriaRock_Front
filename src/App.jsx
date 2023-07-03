@@ -29,11 +29,11 @@ const App = () => {
     email: '',
     password: ''
   });
-  const [userValid, setUserValid] = useState({
-    email: 'customer@triarok.com',
-    password: 'Customer1',
-    _id: '649e837ffeb74d99a606b814'
-  })
+  // const [userValid, setUserValid] = useState({
+  //   email: 'customer@triarok.com',
+  //   password: 'Customer1',
+  //   _id: '649e837ffeb74d99a606b814'
+  // })
 
   return (
     <>

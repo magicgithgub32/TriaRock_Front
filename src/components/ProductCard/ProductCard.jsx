@@ -15,7 +15,7 @@ const ProductCard = () => {
   const { favoriteProducts, setFavoriteProducts } = favoriteProductsContext;
 
   const userContext = useContext(UserContext);
-  const { user, setUser, userValid } = userContext;
+  const { userValid } = userContext;
 
   const [favoriteSelected, setFavoriteSelected] = useState(false)
 
@@ -50,10 +50,10 @@ fetch(`${import.meta.env.VITE_API_URL}/users/${userValid._id}/fav`, {
 
   };
 
-  // useEffect(() => {
-  //   // setFavoriteProducts(userValid.favs)
-  //   console.log('favoriteProducts', userValid.favs);
-  // }, [favoriteSelected]);
+  useEffect(() => {
+    // setFavoriteProducts(userValid.favs)
+    console.log('favoriteProducts', userValid.favs);
+  }, [favoriteSelected]);
 
   return (
     <div className="product-card-wrapper">

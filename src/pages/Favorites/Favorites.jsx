@@ -11,6 +11,8 @@ const Favorites = () => {
   const { favoriteProducts } = useContext(FavoriteProductsContext);
   console.log('favoriteProducts en pág favs', favoriteProducts)
 
+  //GET userbyEmail (id user ! null)
+
   return (
     <section className="favorite-products-page">
       <Header />
