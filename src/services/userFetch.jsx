@@ -7,7 +7,7 @@ export const userFetch = () => {
 
   useEffect(() => {
     
-    console.log('userLogged', userLogged)
+    
     if (userLogged) {
     const getData = async () => {
       
@@ -17,7 +17,10 @@ export const userFetch = () => {
       return data;
     };
     getData()
-  .then((data) => setUserValid(data)
+  .then((data) => {
+    setUserValid(data)
+  
+}
   )
   .catch((error) => console.log('User not found', error));
   }

@@ -7,13 +7,14 @@ import { UserContext } from '../../App';
 import { userFetch } from '../../services/userFetch';
 
 const Login = () => {
+ 
   const navigate = useNavigate();
 
   const userContext = useContext(UserContext);
   const { user, setUser } = userContext;
   const { userLogged, setUserLogged } = userContext;
-  const userValid = userFetch();
-  
+  // const userValid = userFetch();       
+
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
@@ -21,9 +22,12 @@ const Login = () => {
     // const passwordA = '$2b$10$4s.zwO10TNxczQZ2SD/kMeXtkjOZkbZH5BtnXAhkJFSFvDkGUTKCe'
     // const hashPassword = bcrypt.hash(passwordA, 10);
     // console.log('hashPassword', hashPassword)
-   
-    if (userLogged.email === userValid.email && userLogged.password === userValid.password) {
-      navigate('/favorites');
+
+    // if (userLogged?.email === userValid.email 
+    //   // && userLogged.password === userValid.password
+    //   ) {
+    //   navigate('/favorites');
+      
       fetch(`${import.meta.env.VITE_API_URL}/users/login`, {
         method: 'POST',
         headers: {
@@ -31,19 +35,19 @@ const Login = () => {
         },
         body: JSON.stringify(userLogged)
       })
-        .then((response) => response.json())
+      .then((response) => response.json())
         .then((data) => {
           console.log(data);
+       
+      data.token? navigate('/favorites') : 
+      alert('Please check your email and password and try again');
+
         })
         .catch((error) => {
           console.error('error:', error);
         });
 
-      event.target.reset();
-    } else {
-      alert('Please check your email and password and try again');
-      event.target.reset();
-    }
+    event.target.reset();
   };
 
   const handleInputChange = (event) => {
