@@ -29,7 +29,6 @@ const Login = () => {
       })
       .catch((error) => {
         console.error('error:', error.message);
-
         alert('Please check your email and password and try again');
       });
 

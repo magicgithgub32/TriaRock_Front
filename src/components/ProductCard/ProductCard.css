@@ -54,6 +54,9 @@ display: flex;
 
 .heart-invisible {
     display: none;
+    height: 25px;
+    cursor: pointer;
+    margin-top: 5px;
 }
 
 .promo-container {

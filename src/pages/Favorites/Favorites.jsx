@@ -13,7 +13,7 @@ const Favorites = () => {
   const { userLogged } = userContext;
 
   useEffect(() => {
-    userLogged.email &&
+   
       fetch(`${import.meta.env.VITE_API_URL}/users/${userLogged.email}`, {
         method: 'GET',
         headers: {
@@ -31,10 +31,6 @@ const Favorites = () => {
         });
   }, [userLogged]);
 
-  // useEffect(() => {
-  //   // setFavoriteProducts(userLogged.favs)
-  //   console.log('favoriteProducts', userLogged.favs);
-  // }, [favoriteSelected]);
 
   return (
     <section className="favorite-products-page">

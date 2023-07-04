@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState, useRef, useMemo, useEffect } from 'react';
 import './ProductCard.css';
 import {
   FavoriteProductsContext,
@@ -22,21 +22,24 @@ const ProductCard = () => {
   const userContext = useContext(UserContext);
   const { userLogged, token } = userContext;
 
-  const [favoriteSelected, setFavoriteSelected] = useState(false);
+  const [heartClasses, setHeartClasses] = useState([]);
+
+  const yellowHearts = useRef([])
+  const redHearts = useRef([])
 
   const handleClick = (product) => {
     setProductSelected(product);
   };
 
-  const handleHeart = (product) => {
-    setFavoriteSelected(!favoriteSelected);
-    console.log('product id', product._id);
+  const handleHeart = (product, index) => {
 
     const bodyData = { fav: product._id };
 
     console.log('user email', userLogged.email);
 
-    // userLogged.email &&
+    if(!userLogged.email) {   
+    alert('Please create an account so you can save your favorite products')
+  } else {
     fetch(`${import.meta.env.VITE_API_URL}/users/${userLogged.email}/fav`, {
       method: 'PUT',
       headers: {
@@ -49,20 +52,49 @@ const ProductCard = () => {
       .then((data) => {
         console.log('data', data);
         setFavoriteProducts(data.favs);
+
+
+        setHeartClasses((prevClasses) =>
+        prevClasses.map((classes, i) =>
+          i === index
+            ? {
+                yellowHeart: 'heart-invisible',
+                redHeart: 'heart-visible'
+              }
+            : classes
+        )
+      );
+        
+        // if (yellowHearts.current[index].className != "heart-invisible") {
+        //   yellowHearts.current[index].className="heart-invisible"}
+        // if (redHearts.current[index].className!="heart-visible") {
+        //   redHearts.current[index].className="heart-visible"}
+  
+
       })
       .catch((error) => {
         console.log('Error', error);
       });
+    
+    }
   };
 
   // useEffect(() => {
-  //   // setFavoriteProducts(userLogged.favs)
-  //   console.log('favoriteProducts', userLogged.favs);
-  // }, [favoriteSelected]);
+
+  // },[heartClicked])
+
+  useEffect(() => {
+    // Inicializar el estado de las clases de los corazones
+    const initialClasses = productsToRender?.map(() => ({
+      yellowHeart: 'heart-visible',
+      redHeart: 'heart-invisible'
+    }));
+    setHeartClasses(initialClasses);
+  }, [productsToRender]);
 
   return (
     <div className="product-card-wrapper">
-      {productsToRender?.map((product) => (
+      {productsToRender?.map((product, index) => (
         <figure className="product-card" key={product._id}>
           <div className="product-img-price-wrapper">
             <div className="product-img-wrapper">
@@ -84,15 +116,17 @@ const ProductCard = () => {
                 <div className="hearts-container">
                   <img
                     src="../../src/assets/heart.svg"
-                    className="heart-visible"
+                    className={heartClasses[index]?.yellowHeart}
                     alt="heart"
-                    onClick={() => handleHeart(product)}
+                    onClick={() => handleHeart(product, index)}
+                    ref={(el) => (yellowHearts.current[index] = el)}
                   />
                   <img
                     src="../../src/assets/corazon.png"
-                    className="heart-invisible"
+                    className={heartClasses[index]?.redHeart}
                     alt="heart"
-                    onClick={() => handleHeart(product)}
+                    onClick={() => handleHeart(product, index)}
+                    ref={(el) => (redHearts.current[index] = el)}
                   />
                 </div>
               </div>
@@ -104,15 +138,17 @@ const ProductCard = () => {
                 <div className="hearts-container">
                   <img
                     src="../../src/assets/heart.svg"
-                    className="heart-visible"
+                    className={heartClasses[index]?.yellowHeart}
                     alt="heart"
-                    onClick={() => handleHeart(product)}
+                    onClick={() => handleHeart(product, index)}
+                    ref={(el) => (yellowHearts.current[index] = el)}
                   />
                   <img
                     src="../../src/assets/corazon.png"
-                    className="heart-invisible"
+                    className={heartClasses[index]?.redHeart}
                     alt="heart"
-                    onClick={() => handleHeart(product)}
+                    onClick={() => handleHeart(product, index)}
+                    ref={(el) => (redHearts.current[index] = el)}
                   />
                 </div>
               </div>
