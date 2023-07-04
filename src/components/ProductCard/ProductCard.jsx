@@ -1,8 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './ProductCard.css';
-import { FavoriteProductsContext, ProductContext, ProductSelectedContext, UserContext } from '../../App';
+import {
+  FavoriteProductsContext,
+  ProductContext,
+  ProductSelectedContext,
+  UserContext
+} from '../../App';
 import { Link } from 'react-router-dom';
-import { userFetch } from '../../services/userFetch'
+// import { userFetch } from '../../services/userFetch';
 
 const ProductCard = () => {
   const productContext = useContext(ProductContext);
@@ -15,45 +20,45 @@ const ProductCard = () => {
   const { favoriteProducts, setFavoriteProducts } = favoriteProductsContext;
 
   const userContext = useContext(UserContext);
-  const { userValid } = userContext;
+  const { userLogged, token } = userContext;
 
-  const [favoriteSelected, setFavoriteSelected] = useState(false)
+  const [favoriteSelected, setFavoriteSelected] = useState(false);
 
-    const handleClick = (product) => {
+  const handleClick = (product) => {
     setProductSelected(product);
   };
 
   const handleHeart = (product) => {
-    setFavoriteSelected(!favoriteSelected)
-    console.log('product id', product._id)
+    setFavoriteSelected(!favoriteSelected);
+    console.log('product id', product._id);
 
-    const bodyData = {fav: product._id}
-    
-console.log('user id', userValid._id)
+    const bodyData = { fav: product._id };
 
+    console.log('user email', userLogged.email);
 
-fetch(`${import.meta.env.VITE_API_URL}/users/${userValid._id}/fav`, {
-  method: 'PUT',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify(bodyData)
-})
-  .then((response) => response.json())
-  .then((data) => {
-    console.log('data', data);
-    setFavoriteProducts(data.favs)
-  })
-  .catch((error) => {
-    console.error('Error:', error);
-  });
-
+    // userLogged.email &&
+    fetch(`${import.meta.env.VITE_API_URL}/users/${userLogged.email}/fav`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      },
+      body: JSON.stringify(bodyData)
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('data', data);
+        setFavoriteProducts(data.favs);
+      })
+      .catch((error) => {
+        console.log('Error', error);
+      });
   };
 
-  useEffect(() => {
-    // setFavoriteProducts(userValid.favs)
-    console.log('favoriteProducts', userValid.favs);
-  }, [favoriteSelected]);
+  // useEffect(() => {
+  //   // setFavoriteProducts(userLogged.favs)
+  //   console.log('favoriteProducts', userLogged.favs);
+  // }, [favoriteSelected]);
 
   return (
     <div className="product-card-wrapper">

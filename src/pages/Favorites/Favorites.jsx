@@ -1,17 +1,40 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import './Favorites.css';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
-import { FavoriteProductsContext } from '../../App';
+import { FavoriteProductsContext, UserContext } from '../../App';
 import ProductCard from '../../components/ProductCard/ProductCard';
 import CategoryCard from '../../components/CategoryCard/CategoryCard';
 
 const Favorites = () => {
-  
-  const { favoriteProducts } = useContext(FavoriteProductsContext);
-  console.log('favoriteProducts en pág favs', favoriteProducts)
+  const { favoriteProducts, setFavoriteProducts } = useContext(FavoriteProductsContext);
+  console.log('favoriteProducts en pág favs', favoriteProducts);
+  const userContext = useContext(UserContext);
+  const { userLogged } = userContext;
 
-  //GET userbyEmail (id user ! null)
+  useEffect(() => {
+    userLogged.email &&
+      fetch(`${import.meta.env.VITE_API_URL}/users/${userLogged.email}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify()
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('data', data);
+          setFavoriteProducts(data.favs);
+        })
+        .catch((error) => {
+          console.log('Error', error);
+        });
+  }, [userLogged]);
+
+  // useEffect(() => {
+  //   // setFavoriteProducts(userLogged.favs)
+  //   console.log('favoriteProducts', userLogged.favs);
+  // }, [favoriteSelected]);
 
   return (
     <section className="favorite-products-page">

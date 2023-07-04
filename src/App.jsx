@@ -29,11 +29,8 @@ const App = () => {
     email: '',
     password: ''
   });
-  // const [userValid, setUserValid] = useState({
-  //   email: 'customer@triarok.com',
-  //   password: 'Customer1',
-  //   _id: '649e837ffeb74d99a606b814'
-  // })
+
+  const [token, setToken] = useState();
 
   return (
     <>
@@ -64,8 +61,8 @@ const App = () => {
                 setUserRegistered: setUserRegistered,
                 userLogged: userLogged,
                 setUserLogged: setUserLogged,
-                userValid: userValid,
-                setUserValid: setUserValid
+                setToken: setToken,
+                token: token
               }}
             >
               <Routes>
