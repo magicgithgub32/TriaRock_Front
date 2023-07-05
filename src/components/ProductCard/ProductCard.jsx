@@ -21,7 +21,7 @@ const ProductCard = () => {
   const userContext = useContext(UserContext);
   const { userLogged, token } = userContext;
 
-  const [ heartImage, setHeartImage ] = useState('')
+  const [ heartImage, setHeartImage ] = useState('../../src/assets/heart.svg')
 
 
   const handleClick = (product) => {
@@ -78,25 +78,30 @@ const ProductCard = () => {
   console.log('Productstorender', productsToRender);
   console.log('Favoriteproducts', favoriteProducts);
 
+
   useEffect(() => {
-
-    productsToRender?.map((product) => {
-      typeof favoriteProducts[0] === 'string' ?
-
-      favoriteProducts?.includes(product._id)? 
-      setHeartImage('../../src/assets/corazon.png')
-      : setHeartImage('../../src/assets/heart.svg')                
-      : 
-      favoriteProducts?.includes(product)? 
-      setHeartImage('../../src/assets/corazon.png')
-      : setHeartImage('../../src/assets/heart.svg')
-    })    
-  },[favoriteProducts])
+    productsToRender?.forEach((product) => {
+      if (typeof favoriteProducts[0] === 'string') {
+        if (favoriteProducts?.includes(product._id)) {
+          setHeartImage('../../src/assets/corazon.png');
+        } else {
+          setHeartImage('../../src/assets/heart.svg');
+        }
+      } else {
+        if (favoriteProducts?.some((favProduct) => favProduct._id === product._id)) {
+          setHeartImage('../../src/assets/corazon.png');
+        } else {
+          setHeartImage('../../src/assets/heart.svg');
+        }
+      }
+    });
+  }, [favoriteProducts, productsToRender]);
  
 
   return (
     <div className="product-card-wrapper">
-      {productsToRender?.map((product) => (
+      {productsToRender?.map((product, index) => (
+      
         <figure className="product-card" key={product._id}>
           <div className="product-img-price-wrapper">
             <div className="product-img-wrapper">
@@ -118,7 +123,7 @@ const ProductCard = () => {
                 <div className="hearts-container">
                   <img
                     src={heartImage}
-                    className="heart"
+                   className="heart"
                     alt="heart"
                     onClick={() => handleHeart(product)}
                   />
@@ -131,8 +136,10 @@ const ProductCard = () => {
                 </div>
                 <div className="hearts-container">
                   <img
+                    
                     src={heartImage}
-                    className="heart"
+
+                   className="heart"
                     alt="heart"
                     onClick={() => handleHeart(product)}
                   />
