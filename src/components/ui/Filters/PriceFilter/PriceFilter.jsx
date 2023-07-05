@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { ProductContext } from '../../../../App';
 
 const PriceFilter = ( {categoriesData, currentPath} ) => {
-  const { productsToRender, setProductsToRender, filteredProducts, setFilteredProducts } = useContext(ProductContext);
+  const { setProductsToRender, filteredProducts } = useContext(ProductContext);
     
   const getLowestPrice = () => {
     if (categoriesData) {
@@ -57,8 +57,6 @@ const PriceFilter = ( {categoriesData, currentPath} ) => {
         const productPrice = Number(item.price.slice(0, -2).replace(',', '.'));
         return productPrice <= newMaxPrice;
       });
-
-      console.log('filteredProducts', filteredProducts);
 
       setProductsToRender(filteredProducts);
     }

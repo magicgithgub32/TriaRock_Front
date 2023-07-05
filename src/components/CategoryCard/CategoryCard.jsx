@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './CategoryCard.css';
 import { categoryFetch } from '../../services/categoryFetch';
 import { Link } from 'react-router-dom';

@@ -58,8 +58,3 @@
     text-align: center;
     padding-top: 10px
 }
-
-.no-favorite-products {
-    background-color: var(--color-tertiary);
-    /* color: var(--main-bg-color); */
-}

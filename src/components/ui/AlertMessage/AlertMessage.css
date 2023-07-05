@@ -1,0 +1,8 @@
+.alert-container {
+    background-color: var(--color-tertiary);
+    border-radius: var(--border-radius);
+}
+
+.alert-message {
+  padding: 14px 18px;
+}

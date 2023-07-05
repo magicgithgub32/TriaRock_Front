@@ -1,15 +1,15 @@
 import React, { useContext, useState } from 'react';
 import './Login.css';
+
 import Header from '../../components/Header/Header';
-import { Link, useNavigate } from 'react-router-dom';
 import Footer from '../../components/Footer/Footer';
+import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from '../../App';
 
 const Login = () => {
   const navigate = useNavigate();
 
-  const userContext = useContext(UserContext);
-  const { userLogged, setUserLogged, setToken } = userContext;
+  const { userLogged, setUserLogged, setToken } =  useContext(UserContext);
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
@@ -40,7 +40,7 @@ const Login = () => {
       ...userLogged,
       [event.target.name]: event.target.value
     });
-    console.log(userLogged);
+ 
   };
   return (
     <div className="register-login">

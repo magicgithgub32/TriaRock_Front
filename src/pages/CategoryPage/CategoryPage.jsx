@@ -14,7 +14,7 @@ import PriceFilter from '../../components/ui/Filters/PriceFilter/PriceFilter';
 const CategoryPage = () => {
   const categoriesData = categoryFetch();
 
-  const { productsToRender, setProductsToRender } = useContext(ProductContext);
+  const { setProductsToRender } = useContext(ProductContext);
   const [productTypes, setProductTypes] = useState([]);
   const [excludedProducts, setExcludedProducts] = useState([])
   const genders = ['hombre', 'mujer', 'niño', 'niña'];

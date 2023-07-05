@@ -1,13 +1,12 @@
 import React, { useContext } from 'react';
 import './ProductDetail.css';
 import Header from '../../components/Header/Header';
-import { ProductSelectedContext } from '../../App';
+import { ProductContext } from '../../App';
 import Footer from '../../components/Footer/Footer';
 
 const ProductDetail = () => {
-  const productSelectedContext = useContext(ProductSelectedContext);
-  const { productSelected } = productSelectedContext;
-  console.log('Product Detail at Product Detail', productSelected);
+
+  const { productSelected } = useContext(ProductContext);
 
   return (
     <>

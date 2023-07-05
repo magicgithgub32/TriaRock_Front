@@ -1,16 +1,17 @@
 import React, { useContext, useEffect } from 'react';
 import './Favorites.css';
+import { ProductContext, UserContext } from '../../App';
+
 import Header from '../../components/Header/Header';
-import Footer from '../../components/Footer/Footer';
-import { FavoriteProductsContext, UserContext } from '../../App';
-import ProductCard from '../../components/ProductCard/ProductCard';
 import CategoryCard from '../../components/CategoryCard/CategoryCard';
+import AlertMessage from '../../components/ui/AlertMessage/AlertMessage'
+import Footer from '../../components/Footer/Footer';
 
 const Favorites = () => {
-  const { favoriteProducts, setFavoriteProducts } = useContext(FavoriteProductsContext);
-  console.log('favoriteProducts en pág favs', favoriteProducts);
-  const userContext = useContext(UserContext);
-  const { userLogged } = userContext;
+  const { favoriteProducts, setFavoriteProducts } = useContext(ProductContext);
+  const { userLogged } = useContext(UserContext);
+
+  console.log(favoriteProducts)
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/users/${userLogged.email}`, {
@@ -72,9 +73,7 @@ const Favorites = () => {
               </figure>
             ))
           ) : (
-            <div className="no-favorite-products">
-              <h3>NO FAVORITE PRODUCTS AT THE MOMENT</h3>
-            </div>
+           <AlertMessage/>
           )}
         </div>
       </article>

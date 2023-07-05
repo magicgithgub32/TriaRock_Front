@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Register.css';
+
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
 
@@ -24,7 +25,7 @@ const Register = () => {
         console.log(data);
       })
       .catch((error) => {
-        console.error('Error:', error);
+        console.log('Error:', error);
       });
 
     event.target.reset();
