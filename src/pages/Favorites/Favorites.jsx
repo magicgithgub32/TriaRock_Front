@@ -13,24 +13,22 @@ const Favorites = () => {
   const { userLogged } = userContext;
 
   useEffect(() => {
-   
-      fetch(`${import.meta.env.VITE_API_URL}/users/${userLogged.email}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify()
+    fetch(`${import.meta.env.VITE_API_URL}/users/${userLogged.email}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify()
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('data', data);
+        setFavoriteProducts(data.favs);
       })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log('data', data);
-          setFavoriteProducts(data.favs);
-        })
-        .catch((error) => {
-          console.log('Error', error);
-        });
+      .catch((error) => {
+        console.log('Error', error);
+      });
   }, [userLogged]);
-
 
   return (
     <section className="favorite-products-page">

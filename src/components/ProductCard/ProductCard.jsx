@@ -22,75 +22,64 @@ const ProductCard = () => {
   const userContext = useContext(UserContext);
   const { userLogged, token } = userContext;
 
-  const [heartClasses, setHeartClasses] = useState([]);
+  const yellowHearts = useRef([]);
+  const redHearts = useRef([]);
 
-  const yellowHearts = useRef([])
-  const redHearts = useRef([])
+  const [imageVisibility, setImageVisibility] = useState([]);
 
   const handleClick = (product) => {
     setProductSelected(product);
   };
 
   const handleHeart = (product, index) => {
-
     const bodyData = { fav: product._id };
 
     console.log('user email', userLogged.email);
 
-    if(!userLogged.email) {   
-    alert('Please create an account so you can save your favorite products')
-  } else {
-    fetch(`${import.meta.env.VITE_API_URL}/users/${userLogged.email}/fav`, {
-      method: 'PUT',
+    if (!userLogged.email) {
+      alert(
+        'Please log in to your account or create a new one so you can see and save your favorite products'
+      );
+    } else {
+      fetch(`${import.meta.env.VITE_API_URL}/users/${userLogged.email}/fav`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify(bodyData)
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('data', data);
+          setFavoriteProducts(data.favs);
+        })
+        .catch((error) => {
+          console.log('Error', error);
+        });
+    }
+  };
+
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_API_URL}/users/${userLogged.email}`, {
+      method: 'GET',
       headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`
+        'Content-Type': 'application/json'
       },
-      body: JSON.stringify(bodyData)
+      body: JSON.stringify()
     })
       .then((response) => response.json())
       .then((data) => {
         console.log('data', data);
         setFavoriteProducts(data.favs);
-
-
-        setHeartClasses((prevClasses) =>
-        prevClasses.map((classes, i) =>
-          i === index
-            ? {
-                yellowHeart: 'heart-invisible',
-                redHeart: 'heart-visible'
-              }
-            : classes
-        )
-      );
-        
-        // if (yellowHearts.current[index].className != "heart-invisible") {
-        //   yellowHearts.current[index].className="heart-invisible"}
-        // if (redHearts.current[index].className!="heart-visible") {
-        //   redHearts.current[index].className="heart-visible"}
-  
-
       })
       .catch((error) => {
         console.log('Error', error);
       });
-    
-    }
-  };
+  }, [userLogged]);
 
-  // useEffect(() => {
-
-  // },[heartClicked])
-
-  useEffect(() => {
-    // Inicializar el estado de las clases de los corazones
-    const initialClasses = productsToRender?.map(() => ({
-      yellowHeart: 'heart-visible',
-      redHeart: 'heart-invisible'
-    }));
-    setHeartClasses(initialClasses);
-  }, [productsToRender]);
+  console.log('Productstorender', productsToRender);
+  console.log('Favoriteproducts', favoriteProducts);
 
   return (
     <div className="product-card-wrapper">
@@ -115,19 +104,24 @@ const ProductCard = () => {
                 <span className="promo-label">SALE</span>
                 <div className="hearts-container">
                   <img
-                    src="../../src/assets/heart.svg"
-                    className={heartClasses[index]?.yellowHeart}
+                    src={
+                      favoriteProducts?.includes(product._id)
+                        ? '../../src/assets/corazon.png'
+                        : '../../src/assets/heart.svg'
+                    }
+                    className="heart"
                     alt="heart"
                     onClick={() => handleHeart(product, index)}
-                    ref={(el) => (yellowHearts.current[index] = el)}
+                    // ref={(el) => (yellowHearts.current[index] = el)}
                   />
-                  <img
+
+                  {/* <img
                     src="../../src/assets/corazon.png"
-                    className={heartClasses[index]?.redHeart}
+                    className={!imageVisibility[index] ? 'heart-visible' : 'heart-invisible'}
                     alt="heart"
                     onClick={() => handleHeart(product, index)}
                     ref={(el) => (redHearts.current[index] = el)}
-                  />
+                  /> */}
                 </div>
               </div>
             ) : (
@@ -137,19 +131,24 @@ const ProductCard = () => {
                 </div>
                 <div className="hearts-container">
                   <img
-                    src="../../src/assets/heart.svg"
-                    className={heartClasses[index]?.yellowHeart}
+                    src={
+                      favoriteProducts?.includes(product._id)
+                        ? '../../src/assets/corazon.png'
+                        : '../../src/assets/heart.svg'
+                    }
+                    className="heart"
                     alt="heart"
                     onClick={() => handleHeart(product, index)}
-                    ref={(el) => (yellowHearts.current[index] = el)}
+                    // ref={(el) => (yellowHearts.current[index] = el)}
                   />
-                  <img
+
+                  {/* <img
                     src="../../src/assets/corazon.png"
-                    className={heartClasses[index]?.redHeart}
+                    className={!imageVisibility[index] ? 'heart-visible' : 'heart-invisible'}
                     alt="heart"
                     onClick={() => handleHeart(product, index)}
                     ref={(el) => (redHearts.current[index] = el)}
-                  />
+                  /> */}
                 </div>
               </div>
             )}

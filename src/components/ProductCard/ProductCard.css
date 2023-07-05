@@ -45,7 +45,7 @@ display: flex;
     display: flex;
 }
 
-.heart-visible {
+/* .heart-visible {
     display: flex;
     height: 25px;
     cursor: pointer;
@@ -54,6 +54,13 @@ display: flex;
 
 .heart-invisible {
     display: none;
+    height: 25px;
+    cursor: pointer;
+    margin-top: 5px;
+} */
+
+.heart{
+    display: flex;
     height: 25px;
     cursor: pointer;
     margin-top: 5px;
