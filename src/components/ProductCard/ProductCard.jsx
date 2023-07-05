@@ -1,4 +1,4 @@
-import React, { useContext, useState, useRef, useMemo, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import './ProductCard.css';
 import {
   FavoriteProductsContext,
@@ -7,7 +7,6 @@ import {
   UserContext
 } from '../../App';
 import { Link } from 'react-router-dom';
-// import { userFetch } from '../../services/userFetch';
 
 const ProductCard = () => {
   const productContext = useContext(ProductContext);
@@ -22,16 +21,14 @@ const ProductCard = () => {
   const userContext = useContext(UserContext);
   const { userLogged, token } = userContext;
 
-  const yellowHearts = useRef([]);
-  const redHearts = useRef([]);
+  const [ heartImage, setHeartImage ] = useState('')
 
-  const [imageVisibility, setImageVisibility] = useState([]);
 
   const handleClick = (product) => {
     setProductSelected(product);
   };
 
-  const handleHeart = (product, index) => {
+  const handleHeart = (product) => {
     const bodyData = { fav: product._id };
 
     console.log('user email', userLogged.email);
@@ -81,9 +78,25 @@ const ProductCard = () => {
   console.log('Productstorender', productsToRender);
   console.log('Favoriteproducts', favoriteProducts);
 
+  useEffect(() => {
+
+    productsToRender?.map((product) => {
+      typeof favoriteProducts[0] === 'string' ?
+
+      favoriteProducts?.includes(product._id)? 
+      setHeartImage('../../src/assets/corazon.png')
+      : setHeartImage('../../src/assets/heart.svg')                
+      : 
+      favoriteProducts?.includes(product)? 
+      setHeartImage('../../src/assets/corazon.png')
+      : setHeartImage('../../src/assets/heart.svg')
+    })    
+  },[favoriteProducts])
+ 
+
   return (
     <div className="product-card-wrapper">
-      {productsToRender?.map((product, index) => (
+      {productsToRender?.map((product) => (
         <figure className="product-card" key={product._id}>
           <div className="product-img-price-wrapper">
             <div className="product-img-wrapper">
@@ -104,24 +117,11 @@ const ProductCard = () => {
                 <span className="promo-label">SALE</span>
                 <div className="hearts-container">
                   <img
-                    src={
-                      favoriteProducts?.includes(product._id)
-                        ? '../../src/assets/corazon.png'
-                        : '../../src/assets/heart.svg'
-                    }
+                    src={heartImage}
                     className="heart"
                     alt="heart"
-                    onClick={() => handleHeart(product, index)}
-                    // ref={(el) => (yellowHearts.current[index] = el)}
+                    onClick={() => handleHeart(product)}
                   />
-
-                  {/* <img
-                    src="../../src/assets/corazon.png"
-                    className={!imageVisibility[index] ? 'heart-visible' : 'heart-invisible'}
-                    alt="heart"
-                    onClick={() => handleHeart(product, index)}
-                    ref={(el) => (redHearts.current[index] = el)}
-                  /> */}
                 </div>
               </div>
             ) : (
@@ -131,24 +131,11 @@ const ProductCard = () => {
                 </div>
                 <div className="hearts-container">
                   <img
-                    src={
-                      favoriteProducts?.includes(product._id)
-                        ? '../../src/assets/corazon.png'
-                        : '../../src/assets/heart.svg'
-                    }
+                    src={heartImage}
                     className="heart"
                     alt="heart"
-                    onClick={() => handleHeart(product, index)}
-                    // ref={(el) => (yellowHearts.current[index] = el)}
+                    onClick={() => handleHeart(product)}
                   />
-
-                  {/* <img
-                    src="../../src/assets/corazon.png"
-                    className={!imageVisibility[index] ? 'heart-visible' : 'heart-invisible'}
-                    alt="heart"
-                    onClick={() => handleHeart(product, index)}
-                    ref={(el) => (redHearts.current[index] = el)}
-                  /> */}
                 </div>
               </div>
             )}
