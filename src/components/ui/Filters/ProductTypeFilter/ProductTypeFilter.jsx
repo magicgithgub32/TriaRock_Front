@@ -2,10 +2,9 @@ import React, { useState, useEffect, useContext } from 'react';
 import './ProductTypeFilter.css';
 import { ProductContext } from '../../../../App';
 
-const ProductTypeFilter = ({ inputOptions,  excludedProducts, setExcludedProducts }) => {
+const ProductTypeFilter = ({ inputOptions,  excludedProducts, setExcludedProducts, typeIsSelected, setTypeIsSelected, selectedOptions, setSelectedOptions }) => {
   const { productsToRender, setProductsToRender, filteredProducts, setFilteredProducts } = useContext(ProductContext);
-  const [selectedOptions, setSelectedOptions] = useState([]);
-  const [typeIsSelected, setTypeIsSelected] = useState(false);
+ 
 
   const handleCheckbox = (ev) => {
     if (ev.target.checked) {

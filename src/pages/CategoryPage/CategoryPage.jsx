@@ -9,14 +9,23 @@ import { ProductContext } from '../../App';
 import ProductTypeFilter from '../../components/ui/Filters/ProductTypeFilter/ProductTypeFilter';
 import GenderFilter from '../../components/ui/Filters/GenderFilter/GenderFilter';
 import PriceFilter from '../../components/ui/Filters/PriceFilter/PriceFilter';
+import ClearFilters from '../../components/ui/Filters/ClearFilters/ClearFilters';
+import { highestAndLowestPrices } from '../../utils/highestAndLowestPrices';
 
 const CategoryPage = () => {
   const { setProductsToRender, categoriesData } = useContext(ProductContext);
   const [productTypes, setProductTypes] = useState([]);
   const [excludedProducts, setExcludedProducts] = useState([]);
-  const genders = ['hombre', 'mujer', 'niño', 'niña'];
+  const [selectedOptions, setSelectedOptions] = useState([]);
+  const [typeIsSelected, setTypeIsSelected] = useState(false);
+  const { roundedHighestPrice } = highestAndLowestPrices()
+  console.log(roundedHighestPrice)
+
+  const [priceInput, setPriceInput] = useState(roundedHighestPrice);
+  const genders = ['hombre', 'mujer', 'infantil'];
   const location = useLocation();
   const currentPath = location.pathname;
+ 
 
   useEffect(() => {
     categoriesData?.filter((category) => {
@@ -39,18 +48,29 @@ const CategoryPage = () => {
             inputOptions={productTypes}
             excludedProducts={excludedProducts}
             setExcludedProducts={setExcludedProducts}
+            selectedOptions={selectedOptions} setSelectedOptions={setSelectedOptions}
+            typeIsSelected={typeIsSelected} setTypeIsSelected={setTypeIsSelected}
           />
           <GenderFilter
             inputOptions={genders}
             excludedProducts={excludedProducts}
             setExcludedProducts={setExcludedProducts}
+            genderIsSelected={genderIsSelected} setGenderIsSelected={setGenderIsSelected}
           />
           <PriceFilter
             currentPath={currentPath}
             excludedProducts={excludedProducts}
             setExcludedProducts={setExcludedProducts}
+            priceInput={priceInput} setPriceInput={setPriceInput}
           />
-          {/* promo y bestseller */}
+          {/* promo */}
+          <ClearFilters  setExcludedProducts={setExcludedProducts}
+          selectedOptions={selectedOptions} setSelectedOptions={setSelectedOptions}
+          typeIsSelected={typeIsSelected} setTypeIsSelected={setTypeIsSelected}
+          genderIsSelected={genderIsSelected} setGenderIsSelected={setGenderIsSelected}
+          priceInput={priceInput} setPriceInput={setPriceInput}
+          />
+
         </section>
         <section className="products-section">
           <ProductCard />
