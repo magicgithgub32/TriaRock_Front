@@ -1,13 +1,12 @@
-import React from 'react'
-import './AlertMessage.css'
+import React from 'react';
+import './AlertMessage.css';
 
-const AlertMessage = () => {
+const AlertMessage = ({ text }) => {
   return (
- 
-         <div className="alert-container">
-              <h3 className="alert-message">You have no favorite products at the moment.</h3>
-            </div>
-  )
-}
+    <div className="alert-container">
+      <h3 className="alert-message">{text}</h3>
+    </div>
+  );
+};
 
-export default AlertMessage
+export default AlertMessage;

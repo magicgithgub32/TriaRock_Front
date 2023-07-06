@@ -1,17 +1,13 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 import './ProductCard.css';
 
-import {
-  ProductContext,
-  UserContext
-} from '../../App';
+import { ProductContext, UserContext } from '../../App';
 import { Link } from 'react-router-dom';
 
 const ProductCard = () => {
-  
-  const { productsToRender, setProductSelected,favoriteProducts, setFavoriteProducts } = useContext(ProductContext);
+  const { productsToRender, setProductSelected, favoriteProducts, setFavoriteProducts } =
+    useContext(ProductContext);
   const { userLogged, token } = useContext(UserContext);
-
 
   const handleClick = (product) => {
     setProductSelected(product);
@@ -44,11 +40,9 @@ const ProductCard = () => {
     }
   };
 
-
   return (
     <div className="product-card-wrapper">
       {productsToRender?.map((product) => (
-      
         <figure className="product-card" key={product._id}>
           <div className="product-img-price-wrapper">
             <div className="product-img-wrapper">
@@ -70,16 +64,15 @@ const ProductCard = () => {
                 <div className="hearts-container">
                   <img
                     src={
-                      typeof favoriteProducts[0] === 'string'? 
-                        favoriteProducts?.includes(product._id)?
-                          '../../src/assets/red-heart.png' :
-                          '../../src/assets/yellow-heart.svg'
-                        :
-                        favoriteProducts?.some((favProduct) => favProduct._id === product._id)?
-                          '../../src/assets/red-heart.png' :
-                          '../../src/assets/yellow-heart.svg'
+                      typeof favoriteProducts[0] === 'string'
+                        ? favoriteProducts?.includes(product._id)
+                          ? '../../src/assets/red-heart.png'
+                          : '../../src/assets/yellow-heart.svg'
+                        : favoriteProducts?.some((favProduct) => favProduct._id === product._id)
+                        ? '../../src/assets/red-heart.png'
+                        : '../../src/assets/yellow-heart.svg'
                     }
-                   className="heart"
+                    className="heart"
                     alt="heart"
                     onClick={() => handleHeart(product)}
                   />
@@ -92,19 +85,16 @@ const ProductCard = () => {
                 </div>
                 <div className="hearts-container">
                   <img
-                    
-                      src={
-                        typeof favoriteProducts[0] === 'string'? 
-                          favoriteProducts?.includes(product._id)?
-                            '../../src/assets/red-heart.png' :
-                            '../../src/assets/yellow-heart.svg'
-                          :
-                          favoriteProducts?.some((favProduct) => favProduct._id === product._id)?
-                            '../../src/assets/red-heart.png' :
-                            '../../src/assets/yellow-heart.svg'
-                      }
-
-                   className="heart"
+                    src={
+                      typeof favoriteProducts[0] === 'string'
+                        ? favoriteProducts?.includes(product._id)
+                          ? '../../src/assets/red-heart.png'
+                          : '../../src/assets/yellow-heart.svg'
+                        : favoriteProducts?.some((favProduct) => favProduct._id === product._id)
+                        ? '../../src/assets/red-heart.png'
+                        : '../../src/assets/yellow-heart.svg'
+                    }
+                    className="heart"
                     alt="heart"
                     onClick={() => handleHeart(product)}
                   />

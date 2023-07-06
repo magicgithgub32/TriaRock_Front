@@ -1,9 +1,15 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { ProductContext } from '../../../../App';
 
-const PriceFilter = ( {categoriesData, currentPath} ) => {
-  const { setProductsToRender, filteredProducts } = useContext(ProductContext);
-    
+const PriceFilter = ({ currentPath, setExcludedProducts, excludedProducts }) => {
+  const {
+    setProductsToRender,
+    filteredProducts,
+    setFilteredProducts,
+    categoriesData,
+    productsToRender
+  } = useContext(ProductContext);
+
   const getLowestPrice = () => {
     if (categoriesData) {
       const currentCategory = categoriesData?.filter(
@@ -39,32 +45,32 @@ const PriceFilter = ( {categoriesData, currentPath} ) => {
   const highestPrice = getHighestPrice();
   const roundedHighestPrice = highestPrice && Math.ceil(highestPrice);
 
-  const [priceInput, setPriceInput] = useState(200);
+  // const [priceInput, setPriceInput] = useState(Math.ceil(highestPrice));
+  const [priceInput, setPriceInput] = useState(roundedHighestPrice);
 
   const handlePriceChange = (event) => {
     setPriceInput(event.target.value);
+    const newMaxPrice = parseInt(event.target.value);
+
+    setFilteredProducts(
+      productsToRender.filter((product) => {
+        const productPrice = Number(product.price.slice(0, -2).replace(',', '.'));
+        return productPrice <= newMaxPrice;
+      })
+    );
+
+    setExcludedProducts(
+      productsToRender.filter((product) => {
+        const productPrice = Number(product.price.slice(0, -2).replace(',', '.'));
+        return productPrice > newMaxPrice;
+      })
+    );
+    setFilteredProducts([...filteredProducts, ...excludedProducts]);
   };
 
   useEffect(() => {
-    //ver cómo hacer el filter sobre los productsToRender
-    if (categoriesData) {
-      const currentCategory = categoriesData?.filter(
-        (category) => category.name === currentPath.slice(1, currentPath.length)
-      );
-      const newMaxPrice = parseInt(priceInput);
-
-      const filteredProducts = currentCategory[0].items.filter((item) => {
-        const productPrice = Number(item.price.slice(0, -2).replace(',', '.'));
-        return productPrice <= newMaxPrice;
-      });
-
-      setProductsToRender(filteredProducts);
-    }
-  }, [priceInput]);
-
-  useEffect(() => {
     setProductsToRender(filteredProducts);
-  }, [filteredProducts]);
+  }, [priceInput]);
 
   return (
     <div className="price-filter">
@@ -79,8 +85,8 @@ const PriceFilter = ( {categoriesData, currentPath} ) => {
       />
       <div className="price-numbers">
         <p>{`${roundedLowestPrice} €`}</p>
-        <p>{`${roundedHighestPrice} €`}</p>
         <p>{`${priceInput} €`}</p>
+        <p>{`${roundedHighestPrice} €`}</p>
       </div>
     </div>
   );

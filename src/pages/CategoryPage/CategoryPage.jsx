@@ -4,7 +4,6 @@ import './CategoryPage.css';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import ProductCard from '../../components/ProductCard/ProductCard';
-import { categoryFetch } from '../../services/categoryFetch';
 
 import { ProductContext } from '../../App';
 import ProductTypeFilter from '../../components/ui/Filters/ProductTypeFilter/ProductTypeFilter';
@@ -12,11 +11,9 @@ import GenderFilter from '../../components/ui/Filters/GenderFilter/GenderFilter'
 import PriceFilter from '../../components/ui/Filters/PriceFilter/PriceFilter';
 
 const CategoryPage = () => {
-  const categoriesData = categoryFetch();
-
-  const { setProductsToRender } = useContext(ProductContext);
+  const { setProductsToRender, categoriesData } = useContext(ProductContext);
   const [productTypes, setProductTypes] = useState([]);
-  const [excludedProducts, setExcludedProducts] = useState([])
+  const [excludedProducts, setExcludedProducts] = useState([]);
   const genders = ['hombre', 'mujer', 'niño', 'niña'];
   const location = useLocation();
   const currentPath = location.pathname;
@@ -48,9 +45,11 @@ const CategoryPage = () => {
             excludedProducts={excludedProducts}
             setExcludedProducts={setExcludedProducts}
           />
-          <PriceFilter categoriesData={categoriesData} 
-          currentPath={currentPath}
-          excludedProducts={excludedProducts} />
+          <PriceFilter
+            currentPath={currentPath}
+            excludedProducts={excludedProducts}
+            setExcludedProducts={setExcludedProducts}
+          />
           {/* promo y bestseller */}
         </section>
         <section className="products-section">

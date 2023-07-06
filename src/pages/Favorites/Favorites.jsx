@@ -4,14 +4,14 @@ import { ProductContext, UserContext } from '../../App';
 
 import Header from '../../components/Header/Header';
 import CategoryCard from '../../components/CategoryCard/CategoryCard';
-import AlertMessage from '../../components/ui/AlertMessage/AlertMessage'
+import AlertMessage from '../../components/ui/AlertMessage/AlertMessage';
 import Footer from '../../components/Footer/Footer';
 
 const Favorites = () => {
   const { favoriteProducts, setFavoriteProducts } = useContext(ProductContext);
   const { userLogged } = useContext(UserContext);
 
-  console.log(favoriteProducts)
+  console.log(favoriteProducts);
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/users/${userLogged.email}`, {
@@ -73,7 +73,7 @@ const Favorites = () => {
               </figure>
             ))
           ) : (
-           <AlertMessage/>
+            <AlertMessage text="You have no favorite products at the moment" />
           )}
         </div>
       </article>

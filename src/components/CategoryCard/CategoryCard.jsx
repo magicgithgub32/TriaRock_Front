@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './CategoryCard.css';
-import { categoryFetch } from '../../services/categoryFetch';
 import { Link } from 'react-router-dom';
+import { ProductContext } from '../../App';
 
 const CategoryCard = () => {
-  const categoriesData = categoryFetch();
+  const { categoriesData } = useContext(ProductContext);
 
   const orderedCategories = categoriesData?.sort((a, b) => {
     const categoryOrder = ['swimming', 'cycling', 'running'];
