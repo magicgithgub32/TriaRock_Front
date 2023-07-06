@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext, useRef } from 'react';
-import './GenderFilter.css';
 import { ProductContext } from '../../../../App';
 
 const GenderFilter = ({ inputOptions, excludedProducts, setExcludedProducts, genderIsSelected, setGenderIsSelected }) => {
@@ -12,14 +11,14 @@ const GenderFilter = ({ inputOptions, excludedProducts, setExcludedProducts, gen
 const handleCheckbox = (ev) => {
 
 genderRefs.current.map((genderRef) => {
-    if (genderRef.value !== ev.target.value && ev.target.checked) {
+    if (genderRef.value !== event.target.value && event.target.checked) {
       genderRef.disabled = true
-    } else if (genderRef.value !== ev.target.value && !ev.target.checked) {
+    } else if (genderRef.value !== event.target.value && !event.target.checked) {
       genderRef.disabled = false}
   })
 
-const gendersToExclude = inputOptions.filter((inputOption) => inputOption !== ev.target.value)
-if (ev.target.checked) {
+const gendersToExclude = inputOptions.filter((inputOption) => inputOption !== event.target.value)
+if (event.target.checked) {
 setGenderIsSelected(true)
 setFilteredProducts(productsToRender.filter(product => {
   const productName = product.name.toLowerCase();

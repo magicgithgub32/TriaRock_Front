@@ -1,6 +1,9 @@
 main {
 display: flex;
 }
+.filter-section {
+padding-left: 20px
+}
 
 .category-title {
     background-color: var(--color-primary);

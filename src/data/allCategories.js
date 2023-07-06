@@ -217,7 +217,7 @@ export const allCategories = [
       },
       {
         _id: '64899afdf26833d20c74a88c',
-        name: 'GAFAS NATACIÓN ARENA THE ONE NIÑOS AZUL',
+        name: 'GAFAS NATACIÓN ARENA THE ONE INFANTIL AZUL',
         price: '14,99 €',
         image:
           'https://contents.mediadecathlon.com/p2448288/k$274b045d614ca41581594c8f7e4f9012/sq/8755988.jpg?format=auto&f=800x0',

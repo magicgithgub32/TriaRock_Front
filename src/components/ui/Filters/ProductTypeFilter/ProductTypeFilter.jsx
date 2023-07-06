@@ -7,16 +7,16 @@ const ProductTypeFilter = ({ inputOptions,  excludedProducts, setExcludedProduct
  
 
   const handleCheckbox = (ev) => {
-    if (ev.target.checked) {
-      setSelectedOptions([...selectedOptions, ev.target.value]);
+    if (event.target.checked) {
+      setSelectedOptions([...selectedOptions, event.target.value]);
     } else {
       const selectedOptionsUpdated = selectedOptions.filter(
-        (selectedOption) => selectedOption !== ev.target.value
+        (selectedOption) => selectedOption !== event.target.value
       );
       setSelectedOptions([...selectedOptionsUpdated]);
     }
-    const typesToExclude = inputOptions.filter((inputOption) => inputOption !== ev.target.value);
-    if (ev.target.checked) {
+    const typesToExclude = inputOptions.filter((inputOption) => inputOption !== event.target.value);
+    if (event.target.checked) {
       setTypeIsSelected(true);
       setFilteredProducts(
         productsToRender.filter((product) => {

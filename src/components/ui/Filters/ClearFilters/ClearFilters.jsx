@@ -4,10 +4,9 @@ import { ProductContext } from '../../../../App';
 import { highestAndLowestPrices } from '../../../../utils/highestAndLowestPrices';
  
 
-const ClearFilters = ({ setExcludedProducts, setTypeIsSelected, setSelectedOptions, setGenderIsSelected, setPriceInput}) => {
+const ClearFilters = ({ setExcludedProducts, setTypeIsSelected, setSelectedOptions, setGenderIsSelected, setPriceInput, roundedHighestPrice}) => {
 
     const { setFilteredProducts } = useContext(ProductContext);
-    const { roundedHighestPrice } = highestAndLowestPrices()
 
     const handleClearFilters = () => {
     

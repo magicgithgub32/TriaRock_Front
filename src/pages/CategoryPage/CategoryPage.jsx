@@ -18,14 +18,13 @@ const CategoryPage = () => {
   const [excludedProducts, setExcludedProducts] = useState([]);
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [typeIsSelected, setTypeIsSelected] = useState(false);
-  const { roundedHighestPrice } = highestAndLowestPrices()
-  console.log(roundedHighestPrice)
-
-  const [priceInput, setPriceInput] = useState(roundedHighestPrice);
-  const genders = ['hombre', 'mujer', 'infantil'];
+  const [genderIsSelected, setGenderIsSelected] = useState(false);
   const location = useLocation();
   const currentPath = location.pathname;
- 
+  const { roundedHighestPrice, roundedLowestPrice } = highestAndLowestPrices(categoriesData, currentPath)
+  const [priceInput, setPriceInput] = useState(roundedHighestPrice);
+  const genders = ['hombre', 'mujer', 'infantil']; 
+   
 
   useEffect(() => {
     categoriesData?.filter((category) => {
@@ -62,6 +61,8 @@ const CategoryPage = () => {
             excludedProducts={excludedProducts}
             setExcludedProducts={setExcludedProducts}
             priceInput={priceInput} setPriceInput={setPriceInput}
+            roundedHighestPrice={roundedHighestPrice}
+            roundedLowestPrice={roundedLowestPrice}
           />
           {/* promo */}
           <ClearFilters  setExcludedProducts={setExcludedProducts}
@@ -69,6 +70,7 @@ const CategoryPage = () => {
           typeIsSelected={typeIsSelected} setTypeIsSelected={setTypeIsSelected}
           genderIsSelected={genderIsSelected} setGenderIsSelected={setGenderIsSelected}
           priceInput={priceInput} setPriceInput={setPriceInput}
+          roundedHighestPrice={roundedHighestPrice}
           />
 
         </section>

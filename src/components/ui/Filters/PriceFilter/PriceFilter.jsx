@@ -1,17 +1,13 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { ProductContext } from '../../../../App';
-import { highestAndLowestPrices } from '../../../../utils/highestAndLowestPrices';
 
-const PriceFilter = ({ currentPath, setExcludedProducts, excludedProducts, priceInput, setPriceInput }) => {
+const PriceFilter = ({ setExcludedProducts, excludedProducts, priceInput, setPriceInput, roundedHighestPrice, roundedLowestPrice }) => {
   const {
     setProductsToRender,
     filteredProducts,
     setFilteredProducts,
-    categoriesData,
     productsToRender
   } = useContext(ProductContext);
-
-  const { roundedHighestPrice, roundedLowestPrice} = highestAndLowestPrices()
 
 
   const handlePriceChange = (event) => {
@@ -50,7 +46,7 @@ const PriceFilter = ({ currentPath, setExcludedProducts, excludedProducts, price
   }, [priceInput]);
 
   return (
-    <div className="price-filter">
+    <div className="filter-label-and-options">
       <label className="filter-label">precio</label>
       <input
         type="range"
