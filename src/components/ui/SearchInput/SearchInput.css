@@ -1,0 +1,16 @@
+.search-section{
+    display: flex;
+    height: 35px;
+    gap: .5rem;
+    width: 30%;
+    border-radius: var(--border-radius);
+}
+
+.search-product-input {
+    border-radius: var(--border-radius);
+    border: none;
+    padding: 0 12px;
+    width: 100%;
+    background-color: var(--color-input);
+}
+

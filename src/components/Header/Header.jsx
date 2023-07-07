@@ -3,16 +3,15 @@ import './Header.css';
 import React from 'react';
 import Logo from '../ui/Logo/Logo';
 import IconButton from '../ui/IconButton/IconButton';
+import SearchInput from '../ui/SearchInput/SearchInput';
 
 const Header = () => {
+
   return (
     <header className="header-section">
       <div className="first-header-section">
         <Logo />
-        <div className="search-section">
-          <input type="text" className="search-product-input" placeholder="Find your product" />
-          <img src="./src/assets/search.svg" className="search-icon" />
-        </div>
+      <SearchInput/>
         <div className="icons-section">
           <IconButton buttonLink="/" buttonText="HOME" srcImage="./src/assets/home-2.svg" />
           <IconButton

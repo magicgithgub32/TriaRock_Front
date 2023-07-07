@@ -88,6 +88,7 @@ const CategoryPage = () => {
             setIsCleared={setIsCleared}
           />
         </section>
+        
         <section className="products-section">
           <ProductCard />
         </section>

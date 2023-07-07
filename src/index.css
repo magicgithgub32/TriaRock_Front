@@ -3,9 +3,9 @@
 :root {
   --main-bg-color: whitesmoke;
   --color-primary: #008ab8; 
-  --color-secondary: rgb(243, 243, 11);  
+  --color-secondary: #f3f30b;  
   --color-tertiary: #fbc02d; 
-  --color-red: #f44034; /*area-bg-color*/
+  --color-red: #f44034; 
   --primary-text-color: #020202;
   --color-input: #98b7c2;
 

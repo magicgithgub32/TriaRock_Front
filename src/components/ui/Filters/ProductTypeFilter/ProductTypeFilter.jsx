@@ -19,17 +19,9 @@ const ProductTypeFilter = ({
     categoriesData
   } = useContext(ProductContext);
 
-  const getAllCategoryProducts = () => {
-    const allCategoryProducts = categoriesData?.filter((category) => {
-      if (category.name === currentPath.slice(1, currentPath.length)) {
-        return allCategoryProducts;
-      }
-    });
-  };
-
-  getAllCategoryProducts();
-
+  
   const handleCheckbox = (event) => {
+
     if (event.target.checked) {
       setSelectedOptions([...selectedOptions, event.target.value]);
     } else {
@@ -38,12 +30,15 @@ const ProductTypeFilter = ({
       );
       setSelectedOptions([...selectedOptionsUpdated]);
     }
+
     console.log('selectedOptions', selectedOptions);
 
     const typesToExclude = inputOptions.filter((inputOption) => inputOption !== event.target.value);
     if (event.target.checked) {
+    
       setTypeIsSelected(true);
-      if (selectedOptions.length < 2) {
+    
+      
         setFilteredProducts(
           productsToRender.filter((product) => {
             const productName = product.name.toLowerCase();
@@ -62,26 +57,7 @@ const ProductTypeFilter = ({
             return containsExcludedWords;
           })
         );
-      } else {
-        setFilteredProducts(
-          allCategoryProducts.filter((product) => {
-            const productName = product.name.toLowerCase();
-            const containsExcludedWords = typesToExclude.some((word) =>
-              productName.includes(word.toLowerCase())
-            );
-            return !containsExcludedWords;
-          })
-        );
-        setExcludedProducts(
-          allCategoryProducts.filter((product) => {
-            const productName = product.name.toLowerCase();
-            const containsExcludedWords = typesToExclude.some((word) =>
-              productName.includes(word.toLowerCase())
-            );
-            return containsExcludedWords;
-          })
-        );
-      }
+     
     } else {
       setTypeIsSelected(false);
       setFilteredProducts([...filteredProducts, ...excludedProducts]);

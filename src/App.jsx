@@ -14,6 +14,7 @@ import { categoryFetch } from '../src/services/categoryFetch';
 
 export const ProductContext = createContext();
 export const UserContext = createContext();
+export const SearchContext = createContext();
 
 const App = () => {
   const allProducts = productFetch();
@@ -34,6 +35,9 @@ const App = () => {
   });
 
   const [token, setToken] = useState();
+  const [ searchInput, setSearchInput ] = useState('')
+  const [ searchClick, setSearchClick ] = useState(false)
+  
 
   return (
     <>
@@ -61,8 +65,19 @@ const App = () => {
             token: token
           }}
         >
+            <SearchContext.Provider
+        value={{
+          searchInput: searchInput,
+          setSearchInput: setSearchInput,
+          searchClick: searchClick,
+          setSearchClick: setSearchClick          
+        }}
+      >
           <Routes>
+
+        
             <Route path="/" element={<Home />}></Route>
+            
             <Route path="/login" element={<Login />}></Route>
             <Route path="/register" element={<Register />}></Route>
 
@@ -87,8 +102,12 @@ const App = () => {
               ></Route>
             ))} */}
           </Routes>
+          </SearchContext.Provider>
+       
         </UserContext.Provider>
       </ProductContext.Provider>
+    
+       
     </>
   );
 };
