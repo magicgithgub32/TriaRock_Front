@@ -8,7 +8,7 @@ const GenderFilter = ({ inputOptions, excludedProducts, setExcludedProducts, gen
   const genderRefs = useRef([]);
     
   
-const handleCheckbox = (ev) => {
+const handleCheckbox = (event) => {
 
 genderRefs.current.map((genderRef) => {
     if (genderRef.value !== event.target.value && event.target.checked) {

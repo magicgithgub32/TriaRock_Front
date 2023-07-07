@@ -15,8 +15,7 @@ const ProductTypeFilter = ({
     productsToRender,
     setProductsToRender,
     filteredProducts,
-    setFilteredProducts,
-    categoriesData
+    setFilteredProducts
   } = useContext(ProductContext);
 
   
