@@ -1,7 +1,14 @@
 import React, { useRef } from 'react';
 
-const GenderFilter = ({ inputOptions }) => {
-  const [selectedGender, setSelectedGender] = useState();
+const GenderFilter = ({
+  inputOptions,
+  excludedProducts,
+  setExcludedProducts,
+  genderIsSelected,
+  setGenderIsSelected
+}) => {
+  const { productsToRender, setProductsToRender, filteredProducts, setFilteredProducts } =
+    useContext(ProductContext);
 
   const genderRefs = useRef([]);
 
