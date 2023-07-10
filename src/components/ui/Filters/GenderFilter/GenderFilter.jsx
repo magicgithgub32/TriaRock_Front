@@ -1,14 +1,10 @@
-import React, { useRef } from 'react';
+import React, { useState, useRef } from 'react';
 
 const GenderFilter = ({
   inputOptions,
-  excludedProducts,
-  setExcludedProducts,
-  genderIsSelected,
-  setGenderIsSelected
+  setSelectedGender
 }) => {
-  const { productsToRender, setProductsToRender, filteredProducts, setFilteredProducts } =
-    useContext(ProductContext);
+  
 
   const genderRefs = useRef([]);
 
@@ -21,6 +17,7 @@ const GenderFilter = ({
       }
 
       setSelectedGender(ev.target.value);
+    
     });
   };
 

@@ -15,6 +15,7 @@ import { filterProducts, genders } from '../../utils/filterProducts';
 
 const CategoryPage = () => {
   const { setProductsToRender, productsToRender, categoriesData } = useContext(ProductContext);
+ 
   const [productTypes, setProductTypes] = useState([]);
   const [excludedProducts, setExcludedProducts] = useState([]);
   const [selectedTypes, setSelectedTypes] = useState([]);
@@ -28,22 +29,33 @@ const CategoryPage = () => {
   );
   const [selectedPrice, setSelectedPrice] = useState(roundedHighestPrice);
   const [isCleared, setIsCleared] = useState(false);
-  const [selectedGender, setSelectedGender] = useState();
+  const [selectedGender, setSelectedGender] = useState('');
 
+  
   useEffect(() => {
+    console.log(categoriesData)
     categoriesData?.filter((category) => {
       if (category.name === currentPath.slice(1, currentPath.length)) {
         setProductsToRender(category.items);
+        console.log(productsToRender)
         const itemTypes = category.items.map((product) => product.name.split(' ')[0]);
         setProductTypes([...new Set(itemTypes)]);
       }
     });
-  }, [categoriesData, currentPath, isCleared]);
+  }, [categoriesData, currentPath]);
+  // isCleared
 
   useEffect(() => {
-    filterProducts(selectedGender, selectedPrice, productsToRender, selectedTypes);
-
+    if (productsToRender.length > 0) {
+      console.log('selectedGender', selectedGender)
+      console.log('selectedPrice', selectedPrice)
+      console.log('productsToRender', productsToRender)
+      console.log('selectedTypes', selectedTypes)
+      console.log('roundedHighestPrice', roundedHighestPrice)
+    const { filteredProducts } = filterProducts(selectedGender, selectedPrice, productsToRender, selectedTypes, roundedHighestPrice);
     setProductsToRender(filteredProducts);
+    console.log(filteredProducts)
+  }
   }, [selectedPrice, selectedTypes, selectedGender]);
 
   return (
@@ -55,33 +67,33 @@ const CategoryPage = () => {
         <section className="filter-section">
           <ProductTypeFilter
             inputOptions={productTypes}
-            excludedProducts={excludedProducts}
-            setExcludedProducts={setExcludedProducts}
+            // excludedProducts={excludedProducts}
+            // setExcludedProducts={setExcludedProducts}
             selectedTypes={selectedTypes}
             setSelectedTypes={setSelectedTypes}
-            typeIsSelected={typeIsSelected}
-            setTypeIsSelected={setTypeIsSelected}
+            // typeIsSelected={typeIsSelected}
+            // setTypeIsSelected={setTypeIsSelected}
             currentPath={currentPath}
           />
           <GenderFilter
             inputOptions={genders}
-            excludedProducts={excludedProducts}
-            setExcludedProducts={setExcludedProducts}
-            genderIsSelected={genderIsSelected}
-            setGenderIsSelected={setGenderIsSelected}
-            selectedGender={selectedGender}
+            // excludedProducts={excludedProducts}
+            // setExcludedProducts={setExcludedProducts}
+            // genderIsSelected={genderIsSelected}
+            // setGenderIsSelected={setGenderIsSelected}
+            setSelectedGender={setSelectedGender}
           />
           <PriceFilter
             currentPath={currentPath}
-            excludedProducts={excludedProducts}
-            setExcludedProducts={setExcludedProducts}
+            // excludedProducts={excludedProducts}
+            // setExcludedProducts={setExcludedProducts}
             selectedPrice={selectedPrice}
             setSelectedPrice={setSelectedPrice}
             roundedHighestPrice={roundedHighestPrice}
             roundedLowestPrice={roundedLowestPrice}
           />
           {/* promo */}
-          <ClearFilters
+          {/* <ClearFilters
             setExcludedProducts={setExcludedProducts}
             selectedTypes={selectedTypes}
             setSelectedTypes={setSelectedTypes}
@@ -93,8 +105,8 @@ const CategoryPage = () => {
             setSelectedPrice={setSelectedPrice}
             roundedHighestPrice={roundedHighestPrice}
             isCleared={isCleared}
-            setIsCleared={setIsCleared}
-          />
+            setIsCleared={setIsCleared} */}
+          {/* /> */}
         </section>
 
         <section className="products-section">

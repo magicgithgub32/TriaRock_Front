@@ -1,5 +1,4 @@
-import React, { useContext, useEffect } from 'react';
-import { ProductContext } from '../../../../App';
+import React from 'react';
 
 const PriceFilter = ({
   selectedPrice,
