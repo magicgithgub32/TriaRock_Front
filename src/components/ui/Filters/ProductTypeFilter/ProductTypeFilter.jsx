@@ -2,15 +2,9 @@ import React from 'react';
 import './ProductTypeFilter.css';
 
 const ProductTypeFilter = ({ inputOptions, selectedTypes, setSelectedTypes }) => {
-  // const {
-  //   productsToRender,
-  //   setProductsToRender,
-  //   filteredProducts,
-  //   setFilteredProducts,
-  //   categoriesData
-  // } = useContext(ProductContext);
 
   const handleCheckbox = (event) => {
+    console.log(event.target.value)
     if (event.target.checked) {
       setSelectedTypes([...selectedTypes, event.target.value]);
     } else {
@@ -19,6 +13,10 @@ const ProductTypeFilter = ({ inputOptions, selectedTypes, setSelectedTypes }) =>
       );
       setSelectedTypes([...selectedTypesUpdated]);
     }
+  }
+
+  
+    
 
     // const typesToExclude = inputOptions.filter((inputOption) => inputOption !== event.target.value);
     // if (event.target.checked) {
@@ -46,7 +44,6 @@ const ProductTypeFilter = ({ inputOptions, selectedTypes, setSelectedTypes }) =>
     //   setTypeIsSelected(false);
     //   setFilteredProducts([...filteredProducts, ...excludedProducts]);
     // }
-  };
 
   // useEffect(() => {
   //   setProductsToRender(filteredProducts);

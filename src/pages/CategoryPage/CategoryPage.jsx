@@ -15,25 +15,31 @@ import { filterProducts, genders } from '../../utils/filterProducts';
 
 const CategoryPage = () => {
   const { setProductsToRender, productsToRender, categoriesData } = useContext(ProductContext);
- 
-  const [productTypes, setProductTypes] = useState([]);
-  const [excludedProducts, setExcludedProducts] = useState([]);
-  const [selectedTypes, setSelectedTypes] = useState([]);
-  const [typeIsSelected, setTypeIsSelected] = useState(false);
-  const [genderIsSelected, setGenderIsSelected] = useState(false);
+  
   const location = useLocation();
   const currentPath = location.pathname;
+
   const { roundedHighestPrice, roundedLowestPrice } = highestAndLowestPrices(
     categoriesData,
     currentPath
   );
-  const [selectedPrice, setSelectedPrice] = useState(roundedHighestPrice);
-  const [isCleared, setIsCleared] = useState(false);
-  const [selectedGender, setSelectedGender] = useState('');
 
+  const [productTypes, setProductTypes] = useState([]);
+  const [selectedTypes, setSelectedTypes] = useState([]);
+  const [selectedPrice, setSelectedPrice] = useState(roundedHighestPrice);
+  const [selectedGender, setSelectedGender] = useState('');
+  // const [isCleared, setIsCleared] = useState(false);
   
+  
+  // const filteredProducts = filterProducts(
+  //   productsToRender,
+  //   selectedTypes,
+  //   selectedGender, 
+  //   selectedPrice, 
+  //   roundedHighestPrice);
+
+   
   useEffect(() => {
-    console.log(categoriesData)
     categoriesData?.filter((category) => {
       if (category.name === currentPath.slice(1, currentPath.length)) {
         setProductsToRender(category.items);
@@ -47,16 +53,20 @@ const CategoryPage = () => {
 
   useEffect(() => {
     if (productsToRender.length > 0) {
-      console.log('selectedGender', selectedGender)
-      console.log('selectedPrice', selectedPrice)
-      console.log('productsToRender', productsToRender)
-      console.log('selectedTypes', selectedTypes)
-      console.log('roundedHighestPrice', roundedHighestPrice)
-    const { filteredProducts } = filterProducts(selectedGender, selectedPrice, productsToRender, selectedTypes, roundedHighestPrice);
-    setProductsToRender(filteredProducts);
-    console.log(filteredProducts)
+      // console.log('selectedGender', selectedGender)
+      // console.log('selectedPrice', selectedPrice)
+      // console.log('productsToRender', productsToRender)
+      // console.log('selectedTypes', selectedTypes)
+      // console.log('roundedHighestPrice', roundedHighestPrice)
+      const filteredProducts = filterProducts(
+        productsToRender,
+        selectedTypes,
+        selectedGender, 
+        selectedPrice, 
+        roundedHighestPrice)
+      setProductsToRender(filteredProducts);
   }
-  }, [selectedPrice, selectedTypes, selectedGender]);
+  }, [selectedTypes, selectedGender, selectedPrice]);
 
   return (
     <div>
@@ -67,26 +77,14 @@ const CategoryPage = () => {
         <section className="filter-section">
           <ProductTypeFilter
             inputOptions={productTypes}
-            // excludedProducts={excludedProducts}
-            // setExcludedProducts={setExcludedProducts}
             selectedTypes={selectedTypes}
             setSelectedTypes={setSelectedTypes}
-            // typeIsSelected={typeIsSelected}
-            // setTypeIsSelected={setTypeIsSelected}
-            currentPath={currentPath}
           />
           <GenderFilter
             inputOptions={genders}
-            // excludedProducts={excludedProducts}
-            // setExcludedProducts={setExcludedProducts}
-            // genderIsSelected={genderIsSelected}
-            // setGenderIsSelected={setGenderIsSelected}
             setSelectedGender={setSelectedGender}
           />
           <PriceFilter
-            currentPath={currentPath}
-            // excludedProducts={excludedProducts}
-            // setExcludedProducts={setExcludedProducts}
             selectedPrice={selectedPrice}
             setSelectedPrice={setSelectedPrice}
             roundedHighestPrice={roundedHighestPrice}
