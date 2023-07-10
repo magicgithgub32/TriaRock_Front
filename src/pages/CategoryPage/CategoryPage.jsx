@@ -11,12 +11,13 @@ import GenderFilter from '../../components/ui/Filters/GenderFilter/GenderFilter'
 import PriceFilter from '../../components/ui/Filters/PriceFilter/PriceFilter';
 import ClearFilters from '../../components/ui/Filters/ClearFilters/ClearFilters';
 import { highestAndLowestPrices } from '../../utils/highestAndLowestPrices';
+import { filterProducts, genders } from '../../utils/filterProducts';
 
 const CategoryPage = () => {
-  const { setProductsToRender, categoriesData } = useContext(ProductContext);
+  const { setProductsToRender, productsToRender, categoriesData } = useContext(ProductContext);
   const [productTypes, setProductTypes] = useState([]);
   const [excludedProducts, setExcludedProducts] = useState([]);
-  const [selectedOptions, setSelectedOptions] = useState([]);
+  const [selectedTypes, setSelectedTypes] = useState([]);
   const [typeIsSelected, setTypeIsSelected] = useState(false);
   const [genderIsSelected, setGenderIsSelected] = useState(false);
   const location = useLocation();
@@ -25,9 +26,9 @@ const CategoryPage = () => {
     categoriesData,
     currentPath
   );
-  const [priceInput, setPriceInput] = useState(roundedHighestPrice);
-  const genders = ['hombre', 'mujer', 'infantil'];
+  const [selectedPrice, setSelectedPrice] = useState(roundedHighestPrice);
   const [isCleared, setIsCleared] = useState(false);
+  const [selectedGender, setSelectedGender] = useState();
 
   useEffect(() => {
     categoriesData?.filter((category) => {
@@ -38,6 +39,12 @@ const CategoryPage = () => {
       }
     });
   }, [categoriesData, currentPath, isCleared]);
+
+  useEffect(() => {
+    filterProducts(selectedGender, selectedPrice, productsToRender, selectedTypes);
+
+    setProductsToRender(filteredProducts);
+  }, [selectedPrice, selectedTypes, selectedGender]);
 
   return (
     <div>
@@ -50,8 +57,8 @@ const CategoryPage = () => {
             inputOptions={productTypes}
             excludedProducts={excludedProducts}
             setExcludedProducts={setExcludedProducts}
-            selectedOptions={selectedOptions}
-            setSelectedOptions={setSelectedOptions}
+            selectedTypes={selectedTypes}
+            setSelectedTypes={setSelectedTypes}
             typeIsSelected={typeIsSelected}
             setTypeIsSelected={setTypeIsSelected}
             currentPath={currentPath}
@@ -62,33 +69,34 @@ const CategoryPage = () => {
             setExcludedProducts={setExcludedProducts}
             genderIsSelected={genderIsSelected}
             setGenderIsSelected={setGenderIsSelected}
+            selectedGender={selectedGender}
           />
           <PriceFilter
             currentPath={currentPath}
             excludedProducts={excludedProducts}
             setExcludedProducts={setExcludedProducts}
-            priceInput={priceInput}
-            setPriceInput={setPriceInput}
+            selectedPrice={selectedPrice}
+            setSelectedPrice={setSelectedPrice}
             roundedHighestPrice={roundedHighestPrice}
             roundedLowestPrice={roundedLowestPrice}
           />
           {/* promo */}
           <ClearFilters
             setExcludedProducts={setExcludedProducts}
-            selectedOptions={selectedOptions}
-            setSelectedOptions={setSelectedOptions}
+            selectedTypes={selectedTypes}
+            setSelectedTypes={setSelectedTypes}
             typeIsSelected={typeIsSelected}
             setTypeIsSelected={setTypeIsSelected}
             genderIsSelected={genderIsSelected}
             setGenderIsSelected={setGenderIsSelected}
-            priceInput={priceInput}
-            setPriceInput={setPriceInput}
+            selectedPrice={selectedPrice}
+            setSelectedPrice={setSelectedPrice}
             roundedHighestPrice={roundedHighestPrice}
             isCleared={isCleared}
             setIsCleared={setIsCleared}
           />
         </section>
-        
+
         <section className="products-section">
           <ProductCard />
         </section>

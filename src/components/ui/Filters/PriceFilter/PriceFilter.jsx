@@ -1,49 +1,41 @@
 import React, { useContext, useEffect } from 'react';
 import { ProductContext } from '../../../../App';
 
-const PriceFilter = ({ setExcludedProducts, excludedProducts, priceInput, setPriceInput, roundedHighestPrice, roundedLowestPrice }) => {
-  const {
-    setProductsToRender,
-    filteredProducts,
-    setFilteredProducts,
-    productsToRender
-  } = useContext(ProductContext);
-
-
+const PriceFilter = ({
+  selectedPrice,
+  setSelectedPrice,
+  roundedHighestPrice,
+  roundedLowestPrice
+}) => {
   const handlePriceChange = (event) => {
-    console.log('evento', event.target.value)
-    console.log('priceInput', priceInput)
-    console.log('filteredProducts', filteredProducts)
-    console.log('excludedProducts', excludedProducts)
-
-    const newPriceInput = parseInt(event.target.value);
-    setPriceInput(newPriceInput)
-      
-      if (newPriceInput <= priceInput) {
-        setFilteredProducts(
-          productsToRender?.filter((product) => {
-            const productPrice = Number(product.price.slice(0, -2).replace(',', '.'));
-            const cheaperProducts = productPrice <= newPriceInput;
-            return cheaperProducts;
-          })
-        );
-  
-        setExcludedProducts(
-          productsToRender?.filter((product) => {
-            const productPrice = Number(product.price.slice(0, -2).replace(',', '.'));
-            const cheaperProducts = productPrice >= newPriceInput;
-            return cheaperProducts;
-          })
-        );
-      } else {
-        setFilteredProducts([...filteredProducts, ...excludedProducts]);
-      }
+    const newselectedPrice = parseInt(event.target.value);
+    setSelectedPrice(newselectedPrice);
   };
 
-  
-  useEffect(() => {
-  setProductsToRender(filteredProducts);
-  }, [priceInput]);
+  //   if (newselectedPrice <= selectedPrice) {
+  //     setFilteredProducts(
+  //       productsToRender?.filter((product) => {
+  //         const productPrice = Number(product.price.slice(0, -2).replace(',', '.'));
+  //         const cheaperProducts = productPrice <= newselectedPrice;
+  //         return cheaperProducts;
+  //       })
+  //     );
+
+  //     setExcludedProducts(
+  //       productsToRender?.filter((product) => {
+  //         const productPrice = Number(product.price.slice(0, -2).replace(',', '.'));
+  //         const cheaperProducts = productPrice >= newselectedPrice;
+  //         return cheaperProducts;
+  //       })
+  //     );
+  //   } else {
+  //     setFilteredProducts([...filteredProducts, ...excludedProducts]);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   setProductsToRender(filteredProducts);
+  // }, [selectedPrice]);
 
   return (
     <div className="filter-label-and-options">
@@ -53,12 +45,12 @@ const PriceFilter = ({ setExcludedProducts, excludedProducts, priceInput, setPri
         id="price-range"
         min={roundedLowestPrice}
         max={roundedHighestPrice}
-        value={priceInput}
+        value={selectedPrice}
         onChange={handlePriceChange}
       />
       <div className="price-numbers">
         <p>{`${roundedLowestPrice} €`}</p>
-        <p>{`${priceInput} €`}</p>
+        <p>{`${selectedPrice} €`}</p>
         <p>{`${roundedHighestPrice} €`}</p>
       </div>
     </div>

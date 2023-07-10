@@ -1,75 +1,57 @@
 import React, { useState, useEffect, useContext } from 'react';
 import './ProductTypeFilter.css';
-import { ProductContext } from '../../../../App';
 
-const ProductTypeFilter = ({
-  inputOptions,
-  excludedProducts,
-  setExcludedProducts,
-  setTypeIsSelected,
-  selectedOptions,
-  setSelectedOptions,
-  currentPath
-}) => {
-  const {
-    productsToRender,
-    setProductsToRender,
-    filteredProducts,
-    setFilteredProducts,
-    categoriesData
-  } = useContext(ProductContext);
+const ProductTypeFilter = ({ inputOptions, selectedTypes, setSelectedTypes }) => {
+  // const {
+  //   productsToRender,
+  //   setProductsToRender,
+  //   filteredProducts,
+  //   setFilteredProducts,
+  //   categoriesData
+  // } = useContext(ProductContext);
 
-  
   const handleCheckbox = (event) => {
-
     if (event.target.checked) {
-      setSelectedOptions([...selectedOptions, event.target.value]);
+      setSelectedTypes([...selectedTypes, event.target.value]);
     } else {
-      const selectedOptionsUpdated = selectedOptions.filter(
+      const selectedTypesUpdated = selectedTypes.filter(
         (selectedOption) => selectedOption !== event.target.value
       );
-      setSelectedOptions([...selectedOptionsUpdated]);
+      setSelectedTypes([...selectedTypesUpdated]);
     }
 
-    console.log('selectedOptions', selectedOptions);
+    // const typesToExclude = inputOptions.filter((inputOption) => inputOption !== event.target.value);
+    // if (event.target.checked) {
+    //   setTypeIsSelected(true);
 
-    const typesToExclude = inputOptions.filter((inputOption) => inputOption !== event.target.value);
-    if (event.target.checked) {
-    
-      setTypeIsSelected(true);
-    
-      
-        setFilteredProducts(
-          productsToRender.filter((product) => {
-            const productName = product.name.toLowerCase();
-            const containsExcludedWords = typesToExclude.some((word) =>
-              productName.includes(word.toLowerCase())
-            );
-            return !containsExcludedWords;
-          })
-        );
-        setExcludedProducts(
-          productsToRender.filter((product) => {
-            const productName = product.name.toLowerCase();
-            const containsExcludedWords = typesToExclude.some((word) =>
-              productName.includes(word.toLowerCase())
-            );
-            return containsExcludedWords;
-          })
-        );
-     
-    } else {
-      setTypeIsSelected(false);
-      setFilteredProducts([...filteredProducts, ...excludedProducts]);
-    }
-    console.log('filteredProducts', filteredProducts);
-    console.log('excludedProducts', excludedProducts);
+    //   setFilteredProducts(
+    //     productsToRender.filter((product) => {
+    //       const productName = product.name.toLowerCase();
+    //       const containsExcludedWords = typesToExclude.some((word) =>
+    //         productName.includes(word.toLowerCase())
+    //       );
+    //       return !containsExcludedWords;
+    //     })
+    //   );
+    //   setExcludedProducts(
+    //     productsToRender.filter((product) => {
+    //       const productName = product.name.toLowerCase();
+    //       const containsExcludedWords = typesToExclude.some((word) =>
+    //         productName.includes(word.toLowerCase())
+    //       );
+    //       return containsExcludedWords;
+    //     })
+    //   );
+    // } else {
+    //   setTypeIsSelected(false);
+    //   setFilteredProducts([...filteredProducts, ...excludedProducts]);
+    // }
   };
 
-  useEffect(() => {
-    setProductsToRender(filteredProducts);
-    console.log('productsToRender', productsToRender);
-  }, [selectedOptions]);
+  // useEffect(() => {
+  //   setProductsToRender(filteredProducts);
+  //   console.log('productsToRender', productsToRender);
+  // }, [selectedTypes]);
 
   return (
     <div className="filter-label-and-options">

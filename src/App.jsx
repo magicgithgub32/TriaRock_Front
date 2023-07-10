@@ -23,7 +23,7 @@ const App = () => {
   const [productsToRender, setProductsToRender] = useState([]);
   const [productSelected, setProductSelected] = useState([]);
   const [favoriteProducts, setFavoriteProducts] = useState([]);
-  const [filteredProducts, setFilteredProducts] = useState([]);
+  // const [filteredProducts, setFilteredProducts] = useState([]);
 
   const [userRegistered, setUserRegistered] = useState({
     email: '',
@@ -35,9 +35,8 @@ const App = () => {
   });
 
   const [token, setToken] = useState();
-  const [ searchInput, setSearchInput ] = useState('')
-  const [ searchClick, setSearchClick ] = useState(false)
-  
+  const [searchInput, setSearchInput] = useState('');
+  const [searchClick, setSearchClick] = useState(false);
 
   return (
     <>
@@ -46,8 +45,8 @@ const App = () => {
           allProducts: allProducts,
           productsToRender: productsToRender,
           setProductsToRender: setProductsToRender,
-          filteredProducts: filteredProducts,
-          setFilteredProducts: setFilteredProducts,
+          // filteredProducts: filteredProducts,
+          // setFilteredProducts: setFilteredProducts,
           productSelected: productSelected,
           setProductSelected: setProductSelected,
           favoriteProducts: favoriteProducts,
@@ -65,49 +64,44 @@ const App = () => {
             token: token
           }}
         >
-            <SearchContext.Provider
-        value={{
-          searchInput: searchInput,
-          setSearchInput: setSearchInput,
-          searchClick: searchClick,
-          setSearchClick: setSearchClick          
-        }}
-      >
-          <Routes>
+          <SearchContext.Provider
+            value={{
+              searchInput: searchInput,
+              setSearchInput: setSearchInput,
+              searchClick: searchClick,
+              setSearchClick: setSearchClick
+            }}
+          >
+            <Routes>
+              <Route path="/" element={<Home />}></Route>
 
-        
-            <Route path="/" element={<Home />}></Route>
-            
-            <Route path="/login" element={<Login />}></Route>
-            <Route path="/register" element={<Register />}></Route>
+              <Route path="/login" element={<Login />}></Route>
+              <Route path="/register" element={<Register />}></Route>
 
-            {categoriesData?.map((category) => (
-              <Route
-                key={category.name}
-                path={`/${category.name}`}
-                element={<CategoryPage />}
-              ></Route>
-            ))}
+              {categoriesData?.map((category) => (
+                <Route
+                  key={category.name}
+                  path={`/${category.name}`}
+                  element={<CategoryPage />}
+                ></Route>
+              ))}
 
-            <Route path="/favorites" element={<Favorites />}></Route>
-            <Route path="/productDetail" element={<ProductDetail />}></Route>
+              <Route path="/favorites" element={<Favorites />}></Route>
+              <Route path="/productDetail" element={<ProductDetail />}></Route>
 
-            <Route path="/favorites/swimming" element={<CategoryPage />} />
+              <Route path="/favorites/swimming" element={<CategoryPage />} />
 
-            {/* {categoriesData?.map((category) => (
+              {/* {categoriesData?.map((category) => (
               <Route
                 key={category.name}
                 path={`/favorites/${category.name}`}
                 element={<CategoryPage />}
               ></Route>
             ))} */}
-          </Routes>
+            </Routes>
           </SearchContext.Provider>
-       
         </UserContext.Provider>
       </ProductContext.Provider>
-    
-       
     </>
   );
 };
