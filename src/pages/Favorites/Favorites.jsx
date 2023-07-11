@@ -6,15 +6,16 @@ import Header from '../../components/Header/Header';
 import CategoryCard from '../../components/CategoryCard/CategoryCard';
 import AlertMessage from '../../components/ui/AlertMessage/AlertMessage';
 import Footer from '../../components/Footer/Footer';
+import { userStored } from '../../utils/localStorage'
 
 const Favorites = () => {
-  const { favoriteProducts, setFavoriteProducts } = useContext(ProductContext);
+  const { userFavs, setUserFavs } = useContext(ProductContext);
   const { userLogged } = useContext(UserContext);
-
-  console.log(favoriteProducts);
+ 
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/users/${userLogged.email}`, {
+    
+    fetch(`${import.meta.env.VITE_API_URL}/users/${userStored.email}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
@@ -24,12 +25,14 @@ const Favorites = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log('data', data);
-        setFavoriteProducts(data.favs);
+        setUserFavs(data.favs);
       })
       .catch((error) => {
         console.log('Error', error);
       });
-  }, [userLogged]);
+    }, [userLogged]);
+
+  
 
   return (
     <section className="favorite-products-page">
@@ -37,8 +40,9 @@ const Favorites = () => {
       <article className="favorite-products-article">
         <h3 className="favorite-title">MY FAVORITE PRODUCTS</h3>
         <div className="favorite-products-wrapper">
-          {favoriteProducts.length > 0 ? (
-            favoriteProducts?.map((favoriteProduct) => (
+        
+            {userFavs?.length > 0 ? (
+            userFavs?.map((favoriteProduct) => (
               <figure className="favorite-products-section" key={favoriteProduct?._id}>
                 <img
                   className="favorite-product-Img"

@@ -11,6 +11,7 @@ import ProductDetail from './pages/ProductDetail/ProductDetail';
 
 import { productFetch } from '../src/services/productFetch';
 import { categoryFetch } from '../src/services/categoryFetch';
+import { userFavsFetch } from './services/userFavsFetch';
 
 export const ProductContext = createContext();
 export const UserContext = createContext();
@@ -19,11 +20,10 @@ export const SearchContext = createContext();
 const App = () => {
   const allProducts = productFetch();
   const categoriesData = categoryFetch();
-
+  
   const [productsToRender, setProductsToRender] = useState([]);
   const [productSelected, setProductSelected] = useState([]);
-  const [favoriteProducts, setFavoriteProducts] = useState([]);
-  // const [filteredProducts, setFilteredProducts] = useState([]);
+  
 
   const [userRegistered, setUserRegistered] = useState({
     email: '',
@@ -34,15 +34,8 @@ const App = () => {
     password: ''
   });
 
-  const [userLoggedStored, setUserLoggedStored] = useState(() => {
-    if (localStorage.getItem('user')) {
-      return true;
-    } else {
-      return false;
-    }
-  });
+  const { userFavs, setUserFavs } = userFavsFetch(userLogged);
 
-  const [token, setToken] = useState();
   const [searchInput, setSearchInput] = useState('');
   const [searchClick, setSearchClick] = useState(false);
 
@@ -51,15 +44,13 @@ const App = () => {
       <ProductContext.Provider
         value={{
           allProducts: allProducts,
+          categoriesData: categoriesData,
           productsToRender: productsToRender,
           setProductsToRender: setProductsToRender,
-          // filteredProducts: filteredProducts,
-          // setFilteredProducts: setFilteredProducts,
           productSelected: productSelected,
           setProductSelected: setProductSelected,
-          favoriteProducts: favoriteProducts,
-          setFavoriteProducts: setFavoriteProducts,
-          categoriesData: categoriesData
+          userFavs: userFavs,
+          setUserFavs: setUserFavs
         }}
       >
         <UserContext.Provider
@@ -67,11 +58,7 @@ const App = () => {
             userRegistered: userRegistered,
             setUserRegistered: setUserRegistered,
             userLogged: userLogged,
-            setUserLogged: setUserLogged,
-            setToken: setToken,
-            token: token,
-            userLoggedStored: userLoggedStored,
-            setUserLoggedStored: setUserLoggedStored
+            setUserLogged: setUserLogged
           }}
         >
           <SearchContext.Provider

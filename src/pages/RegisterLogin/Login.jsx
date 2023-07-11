@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import './Login.css';
 
 import Header from '../../components/Header/Header';
@@ -9,8 +9,7 @@ import { UserContext } from '../../App';
 const Login = () => {
   const navigate = useNavigate();
 
-  const { userLogged, setUserLogged, setToken, userLoggedStored, setUserLoggedStored } =
-    useContext(UserContext);
+  const { userLogged, setUserLogged } = useContext(UserContext);
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
@@ -24,10 +23,12 @@ const Login = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
-        setToken(data.token);
+        const userStored = {
+          email: (data.user).email,
+          token: data.token
+        }
+        localStorage.setItem('userStored', JSON.stringify(userStored))
         navigate('/favorites');
-        localStorage.setItem('user', data);
       })
       .catch((error) => {
         console.error('error:', error.message);
@@ -43,6 +44,8 @@ const Login = () => {
       [event.target.name]: event.target.value
     });
   };
+ 
+
   return (
     <div className="register-login">
       <Header />

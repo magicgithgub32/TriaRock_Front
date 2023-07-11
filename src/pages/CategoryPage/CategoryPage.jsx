@@ -48,8 +48,11 @@ const CategoryPage = () => {
   );
 
   useEffect(() => {
+
     categoriesData?.filter((category) => {
+ 
       if (category.name === currentPath.slice(1, currentPath.length)) {
+        console.log(category.items)
         setProductsToRender(category.items);
         setCategoryItems(category.items);
         console.log(productsToRender);
@@ -57,7 +60,7 @@ const CategoryPage = () => {
         setProductTypes([...new Set(itemTypes)]);
       }
     });
-  }, [categoriesData, currentPath]);
+  }, [categoriesData, currentPath, selectedTypes, selectedGender, selectedPrice]);
   // isCleared
 
   useEffect(() => {

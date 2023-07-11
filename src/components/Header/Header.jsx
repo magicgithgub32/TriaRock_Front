@@ -4,8 +4,14 @@ import React from 'react';
 import Logo from '../ui/Logo/Logo';
 import IconButton from '../ui/IconButton/IconButton';
 import SearchInput from '../ui/SearchInput/SearchInput';
+import { userStored } from '../../utils/localStorage'
 
 const Header = () => {
+
+  const handleLogout = () => {
+    console.log('click logout')
+    localStorage.removeItem('userStored') //esta parte comprobar
+  }  
 
   return (
     <header className="header-section">
@@ -14,11 +20,19 @@ const Header = () => {
       <SearchInput/>
         <div className="icons-section">
           <IconButton buttonLink="/" buttonText="HOME" srcImage="./src/assets/home-2.svg" />
+          {userStored ?
+         <IconButton
+            buttonLink="/"
+            buttonText="LOGOUT"
+            srcImage="./src/assets/user-circle.svg"
+            buttonEvent={handleLogout}
+          /> :
           <IconButton
             buttonLink="/login"
             buttonText="MY TRIAROCK"
             srcImage="./src/assets/user-circle.svg"
           />
+          }
           <IconButton
             buttonLink="/favorites"
             buttonText="MY FAVS"
