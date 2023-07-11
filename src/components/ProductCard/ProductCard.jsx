@@ -3,13 +3,11 @@ import './ProductCard.css';
 
 import { ProductContext } from '../../App';
 import { Link } from 'react-router-dom';
-import { userStored } from '../../utils/localStorage'
+import { userStored } from '../../utils/localStorage';
 
 const ProductCard = () => {
- 
-    const { productsToRender, setProductSelected, userFavs, setUserFavs } =
+  const { productsToRender, setProductSelected, userFavs, setUserFavs } =
     useContext(ProductContext);
-
 
   const handleClick = (product) => {
     setProductSelected(product);
@@ -17,7 +15,7 @@ const ProductCard = () => {
 
   const handleHeart = (product) => {
     const bodyData = { fav: product._id };
-   
+
     if (!userStored.email) {
       alert(
         'Please log in to your account or create a new one so you can see and save your favorite products'
@@ -66,7 +64,7 @@ const ProductCard = () => {
                 <div className="hearts-container">
                   <img
                     src={
-                         typeof userFavs[0] === 'string'
+                      typeof userFavs[0] === 'string'
                         ? userFavs?.includes(product._id)
                           ? '../../src/assets/red-heart.png'
                           : '../../src/assets/yellow-heart.svg'
@@ -88,7 +86,7 @@ const ProductCard = () => {
                 <div className="hearts-container">
                   <img
                     src={
-                        typeof userFavs[0] === 'string'
+                      typeof userFavs[0] === 'string'
                         ? userFavs?.includes(product._id)
                           ? '../../src/assets/red-heart.png'
                           : '../../src/assets/yellow-heart.svg'

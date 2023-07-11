@@ -24,10 +24,10 @@ const Login = () => {
       .then((response) => response.json())
       .then((data) => {
         const userStored = {
-          email: (data.user).email,
+          email: data.user.email,
           token: data.token
-        }
-        localStorage.setItem('userStored', JSON.stringify(userStored))
+        };
+        localStorage.setItem('userStored', JSON.stringify(userStored));
         navigate('/favorites');
       })
       .catch((error) => {
@@ -43,8 +43,8 @@ const Login = () => {
       ...userLogged,
       [event.target.name]: event.target.value
     });
+    console.log('userLogged', userLogged);
   };
- 
 
   return (
     <div className="register-login">

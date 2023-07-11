@@ -1,44 +1,49 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import './Header.css';
-import React from 'react';
+import React, { useContext } from 'react';
 import Logo from '../ui/Logo/Logo';
 import IconButton from '../ui/IconButton/IconButton';
 import SearchInput from '../ui/SearchInput/SearchInput';
-import { userStored } from '../../utils/localStorage'
+import { userStored } from '../../utils/localStorage';
+import { UserContext } from '../../App';
 
 const Header = () => {
+  const { setUserLogged } = useContext(UserContext);
+  const navigate = useNavigate();
 
   const handleLogout = () => {
-    console.log('click logout')
-    localStorage.removeItem('userStored') //esta parte comprobar
-  }  
+    console.log('click logout');
+    localStorage.removeItem('userStored');
+    setUserLogged({ email: '', password: '' });
+    navigate('/');
+  };
 
   return (
     <header className="header-section">
       <div className="first-header-section">
         <Logo />
-      <SearchInput/>
+        <SearchInput />
         <div className="icons-section">
           <IconButton buttonLink="/" buttonText="HOME" srcImage="./src/assets/home-2.svg" />
-          {userStored ?
-         <IconButton
-            buttonLink="/"
-            buttonText="LOGOUT"
-            srcImage="./src/assets/user-circle.svg"
-            buttonEvent={handleLogout}
-          /> :
-          <IconButton
-            buttonLink="/login"
-            buttonText="MY TRIAROCK"
-            srcImage="./src/assets/user-circle.svg"
-          />
-          }
+          {userStored ? (
+            <IconButton
+              buttonLink="/"
+              buttonText="LOGOUT"
+              srcImage="./src/assets/user-circle.svg"
+              buttonEvent={handleLogout}
+            />
+          ) : (
+            <IconButton
+              buttonLink="/login"
+              buttonText="REGISTER/LOGIN"
+              srcImage="./src/assets/user-circle.svg"
+            />
+          )}
           <IconButton
             buttonLink="/favorites"
             buttonText="MY FAVS"
             srcImage="./src/assets/yellow-heart.svg"
           />
-     
         </div>
       </div>
 
