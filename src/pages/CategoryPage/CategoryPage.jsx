@@ -15,7 +15,7 @@ import { filterProducts, genders } from '../../utils/filterProducts';
 
 const CategoryPage = () => {
   const { setProductsToRender, productsToRender, categoriesData } = useContext(ProductContext);
-  
+
   const location = useLocation();
   const currentPath = location.pathname;
 
@@ -28,22 +28,31 @@ const CategoryPage = () => {
   const [selectedTypes, setSelectedTypes] = useState([]);
   const [selectedPrice, setSelectedPrice] = useState(roundedHighestPrice);
   const [selectedGender, setSelectedGender] = useState('');
+  const [categoryItems, setCategoryItems] = useState([]);
   // const [isCleared, setIsCleared] = useState(false);
-  
-  
+
   // const filteredProducts = filterProducts(
   //   productsToRender,
   //   selectedTypes,
-  //   selectedGender, 
-  //   selectedPrice, 
-  //   roundedHighestPrice);
+  //   selectedGender,
+  //   selectedPrice,
+  //   roundedHighestPrice
+  // );
 
-   
+  const filteredProducts = filterProducts(
+    categoryItems,
+    selectedTypes,
+    selectedGender,
+    selectedPrice,
+    roundedHighestPrice
+  );
+
   useEffect(() => {
     categoriesData?.filter((category) => {
       if (category.name === currentPath.slice(1, currentPath.length)) {
         setProductsToRender(category.items);
-        console.log(productsToRender)
+        setCategoryItems(category.items);
+        console.log(productsToRender);
         const itemTypes = category.items.map((product) => product.name.split(' ')[0]);
         setProductTypes([...new Set(itemTypes)]);
       }
@@ -58,14 +67,15 @@ const CategoryPage = () => {
       // console.log('productsToRender', productsToRender)
       // console.log('selectedTypes', selectedTypes)
       // console.log('roundedHighestPrice', roundedHighestPrice)
-      const filteredProducts = filterProducts(
-        productsToRender,
-        selectedTypes,
-        selectedGender, 
-        selectedPrice, 
-        roundedHighestPrice)
+      // const filteredProducts = filterProducts(
+      //   categoryItems,
+      //   selectedTypes,
+      //   selectedGender,
+      //   selectedPrice,
+      //   roundedHighestPrice
+      // );
       setProductsToRender(filteredProducts);
-  }
+    }
   }, [selectedTypes, selectedGender, selectedPrice]);
 
   return (
@@ -80,10 +90,7 @@ const CategoryPage = () => {
             selectedTypes={selectedTypes}
             setSelectedTypes={setSelectedTypes}
           />
-          <GenderFilter
-            inputOptions={genders}
-            setSelectedGender={setSelectedGender}
-          />
+          <GenderFilter inputOptions={genders} setSelectedGender={setSelectedGender} />
           <PriceFilter
             selectedPrice={selectedPrice}
             setSelectedPrice={setSelectedPrice}

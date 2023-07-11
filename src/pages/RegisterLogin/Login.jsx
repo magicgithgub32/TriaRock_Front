@@ -9,7 +9,8 @@ import { UserContext } from '../../App';
 const Login = () => {
   const navigate = useNavigate();
 
-  const { userLogged, setUserLogged, setToken } =  useContext(UserContext);
+  const { userLogged, setUserLogged, setToken, userLoggedStored, setUserLoggedStored } =
+    useContext(UserContext);
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
@@ -26,6 +27,7 @@ const Login = () => {
         console.log(data);
         setToken(data.token);
         navigate('/favorites');
+        localStorage.setItem('user', data);
       })
       .catch((error) => {
         console.error('error:', error.message);
@@ -40,7 +42,6 @@ const Login = () => {
       ...userLogged,
       [event.target.name]: event.target.value
     });
- 
   };
   return (
     <div className="register-login">

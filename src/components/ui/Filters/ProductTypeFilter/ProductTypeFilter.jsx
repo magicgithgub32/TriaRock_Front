@@ -2,48 +2,63 @@ import React from 'react';
 import './ProductTypeFilter.css';
 
 const ProductTypeFilter = ({ inputOptions, selectedTypes, setSelectedTypes }) => {
+  // const handleCheckbox = (event) => {
+  //   console.log(event.target.value)
+  //   if (event.target.checked) {
+  //     setSelectedTypes([...selectedTypes, event.target.value]);
+  //   } else {
+  //     const selectedTypesUpdated = selectedTypes.filter(
+  //       (selectedOption) => selectedOption !== event.target.value
+  //     );
+  //     setSelectedTypes([...selectedTypesUpdated]);
+  //   }
+  // }
 
   const handleCheckbox = (event) => {
-    console.log(event.target.value)
-    if (event.target.checked) {
-      setSelectedTypes([...selectedTypes, event.target.value]);
-    } else {
-      const selectedTypesUpdated = selectedTypes.filter(
-        (selectedOption) => selectedOption !== event.target.value
-      );
-      setSelectedTypes([...selectedTypesUpdated]);
-    }
-  }
+    const isChecked = event.target.checked;
+    const value = event.target.value;
 
-  
-    
+    setSelectedTypes((prevSelectedTypes) => {
+      if (isChecked) {
+        // Add the value to the selected types if it's not already present
+        if (!prevSelectedTypes.includes(value)) {
+          return [...prevSelectedTypes, value];
+        }
+      } else {
+        // Remove the value from the selected types
+        return prevSelectedTypes.filter((selectedOption) => selectedOption !== value);
+      }
 
-    // const typesToExclude = inputOptions.filter((inputOption) => inputOption !== event.target.value);
-    // if (event.target.checked) {
-    //   setTypeIsSelected(true);
+      return prevSelectedTypes; // Return the previous state if no changes are made
+    });
+  };
 
-    //   setFilteredProducts(
-    //     productsToRender.filter((product) => {
-    //       const productName = product.name.toLowerCase();
-    //       const containsExcludedWords = typesToExclude.some((word) =>
-    //         productName.includes(word.toLowerCase())
-    //       );
-    //       return !containsExcludedWords;
-    //     })
-    //   );
-    //   setExcludedProducts(
-    //     productsToRender.filter((product) => {
-    //       const productName = product.name.toLowerCase();
-    //       const containsExcludedWords = typesToExclude.some((word) =>
-    //         productName.includes(word.toLowerCase())
-    //       );
-    //       return containsExcludedWords;
-    //     })
-    //   );
-    // } else {
-    //   setTypeIsSelected(false);
-    //   setFilteredProducts([...filteredProducts, ...excludedProducts]);
-    // }
+  // const typesToExclude = inputOptions.filter((inputOption) => inputOption !== event.target.value);
+  // if (event.target.checked) {
+  //   setTypeIsSelected(true);
+
+  //   setFilteredProducts(
+  //     productsToRender.filter((product) => {
+  //       const productName = product.name.toLowerCase();
+  //       const containsExcludedWords = typesToExclude.some((word) =>
+  //         productName.includes(word.toLowerCase())
+  //       );
+  //       return !containsExcludedWords;
+  //     })
+  //   );
+  //   setExcludedProducts(
+  //     productsToRender.filter((product) => {
+  //       const productName = product.name.toLowerCase();
+  //       const containsExcludedWords = typesToExclude.some((word) =>
+  //         productName.includes(word.toLowerCase())
+  //       );
+  //       return containsExcludedWords;
+  //     })
+  //   );
+  // } else {
+  //   setTypeIsSelected(false);
+  //   setFilteredProducts([...filteredProducts, ...excludedProducts]);
+  // }
 
   // useEffect(() => {
   //   setProductsToRender(filteredProducts);

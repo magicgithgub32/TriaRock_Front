@@ -34,6 +34,14 @@ const App = () => {
     password: ''
   });
 
+  const [userLoggedStored, setUserLoggedStored] = useState(() => {
+    if (localStorage.getItem('user')) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+
   const [token, setToken] = useState();
   const [searchInput, setSearchInput] = useState('');
   const [searchClick, setSearchClick] = useState(false);
@@ -61,7 +69,9 @@ const App = () => {
             userLogged: userLogged,
             setUserLogged: setUserLogged,
             setToken: setToken,
-            token: token
+            token: token,
+            userLoggedStored: userLoggedStored,
+            setUserLoggedStored: setUserLoggedStored
           }}
         >
           <SearchContext.Provider
