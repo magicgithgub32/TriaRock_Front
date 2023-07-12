@@ -8,6 +8,7 @@ import Message from '../../components/ui/Message/Message';
 import Footer from '../../components/Footer/Footer';
 import { userStored } from '../../utils/localStorage';
 import Title from '../../components/ui/Title/Title';
+// import { userFavsFetch } from '../../services/userFavsFetch';
 
 const Favorites = () => {
   const { userFavs, setUserFavs } = useContext(ProductContext);
@@ -39,7 +40,7 @@ const Favorites = () => {
     <section className="favorite-products-page">
       <Header />
       <article className="favorite-products-article">
-<Title textTitle="My favorite products"></Title>
+        <Title textTitle="My favorite products"></Title>
         <div className="favorite-products-wrapper">
           {userFavs?.length > 0 ? (
             userFavs?.map((favoriteProduct) => (

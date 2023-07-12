@@ -1,11 +1,5 @@
 export const favPutFetch = (userStored, bodyData, setUserFavs, userFavs) => {
-    
-    console.log('userStored', userStored)
-    console.log('bodyData', bodyData)
-    console.log('uerFavs', userFavs)
-   
-
-fetch(`${import.meta.env.VITE_API_URL}/users/${userStored.email}/fav`, {
+  fetch(`${import.meta.env.VITE_API_URL}/users/${userStored.email}/fav`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -21,4 +15,4 @@ fetch(`${import.meta.env.VITE_API_URL}/users/${userStored.email}/fav`, {
     .catch((error) => {
       console.log('Error', error);
     });
-}
+};

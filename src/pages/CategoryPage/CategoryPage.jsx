@@ -30,15 +30,6 @@ const CategoryPage = () => {
   const [selectedPrice, setSelectedPrice] = useState(roundedHighestPrice);
   const [selectedGender, setSelectedGender] = useState('');
   const [categoryItems, setCategoryItems] = useState([]);
-  // const [isCleared, setIsCleared] = useState(false);
-
-  // const filteredProducts = filterProducts(
-  //   productsToRender,
-  //   selectedTypes,
-  //   selectedGender,
-  //   selectedPrice,
-  //   roundedHighestPrice
-  // );
 
   const filteredProducts = filterProducts(
     categoryItems,
@@ -49,11 +40,9 @@ const CategoryPage = () => {
   );
 
   useEffect(() => {
-
     categoriesData?.filter((category) => {
- 
       if (category.name === currentPath.slice(1, currentPath.length)) {
-        console.log(category.items)
+        console.log(category.items);
         setProductsToRender(category.items);
         setCategoryItems(category.items);
         console.log(productsToRender);
@@ -73,8 +62,8 @@ const CategoryPage = () => {
   return (
     <div>
       <Header />
-      <Title textTitle={currentPath.slice(1, currentPath.length)}/>
-    
+      <Title textTitle={currentPath.slice(1, currentPath.length)} />
+
       <main>
         <section className="filter-section">
           <ProductTypeFilter

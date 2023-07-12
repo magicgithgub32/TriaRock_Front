@@ -20,7 +20,6 @@ export const SearchContext = createContext();
 const App = () => {
   const allProducts = productFetch();
   const categoriesData = categoryFetch();
-
   const [productsToRender, setProductsToRender] = useState([]);
   const [productSelected, setProductSelected] = useState([]);
 
@@ -32,7 +31,7 @@ const App = () => {
     email: '',
     password: ''
   });
-
+  const [error, setError] = useState(false);
   const { userFavs, setUserFavs } = userFavsFetch();
 
   const [searchInput, setSearchInput] = useState('');
@@ -57,7 +56,9 @@ const App = () => {
             userRegistered: userRegistered,
             setUserRegistered: setUserRegistered,
             userLogged: userLogged,
-            setUserLogged: setUserLogged
+            setUserLogged: setUserLogged,
+            error: error,
+            setError: setError
           }}
         >
           <SearchContext.Provider

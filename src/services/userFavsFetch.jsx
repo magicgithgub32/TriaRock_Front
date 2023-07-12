@@ -16,7 +16,7 @@ export const userFavsFetch = () => {
       };
       getData()
         .then((data) => {
-          console.log('userfavs en el fetc', data.favs);
+          console.log('userfavs en el fetch', data.favs);
           setUserFavs(data.favs);
         })
         .catch((error) => console.log('User not found', error));

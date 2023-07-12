@@ -1,33 +1,27 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './Register.css';
 
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
+import { registerPostFetch } from '../../services/registerPostFetch';
+import { UserContext } from '../../App';
+import { useNavigate } from 'react-router-dom';
+import Message from '../../components/ui/Message/Message';
 
 const Register = () => {
+  const navigate = useNavigate();
+
   const [userRegistered, setUserRegistered] = useState({
     email: '',
     password: ''
   });
 
+  const { setError, error } = useContext(UserContext);
+
   const handleFormSubmit = (event) => {
     event.preventDefault();
 
-    fetch(`${import.meta.env.VITE_API_URL}/users/register`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(userRegistered)
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((error) => {
-        console.log('Error:', error);
-      });
-
+    registerPostFetch(userRegistered, setError, navigate);
     event.target.reset();
   };
 
@@ -60,6 +54,12 @@ const Register = () => {
         />
         <button type="submit">Submit</button>
       </form>
+
+      {error ? (
+        <Message messageText="Passwords should be at least six characters long and contain both uppercase and lowercase letter" />
+      ) : (
+        <></>
+      )}
 
       <Footer />
     </div>
