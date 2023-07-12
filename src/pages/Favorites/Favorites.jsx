@@ -4,9 +4,10 @@ import { ProductContext, UserContext } from '../../App';
 
 import Header from '../../components/Header/Header';
 import CategoryCard from '../../components/CategoryCard/CategoryCard';
-import AlertMessage from '../../components/ui/AlertMessage/AlertMessage';
+import Message from '../../components/ui/Message/Message';
 import Footer from '../../components/Footer/Footer';
 import { userStored } from '../../utils/localStorage';
+import Title from '../../components/ui/Title/Title';
 
 const Favorites = () => {
   const { userFavs, setUserFavs } = useContext(ProductContext);
@@ -38,7 +39,7 @@ const Favorites = () => {
     <section className="favorite-products-page">
       <Header />
       <article className="favorite-products-article">
-        <h3 className="favorite-title">MY FAVORITE PRODUCTS</h3>
+<Title textTitle="My favorite products"></Title>
         <div className="favorite-products-wrapper">
           {userFavs?.length > 0 ? (
             userFavs?.map((favoriteProduct) => (
@@ -76,7 +77,7 @@ const Favorites = () => {
               </figure>
             ))
           ) : (
-            <AlertMessage text="You have no favorite products at the moment" />
+            <Message messageText="You have no favorite products at the moment" />
           )}
         </div>
       </article>

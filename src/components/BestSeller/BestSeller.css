@@ -3,11 +3,3 @@
     flex-direction: column; 
 }
 
-.best-seller-text {
-    text-align: center;
-    background-color: var(--color-primary);
-    color: var(--color-secondary);
-    font-weight: 600;
-    height: 10vh;
-    padding-top: 20px;
-}

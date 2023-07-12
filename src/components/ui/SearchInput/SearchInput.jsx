@@ -1,6 +1,7 @@
 import React, { useEffect, useContext } from 'react'
 import './SearchInput.css'
 import { ProductContext, SearchContext } from '../../../App'
+import Input from '../Input/Input'
 
 const SearchInput = () => {
 
@@ -27,12 +28,13 @@ const SearchInput = () => {
 
   return (
           <div className="search-section">
-          <input type="text" className="search-product-input" 
-          placeholder="Find your product"
-          onChange={handleSearchInput}
-         value={searchInput}
-         />
-          <img 
+            <Input
+            type="text" 
+            placeholder="Find your product"
+            onChange={handleSearchInput}
+           value={searchInput}
+           />
+           <img 
           src={searchClick ? "./src/assets/x.svg" : "./src/assets/search.svg"} 
           className="search-icon" 
           onClick={handleSearchClick}

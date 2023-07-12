@@ -12,6 +12,7 @@ import PriceFilter from '../../components/ui/Filters/PriceFilter/PriceFilter';
 import ClearFilters from '../../components/ui/Filters/ClearFilters/ClearFilters';
 import { highestAndLowestPrices } from '../../utils/highestAndLowestPrices';
 import { filterProducts, genders } from '../../utils/filterProducts';
+import Title from '../../components/ui/Title/Title';
 
 const CategoryPage = () => {
   const { setProductsToRender, productsToRender, categoriesData } = useContext(ProductContext);
@@ -65,18 +66,6 @@ const CategoryPage = () => {
 
   useEffect(() => {
     if (productsToRender.length > 0) {
-      // console.log('selectedGender', selectedGender)
-      // console.log('selectedPrice', selectedPrice)
-      // console.log('productsToRender', productsToRender)
-      // console.log('selectedTypes', selectedTypes)
-      // console.log('roundedHighestPrice', roundedHighestPrice)
-      // const filteredProducts = filterProducts(
-      //   categoryItems,
-      //   selectedTypes,
-      //   selectedGender,
-      //   selectedPrice,
-      //   roundedHighestPrice
-      // );
       setProductsToRender(filteredProducts);
     }
   }, [selectedTypes, selectedGender, selectedPrice]);
@@ -84,8 +73,8 @@ const CategoryPage = () => {
   return (
     <div>
       <Header />
-      <p className="category-title">{currentPath.slice(1, currentPath.length)}</p>
-
+      <Title textTitle={currentPath.slice(1, currentPath.length)}/>
+    
       <main>
         <section className="filter-section">
           <ProductTypeFilter

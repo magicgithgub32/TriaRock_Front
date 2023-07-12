@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { ProductContext, SearchContext } from '../../App';
 import './BestSeller.css';
 import ProductCard from '../ProductCard/ProductCard';
+import Title from '../ui/Title/Title';
 
 const BestSeller = () => {
   const { allProducts, setProductsToRender } = useContext(ProductContext);
@@ -16,7 +17,7 @@ const BestSeller = () => {
     <>
     { !searchClick && (
       <div className="best-seller-wrapper">
-      <p className="best-seller-text"> BEST SELLER PRODUCTS</p>
+        <Title textTitle="Best seller products"/>
       <ProductCard />
     </div>
         )}

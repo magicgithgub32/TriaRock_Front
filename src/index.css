@@ -37,4 +37,6 @@ body {
 
 a, link {
   transition: var(--transition);
+  text-decoration:none
 }
+

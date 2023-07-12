@@ -6,11 +6,6 @@
     border-radius: var(--border-radius);
 }
 
-.search-product-input {
-    border-radius: var(--border-radius);
-    border: none;
-    padding: 0 12px;
-    width: 100%;
-    background-color: var(--color-input);
+.search-icon {
+    cursor:pointer
 }
-

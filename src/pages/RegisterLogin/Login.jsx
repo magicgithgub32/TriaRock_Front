@@ -1,15 +1,18 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import './Login.css';
 
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from '../../App';
+import Message from '../../components/ui/Message/Message';
+import Input from '../../components/ui/Input/Input';
 
 const Login = () => {
   const navigate = useNavigate();
 
   const { userLogged, setUserLogged } = useContext(UserContext);
+  const [error, setError] = useState(false)
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
@@ -32,7 +35,8 @@ const Login = () => {
       })
       .catch((error) => {
         console.error('error:', error.message);
-        alert('Please check your email and password and try again');
+        // alert('Please check your email and password and try again');
+        setError(true)
       });
 
     event.target.reset();
@@ -50,16 +54,14 @@ const Login = () => {
     <div className="register-login">
       <Header />
       <form onSubmit={handleFormSubmit}>
-        <input
-          className="login-email-input"
-          type="text"
-          placeholder="email address"
-          name="email"
-          value={userLogged?.email}
-          onChange={handleInputChange}
-        />
-        <input
-          className="login-password-input"
+        <Input
+         type="email"
+         placeholder="email address"
+         name="text"
+         value={userLogged?.email}
+         onChange={handleInputChange}/>
+        
+         <Input
           type="password"
           placeholder="password"
           name="password"
@@ -72,6 +74,10 @@ const Login = () => {
       <Link to="/register">
         <p>Create your account if you don't have one yet</p>
       </Link>
+
+      {error && 
+      <Message messageText="Please check your email and password and try again"/>
+       }
 
       <Footer />
     </div>

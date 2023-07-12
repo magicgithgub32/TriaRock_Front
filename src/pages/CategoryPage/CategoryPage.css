@@ -5,14 +5,5 @@ display: flex;
 padding-left: 20px
 }
 
-.category-title {
-    background-color: var(--color-primary);
-    color: var(--color-secondary);
-    font-weight: 600;
-    height: 10vh;
-    padding-top: 20px;
-    text-transform: uppercase;
-    text-align: center;
-}
 
 

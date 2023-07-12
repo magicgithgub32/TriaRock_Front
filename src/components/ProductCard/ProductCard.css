@@ -45,20 +45,6 @@ display: flex;
     display: flex;
 }
 
-/* .heart-visible {
-    display: flex;
-    height: 25px;
-    cursor: pointer;
-    margin-top: 5px;
-}
-
-.heart-invisible {
-    display: none;
-    height: 25px;
-    cursor: pointer;
-    margin-top: 5px;
-} */
-
 .heart{
     display: flex;
     height: 25px;
@@ -83,6 +69,7 @@ display: flex;
     padding: .2rem;
     border-radius: .2rem
 }
+
 .promo-price {
     background-color: var(--color-tertiary);
     font-weight: 800;
@@ -94,7 +81,6 @@ display: flex;
     border-radius: 5px;
 
 }
-
 
 .product-description  {
     display: flex;
