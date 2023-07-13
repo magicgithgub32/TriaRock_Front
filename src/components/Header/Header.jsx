@@ -4,19 +4,21 @@ import React, { useContext } from 'react';
 import Logo from '../ui/Logo/Logo';
 import IconButton from '../ui/IconButton/IconButton';
 import SearchInput from '../ui/SearchInput/SearchInput';
-import { userStored } from '../../utils/localStorage';
-import { UserContext } from '../../App';
+import { ProductContext, UserContext } from '../../App';
 
 const Header = () => {
-  const { setUserLogged } = useContext(UserContext);
+  const { setUserFavs } = useContext(ProductContext);
+  const { userLogged, setUserLogged, isUserLogged, setIsUserLogged } = useContext(UserContext);
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    console.log('click logout');
     localStorage.removeItem('userStored');
     setUserLogged({ email: '', password: '' });
+    setIsUserLogged(false)
+    setUserFavs([])
     navigate('/');
   };
+
 
   return (
     <header className="header-section">
@@ -25,7 +27,7 @@ const Header = () => {
         <SearchInput />
         <div className="icons-section">
           <IconButton buttonLink="/" buttonText="HOME" srcImage="./src/assets/home-2.svg" />
-          {userStored ? (
+          {isUserLogged ? (
             <IconButton
               buttonLink="/"
               buttonText="LOGOUT"

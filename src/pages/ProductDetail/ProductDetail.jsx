@@ -3,6 +3,7 @@ import './ProductDetail.css';
 import Header from '../../components/Header/Header';
 import { ProductContext } from '../../App';
 import Footer from '../../components/Footer/Footer';
+import Heart from '../../components/ui/Heart/Heart';
 
 const ProductDetail = () => {
 
@@ -15,14 +16,17 @@ const ProductDetail = () => {
         {productSelected ? (
           <figure className="product-detail-figure">
             <div className="product-detail-wrapper">
+            
               <img
                 className="product-detail-image"
                 src={productSelected.image}
                 alt={productSelected.name}
               />
               <div className="product-detail-text">
+                <div className="name-and-heart">
                 <h3 className="product-detail-name">{productSelected.name}</h3>
-
+                <Heart product={productSelected}/>
+                </div>
                 {productSelected.promo ? (
                   <div className="promo-container">
                     <div

@@ -32,7 +32,6 @@ export const filterProducts = (
       (product) => Number(product.price.slice(0, -2).replace(',', '.')) <= selectedPrice
     );
   }
-
-  console.log(filteredProducts);
+  
   return filteredProducts;
 };

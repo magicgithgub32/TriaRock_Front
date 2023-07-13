@@ -13,6 +13,8 @@ import { productFetch } from '../src/services/productFetch';
 import { categoryFetch } from '../src/services/categoryFetch';
 import { userFavsFetch } from './services/userFavsFetch';
 
+import { userStored } from './utils/localStorage'
+
 export const ProductContext = createContext();
 export const UserContext = createContext();
 export const SearchContext = createContext();
@@ -27,12 +29,34 @@ const App = () => {
     email: '',
     password: ''
   });
-  const [userLogged, setUserLogged] = useState({
-    email: '',
-    password: ''
-  });
-  const [error, setError] = useState(false);
-  const { userFavs, setUserFavs } = userFavsFetch();
+
+  // const [userLogged, setUserLogged] = useState({
+  //   email: '',
+  //   password: ''
+  // });
+
+  const [userLogged, setUserLogged] = useState(() => {
+		if (localStorage.getItem('userStored')) {
+			return userStored;
+		} else {
+			return {
+        email: '',
+       password: ''
+      }
+		}
+	});
+  
+  const [isUserLogged, setIsUserLogged] = useState(() => {
+		if (localStorage.getItem('userStored')) {
+			return true;
+		} else {
+			return false;
+		}
+	});
+
+
+  const [error, setError] = useState("");
+  const { userFavs, setUserFavs } = userFavsFetch(userLogged);
 
   const [searchInput, setSearchInput] = useState('');
   const [searchClick, setSearchClick] = useState(false);
@@ -57,6 +81,8 @@ const App = () => {
             setUserRegistered: setUserRegistered,
             userLogged: userLogged,
             setUserLogged: setUserLogged,
+            isUserLogged: isUserLogged,
+            setIsUserLogged: setIsUserLogged,
             error: error,
             setError: setError
           }}

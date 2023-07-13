@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import './Register.css';
 
 import Footer from '../../components/Footer/Footer';
@@ -18,9 +18,9 @@ const Register = () => {
 
   const { setError, error } = useContext(UserContext);
 
+
   const handleFormSubmit = (event) => {
     event.preventDefault();
-
     registerPostFetch(userRegistered, setError, navigate);
     event.target.reset();
   };
@@ -55,11 +55,7 @@ const Register = () => {
         <button type="submit">Submit</button>
       </form>
 
-      {error ? (
-        <Message messageText="Passwords should be at least six characters long and contain both uppercase and lowercase letter" />
-      ) : (
-        <></>
-      )}
+      {error && <Message messageText={error} />}
 
       <Footer />
     </div>

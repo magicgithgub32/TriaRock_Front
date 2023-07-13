@@ -6,19 +6,20 @@ import Header from '../../components/Header/Header';
 import CategoryCard from '../../components/CategoryCard/CategoryCard';
 import Message from '../../components/ui/Message/Message';
 import Footer from '../../components/Footer/Footer';
-import { userStored } from '../../utils/localStorage';
 import Title from '../../components/ui/Title/Title';
-// import { userFavsFetch } from '../../services/userFavsFetch';
+import ProductCard from '../../components/ProductCard/ProductCard';
+
 
 const Favorites = () => {
-  const { userFavs, setUserFavs } = useContext(ProductContext);
+  const { userFavs, setUserFavs, setProductsToRender } = useContext(ProductContext);
   const { userLogged } = useContext(UserContext);
 
   useEffect(() => {
-    if (!userStored) {
+ 
+    if (userLogged.email === "") {
       setUserFavs([]);
     } else {
-      fetch(`${import.meta.env.VITE_API_URL}/users/${userStored?.email}`, {
+      fetch(`${import.meta.env.VITE_API_URL}/users/${userLogged?.email}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
@@ -28,13 +29,14 @@ const Favorites = () => {
         .then((response) => response.json())
         .then((data) => {
           console.log('data', data);
-          setUserFavs(data.favs);
+          setProductsToRender(data.favs)
         })
         .catch((error) => {
           console.log('Error', error);
         });
     }
-  }, [userLogged]);
+  }, [userFavs]);
+//ponía el userlogged
 
   return (
     <section className="favorite-products-page">
@@ -43,40 +45,7 @@ const Favorites = () => {
         <Title textTitle="My favorite products"></Title>
         <div className="favorite-products-wrapper">
           {userFavs?.length > 0 ? (
-            userFavs?.map((favoriteProduct) => (
-              <figure className="favorite-products-section" key={favoriteProduct?._id}>
-                <img
-                  className="favorite-product-Img"
-                  src={favoriteProduct.image}
-                  alt={favoriteProduct.name}
-                />
-                {favoriteProduct.promo ? (
-                  <div className="promo-container">
-                    <div
-                      className={`fav-product-price ${
-                        favoriteProduct.promo ? 'fav-promo-price' : ''
-                      }`}
-                    >
-                      <p>{favoriteProduct.price}</p>
-                    </div>
-                    <span className="promo-label">SALE</span>
-                  </div>
-                ) : (
-                  <div className="product-container">
-                    <div
-                      className={`fav-product-price ${
-                        favoriteProduct.promo ? 'fav-promo-price' : ''
-                      }`}
-                    >
-                      <p>{favoriteProduct.price}</p>
-                    </div>
-                  </div>
-                )}
-                <div className="fav-product-description">
-                  <p>{favoriteProduct.name}</p>
-                </div>
-              </figure>
-            ))
+          <ProductCard/>
           ) : (
             <Message messageText="You have no favorite products at the moment" />
           )}

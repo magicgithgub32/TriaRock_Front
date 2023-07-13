@@ -8,12 +8,17 @@ export const registerPostFetch = (userRegistered, setError, navigate) => {
   })
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
-      data.message ? setError(true) : navigate('/');
+      if (data.email) {
+        const userStored = {
+        email: data.createdUser.email  
+      }
+      localStorage.setItem('userStored', JSON.stringify(userStored));
+    }
+   
+      data.message ? setError(data.message) : navigate('/');
     })
     .catch((error) => {
       console.log('Error:', error);
-      setError(true);
-      console.log(error);
+      // setError(data.message);
     });
 };

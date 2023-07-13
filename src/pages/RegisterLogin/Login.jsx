@@ -9,14 +9,15 @@ import Input from '../../components/ui/Input/Input';
 import { loginPostFetch } from '../../services/loginPostFetch';
 
 const Login = () => {
+ 
   const navigate = useNavigate();
 
-  const { userLogged, setUserLogged, setError, error } = useContext(UserContext);
-
+  const { userLogged, setUserLogged, setError, error, setIsUserLogged } = useContext(UserContext);
+ 
   const handleFormSubmit = (event) => {
     event.preventDefault();
     loginPostFetch(userLogged, setError, navigate);
-
+    setIsUserLogged(true)
     event.target.reset();
   };
 
@@ -27,7 +28,6 @@ const Login = () => {
     });
   };
 
-  console.log('userLogged', userLogged);
 
   return (
     <div className="register-login">
@@ -52,10 +52,10 @@ const Login = () => {
       </form>
 
       <Link to="/register">
-        <p onClick={() => setError(false)}>Create your account if you don't have one yet</p>
+        <p onClick={() => setError("")}>Create your account if you don't have one yet</p>
       </Link>
 
-      {error && <Message messageText="Please, check your email and password and try again" />}
+      {error && <Message messageText={error} />}
 
       <Footer />
     </div>

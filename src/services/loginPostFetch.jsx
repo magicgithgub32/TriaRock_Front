@@ -8,16 +8,18 @@ export const loginPostFetch = (userLogged, setError, navigate) => {
   })
     .then((response) => response.json())
     .then((data) => {
+      if (data.user.email) {
       const userStored = {
         email: data.user.email,
         token: data.token
       };
       localStorage.setItem('userStored', JSON.stringify(userStored));
-      navigate('/favorites');
+      navigate('/favorites')
+    }
+      data.message && setError(data.message)
     })
     .catch((error) => {
       console.error('error:', error.message);
-      // alert('Please check your email and password and try again');
-      setError(true);
+      // setError(error.message);
     });
 };

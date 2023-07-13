@@ -41,16 +41,7 @@ display: flex;
     border-radius: 5px;
 }
 
-.hearts-container {
-    display: flex;
-}
 
-.heart{
-    display: flex;
-    height: 25px;
-    cursor: pointer;
-    margin-top: 5px;
-}
 
 .promo-container {
 

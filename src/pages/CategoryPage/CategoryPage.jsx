@@ -42,10 +42,10 @@ const CategoryPage = () => {
   useEffect(() => {
     categoriesData?.filter((category) => {
       if (category.name === currentPath.slice(1, currentPath.length)) {
-        console.log(category.items);
+        
         setProductsToRender(category.items);
         setCategoryItems(category.items);
-        console.log(productsToRender);
+       
         const itemTypes = category.items.map((product) => product.name.split(' ')[0]);
         setProductTypes([...new Set(itemTypes)]);
       }

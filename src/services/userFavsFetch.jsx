@@ -1,27 +1,26 @@
 import { useState, useEffect } from 'react';
-import { userStored } from '../utils/localStorage';
 
-export const userFavsFetch = () => {
+export const userFavsFetch = (userLogged) => {
   const [userFavs, setUserFavs] = useState();
 
   useEffect(() => {
-    if (!userStored) {
+ 
+    if (userLogged.email === "") {
       setUserFavs([]);
     } else {
       const getData = async () => {
-        const res = await fetch(`${import.meta.env.VITE_API_URL}/users/${userStored.email}`);
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/users/${userLogged.email}`);
 
         const data = await res.json();
         return data;
       };
       getData()
-        .then((data) => {
-          console.log('userfavs en el fetch', data.favs);
-          setUserFavs(data.favs);
-        })
+        .then((data) => setUserFavs(data.favs))
         .catch((error) => console.log('User not found', error));
     }
   }, []);
 
   return { userFavs, setUserFavs };
 };
+
+

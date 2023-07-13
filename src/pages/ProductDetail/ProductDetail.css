@@ -37,9 +37,12 @@
 
 .product-detail-text > p {
     font-weight: 400;
-    /* width: 40%; */
 }
 
+.name-and-heart {
+display: flex;
+flex-direction: column;
+}
 
 
 .product-detail-price {
