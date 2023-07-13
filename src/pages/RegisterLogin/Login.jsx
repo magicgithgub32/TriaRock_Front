@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import './Login.css';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
@@ -7,17 +7,18 @@ import { UserContext } from '../../App';
 import Message from '../../components/ui/Message/Message';
 import Input from '../../components/ui/Input/Input';
 import { loginPostFetch } from '../../services/loginPostFetch';
+import { userFavsFetch } from '../../services/userFavsFetch';
 
 const Login = () => {
- 
   const navigate = useNavigate();
 
   const { userLogged, setUserLogged, setError, error, setIsUserLogged } = useContext(UserContext);
- 
+
   const handleFormSubmit = (event) => {
     event.preventDefault();
+
     loginPostFetch(userLogged, setError, navigate);
-    setIsUserLogged(true)
+    // setIsUserLogged(true)
     event.target.reset();
   };
 
@@ -27,7 +28,6 @@ const Login = () => {
       [event.target.name]: event.target.value
     });
   };
-
 
   return (
     <div className="register-login">
@@ -52,7 +52,7 @@ const Login = () => {
       </form>
 
       <Link to="/register">
-        <p onClick={() => setError("")}>Create your account if you don't have one yet</p>
+        <p onClick={() => setError('')}>Create your account if you don't have one yet</p>
       </Link>
 
       {error && <Message messageText={error} />}

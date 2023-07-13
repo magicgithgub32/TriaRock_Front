@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import React, { useState, createContext } from 'react';
+import React, { useState, createContext, useEffect } from 'react';
 
 import Home from './pages/Home/Home';
 import Login from './pages/RegisterLogin/Login';
@@ -13,7 +13,7 @@ import { productFetch } from '../src/services/productFetch';
 import { categoryFetch } from '../src/services/categoryFetch';
 import { userFavsFetch } from './services/userFavsFetch';
 
-import { userStored } from './utils/localStorage'
+import { userStored } from './utils/localStorage';
 
 export const ProductContext = createContext();
 export const UserContext = createContext();
@@ -36,27 +36,29 @@ const App = () => {
   // });
 
   const [userLogged, setUserLogged] = useState(() => {
-		if (localStorage.getItem('userStored')) {
-			return userStored;
-		} else {
-			return {
+    if (localStorage.getItem('userStored')) {
+      return userStored;
+    } else {
+      return {
         email: '',
-       password: ''
-      }
-		}
-	});
-  
+        password: ''
+      };
+    }
+  });
+
   const [isUserLogged, setIsUserLogged] = useState(() => {
-		if (localStorage.getItem('userStored')) {
-			return true;
-		} else {
-			return false;
-		}
-	});
+    if (localStorage.getItem('userStored')) {
+      return true;
+    } else {
+      return false;
+    }
+  });
 
+  const [error, setError] = useState('');
 
-  const [error, setError] = useState("");
-  const { userFavs, setUserFavs } = userFavsFetch(userLogged);
+  const [userFavs, setUserFavs] = useState(userFavsFetch(userLogged));
+
+  // const { userFavs, setUserFavs } = userFavsFetch(userLogged);
 
   const [searchInput, setSearchInput] = useState('');
   const [searchClick, setSearchClick] = useState(false);
