@@ -1,10 +1,12 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 export const userFavsFetch = (userLogged) => {
+  const [userFavs, setUserFavs] = useState([]);
+
   useEffect(() => {
-    // if (userLogged.email === '') {
-    //   // setUserFavs([]);
-    // } else {
+    if (userLogged.email === '') {
+      setUserFavs([]);
+    } else {
     const getData = async () => {
       const res = await fetch(`${import.meta.env.VITE_API_URL}/users/${userLogged.email}`);
 
@@ -14,8 +16,8 @@ export const userFavsFetch = (userLogged) => {
     getData()
       .then((data) => setUserFavs(data.favs))
       .catch((error) => console.log('User not found', error));
-    // }
+    }
   }, []);
 
-  // return { userFavs, setUserFavs };
+  return { userFavs, setUserFavs };
 };

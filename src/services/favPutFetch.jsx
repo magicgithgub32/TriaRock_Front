@@ -1,5 +1,5 @@
-export const favPutFetch = (userStored, bodyData, setUserFavs) => {
-  fetch(`${import.meta.env.VITE_API_URL}/users/${userStored?.email}/fav`, {
+export const favPutFetch = (userLogged, userStored, bodyData, setUserFavs) => {
+  fetch(`${import.meta.env.VITE_API_URL}/users/${userLogged?.email}/fav`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',

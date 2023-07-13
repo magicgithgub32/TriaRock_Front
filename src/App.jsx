@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import React, { useState, createContext, useEffect } from 'react';
+import React, { useState, createContext } from 'react';
 
 import Home from './pages/Home/Home';
 import Login from './pages/RegisterLogin/Login';
@@ -11,9 +11,9 @@ import ProductDetail from './pages/ProductDetail/ProductDetail';
 
 import { productFetch } from '../src/services/productFetch';
 import { categoryFetch } from '../src/services/categoryFetch';
-import { userFavsFetch } from './services/userFavsFetch';
 
 import { userStored } from './utils/localStorage';
+import { userFavsFetch } from './services/userFavsFetch';
 
 export const ProductContext = createContext();
 export const UserContext = createContext();
@@ -22,18 +22,15 @@ export const SearchContext = createContext();
 const App = () => {
   const allProducts = productFetch();
   const categoriesData = categoryFetch();
+  
   const [productsToRender, setProductsToRender] = useState([]);
   const [productSelected, setProductSelected] = useState([]);
+  
 
   const [userRegistered, setUserRegistered] = useState({
     email: '',
     password: ''
   });
-
-  // const [userLogged, setUserLogged] = useState({
-  //   email: '',
-  //   password: ''
-  // });
 
   const [userLogged, setUserLogged] = useState(() => {
     if (localStorage.getItem('userStored')) {
@@ -46,19 +43,17 @@ const App = () => {
     }
   });
 
-  const [isUserLogged, setIsUserLogged] = useState(() => {
-    if (localStorage.getItem('userStored')) {
-      return true;
-    } else {
-      return false;
-    }
-  });
+  // const [isUserLogged, setIsUserLogged] = useState(() => {
+  //   if (localStorage.getItem('userStored')) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // });
+
+  const { userFavs, setUserFavs } = userFavsFetch(userLogged)
 
   const [error, setError] = useState('');
-
-  const [userFavs, setUserFavs] = useState(userFavsFetch(userLogged));
-
-  // const { userFavs, setUserFavs } = userFavsFetch(userLogged);
 
   const [searchInput, setSearchInput] = useState('');
   const [searchClick, setSearchClick] = useState(false);
@@ -83,8 +78,8 @@ const App = () => {
             setUserRegistered: setUserRegistered,
             userLogged: userLogged,
             setUserLogged: setUserLogged,
-            isUserLogged: isUserLogged,
-            setIsUserLogged: setIsUserLogged,
+            // isUserLogged: isUserLogged,
+            // setIsUserLogged: setIsUserLogged,
             error: error,
             setError: setError
           }}

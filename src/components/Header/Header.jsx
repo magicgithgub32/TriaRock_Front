@@ -5,20 +5,19 @@ import Logo from '../ui/Logo/Logo';
 import IconButton from '../ui/IconButton/IconButton';
 import SearchInput from '../ui/SearchInput/SearchInput';
 import { ProductContext, UserContext } from '../../App';
+import { userStored } from '../../utils/localStorage'
 
 const Header = () => {
   const { setUserFavs } = useContext(ProductContext);
-  const { userLogged, setUserLogged, isUserLogged, setIsUserLogged } = useContext(UserContext);
+  const { userLogged, setUserLogged } = useContext(UserContext);
   const navigate = useNavigate();
 
   const handleLogout = () => {
     localStorage.removeItem('userStored');
     setUserLogged({ email: '', password: '' });
-    setIsUserLogged(false)
     setUserFavs([])
     navigate('/');
   };
-
 
   return (
     <header className="header-section">
@@ -27,20 +26,14 @@ const Header = () => {
         <SearchInput />
         <div className="icons-section">
           <IconButton buttonLink="/" buttonText="HOME" srcImage="./src/assets/home-2.svg" />
-          {isUserLogged ? (
+  
             <IconButton
-              buttonLink="/"
-              buttonText="LOGOUT"
+              buttonLink={userLogged.email !== "" ? "/" : "/login"}
+              buttonText={userLogged.email !== "" ? "LOGOUT" : "REGISTER/LOGIN"}
               srcImage="./src/assets/user-circle.svg"
-              buttonEvent={handleLogout}
+              buttonEvent={userLogged.email !== "" && handleLogout}
             />
-          ) : (
-            <IconButton
-              buttonLink="/login"
-              buttonText="REGISTER/LOGIN"
-              srcImage="./src/assets/user-circle.svg"
-            />
-          )}
+          
           <IconButton
             buttonLink="/favorites"
             buttonText="MY FAVS"

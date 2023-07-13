@@ -4,19 +4,19 @@ import { ProductContext, UserContext } from '../../../App';
 import { favPutFetch } from '../../../services/favPutFetch';
 import { userStored } from '../../../utils/localStorage';
 
-
 const Heart = ({product}) => {
   const { userFavs, setUserFavs } = useContext(ProductContext);
     const { userLogged } = useContext(UserContext);
 
     const handleHeart = (product) => {
+   
       if (userLogged.email === "") {
         alert(
           'Please log in to your account or create a new one so you can see and save your favorite products'
         );
       } else {
         const bodyData = { fav: product._id }
-        favPutFetch(userStored, bodyData, setUserFavs, userFavs);
+        favPutFetch(userLogged, userStored, bodyData, setUserFavs, userFavs);
       }
     };
 

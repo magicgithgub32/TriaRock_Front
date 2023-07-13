@@ -10,15 +10,15 @@ import { loginPostFetch } from '../../services/loginPostFetch';
 import { userFavsFetch } from '../../services/userFavsFetch';
 
 const Login = () => {
+
   const navigate = useNavigate();
 
-  const { userLogged, setUserLogged, setError, error, setIsUserLogged } = useContext(UserContext);
+  const { userLogged, setUserLogged, setError, error } = useContext(UserContext);
+
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-
-    loginPostFetch(userLogged, setError, navigate);
-    // setIsUserLogged(true)
+    loginPostFetch(userLogged, setError, navigate, setUserLogged);
     event.target.reset();
   };
 

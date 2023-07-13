@@ -1,4 +1,4 @@
-export const loginPostFetch = (userLogged, setError, navigate) => {
+export const loginPostFetch = (userLogged, setError, navigate, setUserLogged) => {
   fetch(`${import.meta.env.VITE_API_URL}/users/login`, {
     method: 'POST',
     headers: {
@@ -8,7 +8,11 @@ export const loginPostFetch = (userLogged, setError, navigate) => {
   })
     .then((response) => response.json())
     .then((data) => {
-      if (data.user.email) {
+
+      if (data.message) { 
+      setError(data.message)
+      setUserLogged({ email: '', password: '' });
+      } else {  
       const userStored = {
         email: data.user.email,
         token: data.token
@@ -16,10 +20,9 @@ export const loginPostFetch = (userLogged, setError, navigate) => {
       localStorage.setItem('userStored', JSON.stringify(userStored));
       navigate('/favorites')
     }
-      data.message && setError(data.message)
     })
     .catch((error) => {
-      console.error('error:', error.message);
-      // setError(error.message);
+      console.log('error:', error.message);
+      //setError(error.message);
     });
 };
