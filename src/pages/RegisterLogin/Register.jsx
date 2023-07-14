@@ -18,14 +18,15 @@ const Register = () => {
     password: ''
   });
 
-  const { setError, error, setUserLogged } = useContext(UserContext);
+  const { setError, error, userLogged, setUserLogged } = useContext(UserContext);
 
 
   const handleFormSubmit = (event) => {
-    event.preventDefault();
-    registerPostFetch(userRegistered, setError, navigate);
-    event.target.reset();
-  };
+    event.preventDefault()
+    registerPostFetch(userRegistered, setError, navigate, setUserLogged);
+    event.target.reset()
+   }
+     
 
   const handleInputChange = (event) => {
     setUserRegistered({
@@ -33,15 +34,12 @@ const Register = () => {
       [event.target.name]: event.target.value
     });
   };
-
-  useEffect(() => {
-  setUserLogged(userRegistered)
-  const userStored = JSON.parse(localStorage.getItem('userStored'))
-  console.log('userStored', userStored)
-  console.log('userRegistered', userRegistered)
-  userStored && loginPostFetch(userRegistered, setError, navigate, setUserLogged)
-  },[userRegistered])
   
+  //falta saber cómo hacer el loginPostFetch una vez que ya se tiene el usuario registrado
+  useEffect(() => {
+    loginPostFetch(userLogged, setError, navigate, setUserLogged)
+    setError('')
+    },[userRegistered])
 
   return (
     <div className="register-login">
