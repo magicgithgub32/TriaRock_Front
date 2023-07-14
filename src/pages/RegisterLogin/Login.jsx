@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import './Login.css';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { UserContext } from '../../App';
 import Message from '../../components/ui/Message/Message';
 import Input from '../../components/ui/Input/Input';
@@ -10,6 +10,9 @@ import { loginPostFetch } from '../../services/loginPostFetch';
 import { userFavsFetch } from '../../services/userFavsFetch';
 
 const Login = () => {
+
+  const location = useLocation();
+  const currentPath = location.pathname;
 
   const navigate = useNavigate();
 
@@ -29,12 +32,16 @@ const Login = () => {
     });
   };
 
+  useEffect(() => {
+  setError('')
+  }, [currentPath])
+
   return (
     <div className="register-login">
       <Header />
       <form onSubmit={handleFormSubmit}>
         <Input
-          type="text"
+          type="email"
           placeholder="email address"
           name="email"
           value={userLogged?.email}

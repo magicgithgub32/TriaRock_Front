@@ -1,4 +1,4 @@
-export const registerPostFetch = (userRegistered, setError, navigate) => {
+export const registerPostFetch = (userRegistered, setError, navigate, userLogged, setUserLogged) => {
   fetch(`${import.meta.env.VITE_API_URL}/users/register`, {
     method: 'POST',
     headers: {
@@ -8,14 +8,18 @@ export const registerPostFetch = (userRegistered, setError, navigate) => {
   })
     .then((response) => response.json())
     .then((data) => {
-      if (data.email) {
+      if (data.message) {
+        setError(data.message) 
+        // setUserLogged({ email: '', password: '' })
+      } else {
         const userStored = {
         email: data.createdUser.email  
       }
       localStorage.setItem('userStored', JSON.stringify(userStored));
+      navigate('/')
     }
-   
-      data.message ? setError(data.message) : navigate('/');
+ 
+  
     })
     .catch((error) => {
       console.log('Error:', error);

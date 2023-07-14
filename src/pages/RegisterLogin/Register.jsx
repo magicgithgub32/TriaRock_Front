@@ -7,6 +7,8 @@ import { registerPostFetch } from '../../services/registerPostFetch';
 import { UserContext } from '../../App';
 import { useNavigate } from 'react-router-dom';
 import Message from '../../components/ui/Message/Message';
+import { loginPostFetch } from '../../services/loginPostFetch';
+
 
 const Register = () => {
   const navigate = useNavigate();
@@ -16,7 +18,7 @@ const Register = () => {
     password: ''
   });
 
-  const { setError, error } = useContext(UserContext);
+  const { setError, error, setUserLogged } = useContext(UserContext);
 
 
   const handleFormSubmit = (event) => {
@@ -32,13 +34,22 @@ const Register = () => {
     });
   };
 
+  useEffect(() => {
+  setUserLogged(userRegistered)
+  const userStored = JSON.parse(localStorage.getItem('userStored'))
+  console.log('userStored', userStored)
+  console.log('userRegistered', userRegistered)
+  userStored && loginPostFetch(userRegistered, setError, navigate, setUserLogged)
+  },[userRegistered])
+  
+
   return (
     <div className="register-login">
       <Header />
       <form onSubmit={handleFormSubmit}>
         <input
           className="register-email-input"
-          type="text"
+          type="email"
           placeholder="email address"
           name="email"
           value={userRegistered.email}

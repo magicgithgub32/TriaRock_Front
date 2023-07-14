@@ -14,8 +14,6 @@ const Favorites = () => {
   const { userFavs, setUserFavs, setProductsToRender } = useContext(ProductContext);
   const { userLogged } = useContext(UserContext);
 
-
-
   useEffect(() => {
     console.log(userLogged.email)
     if (userLogged.email === '') {

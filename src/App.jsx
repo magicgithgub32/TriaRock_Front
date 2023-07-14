@@ -43,13 +43,6 @@ const App = () => {
     }
   });
 
-  // const [isUserLogged, setIsUserLogged] = useState(() => {
-  //   if (localStorage.getItem('userStored')) {
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // });
 
   const { userFavs, setUserFavs } = userFavsFetch(userLogged)
 
