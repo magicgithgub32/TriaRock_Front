@@ -7,31 +7,31 @@ export const filterProducts = (
   selectedPrice,
   roundedHighestPrice
 ) => {
-  
   let filteredProducts = categoryItems;
 
   if (selectedTypes !== []) {
-    filteredProducts = filteredProducts?.filter((product) => 
+    filteredProducts = filteredProducts?.filter((product) =>
       selectedTypes.includes(product.name.split(' ')[0])
     );
   }
 
   if (selectedGender === 'hombre' || selectedGender === 'mujer') {
-    const excludedGenders = genders.filter((gender) => gender !== selectedGender);    
-    filteredProducts = filteredProducts?.filter((product) => 
-     !excludedGenders.some((word) => product.name.toLowerCase().includes(word.toLowerCase()))
-    )    
+    const excludedGenders = genders.filter((gender) => gender !== selectedGender);
+    filteredProducts = filteredProducts?.filter(
+      (product) =>
+        !excludedGenders.some((word) => product.name.toLowerCase().includes(word.toLowerCase()))
+    );
   } else if (selectedGender === 'infantil') {
     filteredProducts = filteredProducts?.filter((product) =>
-    product.name.toLowerCase().includes(selectedGender)
+      product.name.toLowerCase().includes(selectedGender)
     );
   }
-  
+
   if (selectedPrice !== roundedHighestPrice) {
     filteredProducts = filteredProducts?.filter(
       (product) => Number(product.price.slice(0, -2).replace(',', '.')) <= selectedPrice
     );
   }
-  
+
   return filteredProducts;
 };

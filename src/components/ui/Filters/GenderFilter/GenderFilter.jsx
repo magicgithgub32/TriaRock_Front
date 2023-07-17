@@ -1,11 +1,6 @@
 import React, { useRef } from 'react';
 
-const GenderFilter = ({
-  inputOptions,
-  setSelectedGender
-}) => {
-  
-
+const GenderFilter = ({ inputOptions, setSelectedGender }) => {
   const genderRefs = useRef([]);
 
   const handleCheckbox = (ev) => {
@@ -17,40 +12,8 @@ const GenderFilter = ({
       }
 
       setSelectedGender(ev.target.value);
-    
     });
   };
-
-  // const gendersToExclude = inputOptions.filter((inputOption) => inputOption !== ev.target.value);
-  // if (ev.target.checked) {
-  //   setGenderIsSelected(true);
-  //   setFilteredProducts(
-  //     productsToRender.filter((product) => {
-  //       const productName = product.name.toLowerCase();
-  //       const containsExcludedWords = gendersToExclude.some((word) =>
-  //         productName.includes(word.toLowerCase())
-  //       );
-  //       return !containsExcludedWords;
-  //     })
-  // );
-  //   setExcludedProducts(
-  //     productsToRender.filter((product) => {
-  //       const productName = product.name.toLowerCase();
-  //       const containsExcludedWords = gendersToExclude.some((word) =>
-  //         productName.includes(word.toLowerCase())
-  //       );
-  //       return containsExcludedWords;
-  //     })
-  //   );
-  // } else {
-  //   setGenderIsSelected(false);
-  //   setFilteredProducts([...filteredProducts, ...excludedProducts]);
-  // }
-  // };
-
-  // useEffect(() => {
-  //   setProductsToRender(filteredProducts);
-  // }, [genderIsSelected]);
 
   return (
     <div className="filter-label-and-options">

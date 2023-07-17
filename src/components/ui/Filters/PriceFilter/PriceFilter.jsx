@@ -11,31 +11,6 @@ const PriceFilter = ({
     setSelectedPrice(newselectedPrice);
   };
 
-  //   if (newselectedPrice <= selectedPrice) {
-  //     setFilteredProducts(
-  //       productsToRender?.filter((product) => {
-  //         const productPrice = Number(product.price.slice(0, -2).replace(',', '.'));
-  //         const cheaperProducts = productPrice <= newselectedPrice;
-  //         return cheaperProducts;
-  //       })
-  //     );
-
-  //     setExcludedProducts(
-  //       productsToRender?.filter((product) => {
-  //         const productPrice = Number(product.price.slice(0, -2).replace(',', '.'));
-  //         const cheaperProducts = productPrice >= newselectedPrice;
-  //         return cheaperProducts;
-  //       })
-  //     );
-  //   } else {
-  //     setFilteredProducts([...filteredProducts, ...excludedProducts]);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   setProductsToRender(filteredProducts);
-  // }, [selectedPrice]);
-
   return (
     <div className="filter-label-and-options">
       <label className="filter-label">precio</label>
