@@ -8,7 +8,7 @@ export const loginPostFetch = (userLogged, setError, navigate, setUserLogged) =>
   })
     .then((response) => response.json())
     .then((data) => {
-console.log('error de login', data.message)
+
       if (data.message) { 
       setError(data.message)
       setUserLogged({ email: '', password: '' });

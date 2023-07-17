@@ -7,8 +7,11 @@ import Heart from '../ui/Heart/Heart';
 
 
 const ProductCard = () => {
+  
   const { productsToRender, setProductSelected } =
     useContext(ProductContext);
+
+   
 
   const handleClick = (product) => {
     setProductSelected(product);

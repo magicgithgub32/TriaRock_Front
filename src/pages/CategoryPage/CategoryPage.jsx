@@ -15,7 +15,7 @@ import { filterProducts, genders } from '../../utils/filterProducts';
 import Title from '../../components/ui/Title/Title';
 
 const CategoryPage = () => {
-  const { setProductsToRender, productsToRender, categoriesData } = useContext(ProductContext);
+  const { setProductsToRender, productsToRender, categoriesData, allProducts } = useContext(ProductContext);
 
   const location = useLocation();
   const currentPath = location.pathname;
@@ -31,34 +31,34 @@ const CategoryPage = () => {
   const [selectedGender, setSelectedGender] = useState('');
   const [categoryItems, setCategoryItems] = useState([]);
 
-  const filteredProducts = filterProducts(
-    categoryItems,
-    selectedTypes,
-    selectedGender,
-    selectedPrice,
-    roundedHighestPrice
-  );
+ 
+  //este le he puesto como en bestSellers xo eso no lo arregla. Lo arregla la condición añadida en el 3º
+    useEffect(() => {
+      const categoryProducts = allProducts?.filter((product) => product.category === currentPath.slice(1, currentPath.length));
+      setProductsToRender(categoryProducts);
+      setCategoryItems(categoryProducts);      
+      }, [allProducts, currentPath]);
 
+      //Añado otro useEffect para los nombres del tipo de producto
+    useEffect(() => {
+      const itemTypes = categoryItems.map((product) => product.name.split(' ')[0]);
+      setProductTypes([...new Set(itemTypes)]);
+}, [categoryItems]);
+
+const filteredProducts =  filterProducts(
+  categoryItems,
+  selectedTypes,
+  selectedGender,
+  selectedPrice,
+  roundedHighestPrice)
+
+  //añadir en esta condición que categoryItems no estuviera vacío. 
   useEffect(() => {
-    categoriesData?.filter((category) => {
-      if (category.name === currentPath.slice(1, currentPath.length)) {
-        
-        setProductsToRender(category.items);
-        setCategoryItems(category.items);
-       
-        const itemTypes = category.items.map((product) => product.name.split(' ')[0]);
-        setProductTypes([...new Set(itemTypes)]);
-      }
-    });
-  }, [categoriesData, currentPath, selectedTypes, selectedGender, selectedPrice]);
-  // isCleared
-
-  useEffect(() => {
-    if (productsToRender.length > 0) {
-      setProductsToRender(filteredProducts);
-    }
-  }, [selectedTypes, selectedGender, selectedPrice]);
-
+    if (categoryItems.length > 0 && productsToRender.length > 0) {
+      setProductsToRender(filteredProducts)
+    };
+  },[selectedTypes, selectedGender, selectedPrice])
+ 
   return (
     <div>
       <Header />

@@ -35,11 +35,6 @@ const Register = () => {
     });
   };
   
-  //falta saber cómo hacer el loginPostFetch una vez que ya se tiene el usuario registrado
-  useEffect(() => {
-    loginPostFetch(userLogged, setError, navigate, setUserLogged)
-    setError('')
-    },[userRegistered])
 
   return (
     <div className="register-login">

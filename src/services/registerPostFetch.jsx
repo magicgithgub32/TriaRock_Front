@@ -13,7 +13,8 @@ export const registerPostFetch = (userRegistered, setError, navigate, setUserLog
         setUserLogged({ email: '', password: '' })
       } else {
         const userStored = {
-        email: data.createdUser.email  
+        email: data.createdUser.email,
+password: data.createdUser.password
       }
       localStorage.setItem('userStored', JSON.stringify(userStored));
       setUserLogged(userStored)
