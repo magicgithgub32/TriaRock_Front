@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import './Register.css';
+import './RegisterLogin.css';
 
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
@@ -8,6 +8,8 @@ import { UserContext } from '../../App';
 import { useNavigate } from 'react-router-dom';
 import Message from '../../components/ui/Message/Message';
 import { loginPostFetch } from '../../services/loginPostFetch';
+import Input from '../../components/ui/Input/Input';
+import Button from '../../components/ui/Button/Button';
 
 
 const Register = () => {
@@ -37,32 +39,35 @@ const Register = () => {
   
 
   return (
-    <div className="register-login">
-      <Header />
-      <form onSubmit={handleFormSubmit}>
-        <input
-          className="register-email-input"
-          type="email"
-          placeholder="email address"
-          name="email"
-          value={userRegistered.email}
-          onChange={handleInputChange}
-        />
-        <input
-          className="register-password-input"
-          type="password"
-          placeholder="password"
-          name="password"
-          value={userRegistered.password}
-          onChange={handleInputChange}
-        />
-        <button type="submit">Submit</button>
+<>
+    <Header />
+    <div className="register-login-container">
+      
+      <form onSubmit={handleFormSubmit} className="register-login-form">
+        <Input
+         type="email"
+         placeholder="email address"
+         name="email"
+         value={userRegistered.email}
+         onChange={handleInputChange}
+         />
+        
+        <Input
+         type="password"
+         placeholder="password"
+         name="email"
+         value={userRegistered.password}
+         onChange={handleInputChange}
+         />
+<Button type="submit" buttonText="Submit"/>
       </form>
 
       {error && <Message messageText={error} />}
 
-      <Footer />
+
     </div>
+          <Footer />
+          </>
   );
 };
 

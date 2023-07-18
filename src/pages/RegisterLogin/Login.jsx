@@ -1,5 +1,5 @@
-import React, { useState, useContext, useEffect } from 'react';
-import './Login.css';
+import React, { useContext, useEffect } from 'react';
+import './RegisterLogin.css';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -7,7 +7,7 @@ import { UserContext } from '../../App';
 import Message from '../../components/ui/Message/Message';
 import Input from '../../components/ui/Input/Input';
 import { loginPostFetch } from '../../services/loginPostFetch';
-import { userFavsFetch } from '../../services/userFavsFetch';
+import Button from '../../components/ui/Button/Button';
 
 const Login = () => {
 
@@ -37,9 +37,11 @@ const Login = () => {
   }, [currentPath])
 
   return (
-    <div className="register-login">
-      <Header />
-      <form onSubmit={handleFormSubmit}>
+    <>
+    <Header />
+    <div className="register-login-container">
+     
+      <form onSubmit={handleFormSubmit} className="register-login-form">
         <Input
           type="email"
           placeholder="email address"
@@ -55,17 +57,24 @@ const Login = () => {
           value={userLogged?.password}
           onChange={handleInputChange}
         />
-        <button type="submit">Submit</button>
+        <Button buttonText="Submit"/>
       </form>
 
-      <Link to="/register">
-        <p onClick={() => setError('')}>Create your account if you don't have one yet</p>
-      </Link>
-
       {error && <Message messageText={error} />}
+         
+      <div className="register-container">
+      <Link to="/register">
+        <p className="register-cta" onClick={() => setError('')}>Create your account if you don't have one yet</p>
+      </Link>
+      <Button buttonText="Register" className="register-button"/>
+      </div>
+      
+   
 
-      <Footer />
+      
     </div>
+    <Footer />
+    </>
   );
 };
 

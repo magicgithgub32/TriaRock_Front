@@ -1,4 +1,4 @@
-.search-section{
+.search-input-section {
     display: flex;
     height: 35px;
     gap: .5rem;
@@ -6,6 +6,27 @@
     border-radius: var(--border-radius);
 }
 
+#search-input-mobile {
+    display: none
+}
+
 .search-icon {
     cursor:pointer
+}
+
+
+@media screen and (max-width: 360px) {
+    #search-input-desktop {
+        display: none
+    }
+    
+    #search-input-mobile {
+    display: flex;
+    width: 100%;
+    background-color: var(--color-primary);
+    padding: 0px 30px 0px 30px;
+    border-radius: 0;
+    }   
+    
+
 }

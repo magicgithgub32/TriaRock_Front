@@ -1,0 +1,32 @@
+.register-login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 59.5vh
+}
+
+.register-login-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 20px;
+    width: 350px;
+}
+
+.register-cta {
+    color: var(--primary-text-color);
+    font-size: 18px;
+    font-weight: 600
+}
+
+.register-container {
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+gap: 10px;
+padding: 20px;
+}

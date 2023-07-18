@@ -3,7 +3,7 @@ import './SearchInput.css'
 import { ProductContext, SearchContext } from '../../../App'
 import Input from '../Input/Input'
 
-const SearchInput = () => {
+const SearchInput = ( { id } ) => {
 
     const { allProducts, setProductsToRender } = useContext(ProductContext)
     const {searchInput, setSearchInput, searchClick, setSearchClick } = useContext(SearchContext)
@@ -27,7 +27,8 @@ const SearchInput = () => {
 
 
   return (
-          <div className="search-section">
+  
+          <div className="search-input-section" id={id}>
             <Input
             type="text" 
             placeholder="Find your product"
@@ -40,7 +41,7 @@ const SearchInput = () => {
           onClick={handleSearchClick}
           />
         </div>
-  )
+        )
 }
 
 export default SearchInput

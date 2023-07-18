@@ -14,3 +14,13 @@
 .icon-button-image {
     height: 60%
 }
+
+@media screen and (max-width: 360px) {
+    .icon-text {
+        display: none
+    }
+    .icon-button-image {
+        height: 75%
+    }
+
+}

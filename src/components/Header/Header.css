@@ -8,25 +8,6 @@
     background-color: var(--color-primary);
 }
 
-.logo-section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-}
-
-
-.logo {
-       height: 55px;
-    margin-bottom: 14px;
-    padding-right: 6px;
-}
-
-.brand {
-color: var(--color-secondary);
-font-weight: 600;
-font-size: 40px;
-}
 
 .category-navbar {
     display: flex;
@@ -53,4 +34,18 @@ font-size: 40px;
 .icons-section {
     display: flex;
     gap: 20px
+}
+
+@media screen and (max-width: 360px) {
+    .first-header-section {
+        height: 9vh;
+        padding-top: 14px
+    }
+    .logo-and-icons-container {
+        display: flex;
+    }
+    .icons-section {
+        gap: 0px;
+        margin-bottom: 5px
+    }
 }

@@ -22,8 +22,9 @@ const Header = () => {
   return (
     <header className="header-section">
       <div className="first-header-section">
+    
         <Logo />
-        <SearchInput />
+        <SearchInput id="search-input-desktop"/>
         <div className="icons-section">
           <IconButton buttonLink="/" buttonText="HOME" srcImage="./src/assets/home-2.svg" />
   
@@ -40,8 +41,11 @@ const Header = () => {
             srcImage="./src/assets/yellow-heart.svg"
           />
         </div>
+  
       </div>
 
+      <SearchInput id="search-input-mobile"/>
+      
       <nav className="category-navbar">
         <NavLink className="category-link" to="/swimming">
           SWIMMING
