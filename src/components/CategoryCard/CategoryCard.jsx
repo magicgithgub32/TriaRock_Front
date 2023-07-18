@@ -17,9 +17,11 @@ const CategoryCard = () => {
         {orderedCategories?.map((categoryData) => (
           <figure key={categoryData._id}>
             <img src={categoryData.image} alt={categoryData.name} className="category-image" />
-            <Link to={categoryData.name} className="category-cta">
-              SHOP {categoryData.name}
-            </Link>
+            <div className="category-data-container">
+              <Link to={categoryData.name} className="category-cta">
+                {categoryData.name}
+              </Link>
+            </div>
           </figure>
         ))}
       </section>

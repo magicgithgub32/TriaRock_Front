@@ -6,7 +6,6 @@ import Footer from '../../components/Footer/Footer';
 import Heart from '../../components/ui/Heart/Heart';
 
 const ProductDetail = () => {
-
   const { productSelected } = useContext(ProductContext);
 
   return (
@@ -16,7 +15,6 @@ const ProductDetail = () => {
         {productSelected ? (
           <figure className="product-detail-figure">
             <div className="product-detail-wrapper">
-            
               <img
                 className="product-detail-image"
                 src={productSelected.image}
@@ -24,8 +22,8 @@ const ProductDetail = () => {
               />
               <div className="product-detail-text">
                 <div className="name-and-heart">
-                <h3 className="product-detail-name">{productSelected.name}</h3>
-                <Heart product={productSelected}/>
+                  <h3 className="product-detail-name">{productSelected.name}</h3>
+                  <Heart product={productSelected} />
                 </div>
                 {productSelected.promo ? (
                   <div className="promo-container">
@@ -36,7 +34,7 @@ const ProductDetail = () => {
                     >
                       <h3>{productSelected.price}</h3>
                     </div>
-                    <h3 className="promo-label">SALE</h3>
+                    <h3 className="promo-detail-label">SALE</h3>
                   </div>
                 ) : (
                   <div

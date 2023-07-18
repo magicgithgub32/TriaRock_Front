@@ -48,4 +48,8 @@
         gap: 0px;
         margin-bottom: 5px
     }
+    .category-navbar {
+        display: none;
+        
+    }
 }

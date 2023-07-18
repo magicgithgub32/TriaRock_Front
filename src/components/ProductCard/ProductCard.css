@@ -44,7 +44,6 @@ display: flex;
 
 
 .promo-container {
-
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -84,3 +83,25 @@ display: flex;
     padding-top: 10px
 }
 
+@media screen and (max-width: 360px) {
+    .product-card-wrapper {
+        display: grid;
+      grid-template-columns: 1fr 1fr;
+      margin-left: 0px;
+     padding-top: 20px
+    }
+    .product-img-wrapper {
+        width: 80px;
+        height: 80px;
+    }
+    .product-description  {
+        font-size: 9px;
+        padding: 10px;
+    }
+    .product-price {
+        font-weight: 600;    
+    }
+    .promo-label {
+        font-weight: 600;
+    }
+  }
