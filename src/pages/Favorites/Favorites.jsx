@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './Favorites.css';
 import { ProductContext, UserContext } from '../../App';
 
@@ -14,6 +14,8 @@ const Favorites = () => {
   const { userFavs, setUserFavs, setProductsToRender } = useContext(ProductContext);
   const { userLogged } = useContext(UserContext);
 
+  const [loaded, setLoaded] = useState(false)
+
   useEffect(() => {
     console.log(userLogged.email)
     if (userLogged.email === '') {
@@ -24,21 +26,24 @@ const Favorites = () => {
   }, [userLogged]);
   
   useEffect(() => {
+    setLoaded(false)
     setProductsToRender(userFavs)
+    setLoaded(true)
     }, [userFavs]);
   
   return (
     <div>
       <Header />
         <Title textTitle="My favorite products"></Title>
-        
-          {userFavs?.length > 0 ? (
+        {loaded ?
+         userFavs?.length > 0 ? (
             <ProductCard />
           ) : (
            userLogged.email === ''? 
            <Message messageText="Please login or create your account and save your favorites" />
            : <Message messageText="You have no favorite products at the moment" />
-          )}
+          ) : <p>Loading...</p>
+        }
       <CategoryCard />
       <Footer />
     </div>

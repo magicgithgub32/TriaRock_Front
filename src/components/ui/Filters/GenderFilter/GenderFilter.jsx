@@ -11,7 +11,7 @@ const GenderFilter = ({ inputOptions, setSelectedGender, genderRefs }) => {
       }
 
       setSelectedGender(event.target.value);
-      
+      console.log(event.target.value);
     });          
   };
 
@@ -21,7 +21,7 @@ const GenderFilter = ({ inputOptions, setSelectedGender, genderRefs }) => {
         género
       </label>
       {inputOptions.map((option, index) => (
-        <div className="filter-options" key={index}>
+        <div className="filter-options" key={option}>
           <input
             type="checkbox"
             id={option}
