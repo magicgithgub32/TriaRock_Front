@@ -35,12 +35,6 @@ const CategoryPage = () => {
   const genderRefs = useRef([]);
   const productTypeRefs = useRef([])
 
-  const [areFiltersCleared, setAreFiltersCleared] = useState(false)
-
-  console.log('arefiltersCleared', areFiltersCleared)
-  console.log(allProducts?.filter(
-    (product) => product.category === currentPath.slice(1, currentPath.length)
-  ))
 
   //este le he puesto como en bestSellers xo eso no lo arregla. Lo arregla la condición añadida en el 3º
   useEffect(() => {
@@ -67,10 +61,10 @@ const CategoryPage = () => {
 
   //añadir en esta condición que categoryItems no estuviera vacío.
   useEffect(() => {
-    if (categoryItems.length > 0) {
+   if (categoryItems.length > 0) {
       setProductsToRender(filteredProducts);
     }
-  }, [selectedTypes, selectedGender, selectedPrice]);
+    }, [selectedTypes, selectedGender, selectedPrice]);
 
   return (
     <div>
@@ -84,17 +78,15 @@ const CategoryPage = () => {
             selectedTypes={selectedTypes}
             setSelectedTypes={setSelectedTypes}
             productTypeRefs={productTypeRefs}
-            setAreFiltersCleared={setAreFiltersCleared}
           />
           <GenderFilter inputOptions={genders} setSelectedGender={setSelectedGender} 
           genderRefs={genderRefs}
-          setAreFiltersCleared={setAreFiltersCleared}/>
+          />
           <PriceFilter
             selectedPrice={selectedPrice}
             setSelectedPrice={setSelectedPrice}
             roundedHighestPrice={roundedHighestPrice}
             roundedLowestPrice={roundedLowestPrice}
-            setAreFiltersCleared={setAreFiltersCleared}
           />
           {/* promo */}
           <ClearFilters
