@@ -9,7 +9,7 @@ const ProductDetail = () => {
   const { productSelected } = useContext(ProductContext);
 
   return (
-    <>
+    <div>
       <Header />
       <section className="product-detail">
         {productSelected ? (
@@ -58,7 +58,7 @@ const ProductDetail = () => {
         ) : null}
       </section>
       <Footer />
-    </>
+    </div>
   );
 };
 

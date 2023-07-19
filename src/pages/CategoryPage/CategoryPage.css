@@ -1,10 +1,10 @@
-main {
+.main-category-page {
 display: flex;
 }
+
 .filter-section {
 padding-left: 20px;
 }
-
 
 @media screen and (max-width: 360px) {
     .filter-section {

@@ -9,9 +9,17 @@
 }
 
 @media screen and (max-width: 360px) {
-    .category-title {
+    .category-title-favs {
         height: 11vh;
         background-color: var(--color-secondary);
     color: var(--color-primary);
+    font-weight: 600;
+    padding: 15px;
+    text-transform: uppercase;
+    text-align: center;
+    }
+    .category-title {
+        height: 11vh;
+        padding: 15px
     }
   }

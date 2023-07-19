@@ -37,7 +37,7 @@ const Login = () => {
   }, [currentPath])
 
   return (
-    <>
+    <div>
     <Header />
     <main className="register-login-container">
      
@@ -74,7 +74,7 @@ const Login = () => {
       
     </main>
     <Footer />
-    </>
+    </div>
   );
 };
 

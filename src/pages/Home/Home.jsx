@@ -7,11 +7,11 @@ import Hero from '../../components/Hero/Hero';
 const Home = ( { searchInput }) => {
   
   return (
-    <>
+    <div>
       <Header searchInput={searchInput}/>
       <Hero searchInput={searchInput}/>
       <Footer />
-    </>
+    </div>
   );
 };
 

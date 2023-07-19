@@ -28,11 +28,10 @@ const Favorites = () => {
     }, [userFavs]);
   
   return (
-    <section className="favorite-products-page">
+    <div>
       <Header />
-      <article className="favorite-products-article">
         <Title textTitle="My favorite products"></Title>
-        <div className="favorite-products-wrapper">
+        
           {userFavs?.length > 0 ? (
             <ProductCard />
           ) : (
@@ -40,12 +39,9 @@ const Favorites = () => {
            <Message messageText="Please login or create your account and save your favorites" />
            : <Message messageText="You have no favorite products at the moment" />
           )}
-        </div>
-      </article>
-
       <CategoryCard />
       <Footer />
-    </section>
+    </div>
   );
 };
 

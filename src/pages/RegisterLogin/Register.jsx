@@ -39,7 +39,7 @@ const Register = () => {
   
 
   return (
-<>
+<div>
     <Header />
     <div className="register-login-container">
       <p className="register-cta">Create your account and start saving your favorites!</p>
@@ -67,7 +67,7 @@ const Register = () => {
 
     </div>
           <Footer />
-          </>
+          </div>
   );
 };
 

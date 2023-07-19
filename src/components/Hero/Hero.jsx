@@ -12,15 +12,13 @@ const Hero = () => {
 
 
   return (
-    <>
+    <main>
     { searchClick && (
-      <section className="products-section">
           <ProductCard />
-        </section>
         )}
       <CategoryCard />
       <BestSeller />
-      </>
+      </main>
   
   );
 };

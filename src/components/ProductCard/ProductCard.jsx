@@ -13,14 +13,14 @@ const ProductCard = () => {
   };
 
   return (
-    <div className={`product-card-wrapper${productsToRender?.length === 1 ? '-one-fav' : ''}`}>
+    <section className={`product-card-wrapper${productsToRender?.length === 1 ? '-one-product' : ''}`}>
       {productsToRender?.map((product) => (
         <figure className="product-card" key={product._id}>
           <div className="product-img-price-wrapper">
             <div className="product-img-wrapper">
               <Link to="/ProductDetail">
                 <img
-                  className="product-Img"
+                  className="product-img"
                   src={product.image}
                   alt={product.name}
                   onClick={() => handleClick(product)}
@@ -42,7 +42,7 @@ const ProductCard = () => {
           </div>
         </figure>
       ))}
-    </div>
+    </section>
   );
 };
 

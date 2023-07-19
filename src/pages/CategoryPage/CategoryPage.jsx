@@ -70,8 +70,7 @@ const CategoryPage = () => {
     <div>
       <Header />
       <Title textTitle={currentPath.slice(1, currentPath.length)} />
-
-      <main>
+      <main className="main-category-page">
         <section className="filter-section">
           <ProductTypeFilter
             inputOptions={productTypes}
@@ -98,10 +97,7 @@ const CategoryPage = () => {
             genderRefs={genderRefs}
            />
         </section>
-
-        <section className="products-section">
           <ProductCard />
-        </section>
       </main>
 
       <Footer />

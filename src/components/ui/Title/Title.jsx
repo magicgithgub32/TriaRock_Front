@@ -4,7 +4,8 @@ import './Title.css'
 const Title = ({textTitle}) => {
   return (
     <div>
-          <h2 className="category-title">{textTitle}</h2>
+          <h2 className={`category-title${textTitle === "My favorite products" ? '-favs' : ''}`}
+          >{textTitle}</h2>
     </div>
   )
 }
