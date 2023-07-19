@@ -36,9 +36,11 @@ figure {
   }
 
 
-  @media screen and (max-width: 360px) {
+  @media screen and (max-width: 710px) {
     .categories-banner {
       grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr 1fr;
     }
   }
+
+ 

@@ -6,3 +6,10 @@
 .message {
   padding: 14px 18px;
 }
+
+@media screen and (max-width: 360px) {
+  .message-container {
+      margin: 10px 20px 0 20px;
+      text-align: center;
+      }
+}

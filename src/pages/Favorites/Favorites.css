@@ -1,11 +1,3 @@
-.favorite-title {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--color-primary);
-    color: var(--color-secondary);
-    padding: 1rem;
-}
 .favorite-products-section {
     display: flex;
     flex-direction: row;
@@ -58,3 +50,9 @@
     text-align: center;
     padding-top: 10px
 }
+
+@media screen and (max-width: 360px) {
+    .filter-section {
+        display: none;
+        }
+  }

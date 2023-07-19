@@ -5,20 +5,15 @@ import { ProductContext } from '../../App';
 import { Link } from 'react-router-dom';
 import Heart from '../ui/Heart/Heart';
 
-
 const ProductCard = () => {
-  
-  const { productsToRender, setProductSelected } =
-    useContext(ProductContext);
-
-   
+  const { productsToRender, setProductSelected } = useContext(ProductContext);
 
   const handleClick = (product) => {
     setProductSelected(product);
   };
 
   return (
-    <div className="product-card-wrapper">
+    <div className={`product-card-wrapper${productsToRender?.length === 1 ? '-one-fav' : ''}`}>
       {productsToRender?.map((product) => (
         <figure className="product-card" key={product._id}>
           <div className="product-img-price-wrapper">
@@ -39,7 +34,7 @@ const ProductCard = () => {
               </div>
 
               {product.promo ? <span className="promo-label">SALE</span> : <span></span>}
-<Heart product={product}/>
+              <Heart product={product} />
             </div>
           </div>
           <div className="product-description">

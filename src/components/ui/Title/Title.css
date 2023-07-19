@@ -11,5 +11,7 @@
 @media screen and (max-width: 360px) {
     .category-title {
         height: 11vh;
+        background-color: var(--color-secondary);
+    color: var(--color-primary);
     }
   }
