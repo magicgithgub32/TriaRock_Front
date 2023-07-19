@@ -15,13 +15,19 @@ const ProductDetail = () => {
         {productSelected ? (
           <figure className="product-detail-figure">
             <div className="product-detail-wrapper">
+
+            <div className="name-and-heart-mobile">
+                  <h3 className="product-detail-name">{productSelected.name}</h3>
+                  <Heart product={productSelected} />
+                </div>
+
               <img
                 className="product-detail-image"
                 src={productSelected.image}
                 alt={productSelected.name}
               />
               <div className="product-detail-text">
-                <div className="name-and-heart">
+                <div className="name-and-heart-desktop">
                   <h3 className="product-detail-name">{productSelected.name}</h3>
                   <Heart product={productSelected} />
                 </div>

@@ -39,7 +39,7 @@ const Login = () => {
   return (
     <>
     <Header />
-    <div className="register-login-container">
+    <main className="register-login-container">
      
       <form onSubmit={handleFormSubmit} className="register-login-form">
         <Input
@@ -64,7 +64,7 @@ const Login = () => {
          
       <div className="register-container">
       <Link to="/register">
-        <p className="register-cta" onClick={() => setError('')}>Create your account if you don't have one yet</p>
+        <p className="register-cta" onClick={() => setError('')}>Create your account if you don't have one yet.</p>
       </Link>
       <Button buttonText="Register" className="register-button"/>
       </div>
@@ -72,7 +72,7 @@ const Login = () => {
    
 
       
-    </div>
+    </main>
     <Footer />
     </>
   );

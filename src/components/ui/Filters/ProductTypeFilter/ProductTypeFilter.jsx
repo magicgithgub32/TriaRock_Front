@@ -1,10 +1,12 @@
 import React from 'react';
 import './ProductTypeFilter.css';
 
-const ProductTypeFilter = ({ inputOptions, selectedTypes, setSelectedTypes }) => {
+const ProductTypeFilter = ({ inputOptions, setSelectedTypes, productTypeRefs }) => {
+  
   const handleCheckbox = (event) => {
     const isChecked = event.target.checked;
     const value = event.target.value;
+    
 
     setSelectedTypes((prevSelectedTypes) => {
       if (isChecked) {
@@ -34,6 +36,7 @@ const ProductTypeFilter = ({ inputOptions, selectedTypes, setSelectedTypes }) =>
             name="tipo de producto"
             value={option}
             onChange={handleCheckbox}
+            ref={(el) => (productTypeRefs.current[index] = el)}
           />
           <label htmlFor={option}>{option}</label>
         </div>

@@ -42,7 +42,7 @@ const Register = () => {
 <>
     <Header />
     <div className="register-login-container">
-      
+      <p className="register-cta">Create your account and start saving your favorites!</p>
       <form onSubmit={handleFormSubmit} className="register-login-form">
         <Input
          type="email"

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import './CategoryPage.css';
 import Header from '../../components/Header/Header';
@@ -31,6 +31,16 @@ const CategoryPage = () => {
   const [selectedPrice, setSelectedPrice] = useState(roundedHighestPrice);
   const [selectedGender, setSelectedGender] = useState('');
   const [categoryItems, setCategoryItems] = useState([]);
+
+  const genderRefs = useRef([]);
+  const productTypeRefs = useRef([])
+
+  const [areFiltersCleared, setAreFiltersCleared] = useState(false)
+
+  console.log('arefiltersCleared', areFiltersCleared)
+  console.log(allProducts?.filter(
+    (product) => product.category === currentPath.slice(1, currentPath.length)
+  ))
 
   //este le he puesto como en bestSellers xo eso no lo arregla. Lo arregla la condición añadida en el 3º
   useEffect(() => {
@@ -73,29 +83,28 @@ const CategoryPage = () => {
             inputOptions={productTypes}
             selectedTypes={selectedTypes}
             setSelectedTypes={setSelectedTypes}
+            productTypeRefs={productTypeRefs}
+            setAreFiltersCleared={setAreFiltersCleared}
           />
-          <GenderFilter inputOptions={genders} setSelectedGender={setSelectedGender} />
+          <GenderFilter inputOptions={genders} setSelectedGender={setSelectedGender} 
+          genderRefs={genderRefs}
+          setAreFiltersCleared={setAreFiltersCleared}/>
           <PriceFilter
             selectedPrice={selectedPrice}
             setSelectedPrice={setSelectedPrice}
             roundedHighestPrice={roundedHighestPrice}
             roundedLowestPrice={roundedLowestPrice}
+            setAreFiltersCleared={setAreFiltersCleared}
           />
           {/* promo */}
-          {/* <ClearFilters
-            setExcludedProducts={setExcludedProducts}
-            selectedTypes={selectedTypes}
-            setSelectedTypes={setSelectedTypes}
-            typeIsSelected={typeIsSelected}
-            setTypeIsSelected={setTypeIsSelected}
-            genderIsSelected={genderIsSelected}
-            setGenderIsSelected={setGenderIsSelected}
-            selectedPrice={selectedPrice}
-            setSelectedPrice={setSelectedPrice}
+          <ClearFilters
+           setSelectedPrice={setSelectedPrice}
             roundedHighestPrice={roundedHighestPrice}
-            isCleared={isCleared}
-            setIsCleared={setIsCleared} */}
-          {/* /> */}
+            setSelectedTypes={setSelectedTypes}
+            setSelectedGender={setSelectedGender}
+            productTypeRefs={productTypeRefs}
+            genderRefs={genderRefs}
+           />
         </section>
 
         <section className="products-section">

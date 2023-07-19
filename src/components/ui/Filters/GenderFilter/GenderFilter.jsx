@@ -1,18 +1,18 @@
-import React, { useRef } from 'react';
+import React from 'react';
 
-const GenderFilter = ({ inputOptions, setSelectedGender }) => {
-  const genderRefs = useRef([]);
+const GenderFilter = ({ inputOptions, setSelectedGender, genderRefs }) => {
 
-  const handleCheckbox = (ev) => {
+  const handleCheckbox = (event) => {
     genderRefs.current.map((genderRef) => {
-      if (genderRef.value !== ev.target.value && ev.target.checked) {
+      if (genderRef.value !== event.target.value && event.target.checked) {
         genderRef.disabled = true;
-      } else if (genderRef.value !== ev.target.value && !ev.target.checked) {
+      } else if (genderRef.value !== event.target.value && !event.target.checked) {
         genderRef.disabled = false;
       }
 
-      setSelectedGender(ev.target.value);
-    });
+      setSelectedGender(event.target.value);
+      
+    });          
   };
 
   return (

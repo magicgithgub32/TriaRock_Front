@@ -1,29 +1,25 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import './ClearFilters.css';
-import { ProductContext } from '../../../../App';
-import { highestAndLowestPrices } from '../../../../utils/highestAndLowestPrices';
+
 
 const ClearFilters = ({
-  setExcludedProducts,
-  setTypeIsSelected,
-  setSelectedOptions,
-  setGenderIsSelected,
-  setPriceInput,
+  setSelectedTypes,
+  setSelectedGender, 
+  setSelectedPrice,
   roundedHighestPrice,
-  isCleared,
-  setIsCleared
+  productTypeRefs,
+  genderRefs
 }) => {
-  const { setFilteredProducts } = useContext(ProductContext);
+  
 
   const handleClearFilters = () => {
-    setFilteredProducts([]);
-    setExcludedProducts([]);
-    setSelectedOptions([]);
-    setTypeIsSelected(false);
-    setGenderIsSelected(false);
-    setPriceInput(roundedHighestPrice);
-    setIsCleared(true);
+    setSelectedPrice(roundedHighestPrice);
+    setSelectedTypes([]),
+    setSelectedGender('')
+    productTypeRefs.current.forEach((productType) => productType.checked = false)
+    genderRefs.current.forEach((gender) => gender.checked = false)
   };
+
 
   return (
     <div>

@@ -36,7 +36,9 @@ const Favorites = () => {
           {userFavs?.length > 0 ? (
             <ProductCard />
           ) : (
-            <Message messageText="You have no favorite products at the moment" />
+           userLogged.email === ''? 
+           <Message messageText="Please login or create your account and save your favorites" />
+           : <Message messageText="You have no favorite products at the moment" />
           )}
         </div>
       </article>

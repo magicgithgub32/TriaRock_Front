@@ -19,7 +19,8 @@
 .register-cta {
     color: var(--primary-text-color);
     font-size: 18px;
-    font-weight: 600
+    font-weight: 600;
+    text-align: center
 }
 
 .register-container {
@@ -29,4 +30,13 @@ justify-content: center;
 align-items: center;
 gap: 10px;
 padding: 20px;
+}
+
+@media screen and (max-width: 360px) {
+.register-login-container {
+    height: 70vh
+}
+.register-cta {
+    padding: 0 12px 0 12px
+}
 }
