@@ -2,6 +2,10 @@
 display: flex;
 }
 
+.message-and-products {
+    display: flex
+}
+
 .filter-section {
 padding-left: 20px;
 }

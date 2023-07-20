@@ -40,8 +40,8 @@ const Favorites = () => {
             <ProductCard />
           ) : (
            userLogged.email === ''? 
-           <Message messageText="Please login or create your account and save your favorites" />
-           : <Message messageText="You have no favorite products at the moment" />
+           <Message messageText="Please login or create your account and save your favorites." />
+           : <Message messageText="You have no favorite products at the moment." />
           ) : <p>Loading...</p>
         }
       <CategoryCard />

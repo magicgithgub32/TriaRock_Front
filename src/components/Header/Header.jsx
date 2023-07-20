@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import './Header.css';
 import React, { useContext } from 'react';
 import Logo from '../ui/Logo/Logo';
@@ -12,6 +12,10 @@ const Header = () => {
   const { userLogged, setUserLogged } = useContext(UserContext);
   const navigate = useNavigate();
 
+  const location = useLocation();
+  const currentPath = location.pathname;
+  console.log(currentPath)
+
   const handleLogout = () => {
     localStorage.removeItem('userStored');
     setUserLogged({ email: '', password: '' });
@@ -24,7 +28,8 @@ const Header = () => {
       <div className="first-header-section">
     
         <Logo />
-        <SearchInput id="search-input-desktop"/>
+        {currentPath === "/product-detail"? <></> : <SearchInput id="search-input-desktop"/>}
+        
         <div className="icons-section">
           <IconButton buttonLink="/" buttonText="HOME" srcImage="./src/assets/home-2.svg" />
   
@@ -43,8 +48,7 @@ const Header = () => {
         </div>
   
       </div>
-
-      <SearchInput id="search-input-mobile"/>
+      {currentPath === "/product-detail"? <></> : <SearchInput id="search-input-mobile"/>}
       
       <nav className="category-navbar">
         <NavLink className="category-link" to="/swimming">

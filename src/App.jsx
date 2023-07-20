@@ -101,7 +101,7 @@ const App = () => {
               ))}
 
               <Route path="/favorites" element={<Favorites />}></Route>
-              <Route path="/productDetail" element={<ProductDetail />}></Route>
+              <Route path="/product-detail" element={<ProductDetail />}></Route>
 
               <Route path="/favorites/swimming" element={<CategoryPage />} />
 

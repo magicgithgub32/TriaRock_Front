@@ -11,7 +11,7 @@ const Heart = ({product}) => {
   
       if (userLogged.email === "") {
         alert(
-          'Please log in to your account or create a new one so you can see and save your favorite products'
+          'Please log in to your account or create a new one so you can see and save your favorite products.'
         );
       } else {
         const bodyData = { fav: product._id }

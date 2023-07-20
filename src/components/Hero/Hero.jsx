@@ -4,17 +4,19 @@ import './Hero.css';
 import CategoryCard from '../CategoryCard/CategoryCard';
 import BestSeller from '../BestSeller/BestSeller';
 import ProductCard from '../ProductCard/ProductCard';
-import { SearchContext } from '../../App';
+import { ProductContext, SearchContext } from '../../App';
+import Message from '../ui/Message/Message';
 
 const Hero = () => {
 
   const { searchClick } = useContext(SearchContext)
-
+ const { productsToRender } = useContext(ProductContext)
 
   return (
     <main>
     { searchClick && (
-          <ProductCard />
+      productsToRender?.length === 0 ? <Message messageText="No se han encontrado productos con este nombre."/> :
+      <ProductCard />
         )}
       <CategoryCard />
       <BestSeller />

@@ -5,7 +5,7 @@ import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import ProductCard from '../../components/ProductCard/ProductCard';
 
-import { ProductContext } from '../../App';
+import { ProductContext, UserContext } from '../../App';
 import ProductTypeFilter from '../../components/ui/Filters/ProductTypeFilter/ProductTypeFilter';
 import GenderFilter from '../../components/ui/Filters/GenderFilter/GenderFilter';
 import PriceFilter from '../../components/ui/Filters/PriceFilter/PriceFilter';
@@ -13,6 +13,7 @@ import ClearFilters from '../../components/ui/Filters/ClearFilters/ClearFilters'
 import { highestAndLowestPrices } from '../../utils/highestAndLowestPrices';
 import { genders } from '../../utils/filterProducts';
 import Title from '../../components/ui/Title/Title';
+import Message from '../../components/ui/Message/Message';
 
 const CategoryPage = () => {
   const { setProductsToRender, productsToRender, categoriesData, allProducts } =
@@ -35,7 +36,7 @@ const CategoryPage = () => {
   const genderRefs = useRef([]);
   const productTypeRefs = useRef([]);
 
-  //este le he puesto como en bestSellers xo eso no lo arregla. Lo arregla la condición añadida en el 3º
+  
   useEffect(() => {
     const categoryProducts = allProducts?.filter(
       (product) => product.category === currentPath.slice(1, currentPath.length)
@@ -49,7 +50,7 @@ const CategoryPage = () => {
     setProductsToRender(categoryProducts);
   }, [allProducts, currentPath]);
 
-  //Añado otro useEffect para los nombres del tipo de producto
+  
   useEffect(() => {
     const itemTypes = categoryItems.map((product) => product.name.split(' ')[0]);
     setProductTypes([...new Set(itemTypes)]);
@@ -67,7 +68,6 @@ const CategoryPage = () => {
     }
   });
 
-  //añadir en esta condición que categoryItems no estuviera vacío.
   useEffect(() => {
     if (categoryItems.length > 0) {
       setProductsToRender(filterProducts);
@@ -108,7 +108,9 @@ const CategoryPage = () => {
             genderRefs={genderRefs}
           />
         </section>
-        <ProductCard />
+        {/* añado mensaje "no hay prodcutos" */}
+        {filterProducts.length === 0 ? <Message messageText="No se han encontrado productos con estas características."/> :
+        <ProductCard />}
       </main>
 
       <Footer />
