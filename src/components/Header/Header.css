@@ -54,7 +54,7 @@
     }
 }
 
-@media screen and (min-width: 361px) and (max-width: 768px)  {
+@media screen and (min-width: 361px) and (max-width: 900px)  {
     .first-header-section {
         height: 9vh;
         padding-top: 14px

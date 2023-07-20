@@ -10,14 +10,12 @@ import { loginPostFetch } from '../../services/loginPostFetch';
 import Button from '../../components/ui/Button/Button';
 
 const Login = () => {
-
   const location = useLocation();
   const currentPath = location.pathname;
 
   const navigate = useNavigate();
 
   const { userLogged, setUserLogged, setError, error } = useContext(UserContext);
-
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
@@ -33,47 +31,44 @@ const Login = () => {
   };
 
   useEffect(() => {
-  setError('')
-  }, [currentPath])
+    setError('');
+  }, [currentPath]);
 
   return (
     <div>
-    <Header />
-    <main className="register-login-container">
-     
-      <form onSubmit={handleFormSubmit} className="register-login-form">
-        <Input
-          type="email"
-          placeholder="email address"
-          name="email"
-          value={userLogged?.email}
-          onChange={handleInputChange}
-        />
+      <Header />
+      <main className="register-login-container">
+        <form onSubmit={handleFormSubmit} className="register-login-form">
+          <Input
+            type="email"
+            placeholder="email address"
+            name="email"
+            value={userLogged?.email}
+            onChange={handleInputChange}
+          />
 
-        <Input
-          type="password"
-          placeholder="password"
-          name="password"
-          value={userLogged?.password}
-          onChange={handleInputChange}
-        />
-        <Button buttonText="Submit"/>
-      </form>
+          <Input
+            type="password"
+            placeholder="password"
+            name="password"
+            value={userLogged?.password}
+            onChange={handleInputChange}
+          />
+          <Button buttonText="Submit" />
+        </form>
 
-      {error && <Message messageText={error} />}
-         
-      <div className="register-container">
-      <Link to="/register">
-        <p className="register-cta" onClick={() => setError('')}>Create your account if you don't have one yet.</p>
-      </Link>
-      <Button buttonText="Register" className="register-button"/>
-      </div>
-      
-   
+        {error && <Message messageText={error} />}
 
-      
-    </main>
-    <Footer />
+        <div className="register-container">
+          <p className="register-cta" onClick={() => setError('')}>
+            Create your account if you don't have one yet.
+          </p>
+          <Link to="/register">
+            <Button buttonText="Register" className="register-button" />
+          </Link>
+        </div>
+      </main>
+      <Footer />
     </div>
   );
 };

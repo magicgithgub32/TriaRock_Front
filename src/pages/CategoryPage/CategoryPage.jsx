@@ -33,8 +33,7 @@ const CategoryPage = () => {
   const [categoryItems, setCategoryItems] = useState([]);
 
   const genderRefs = useRef([]);
-  const productTypeRefs = useRef([])
-
+  const productTypeRefs = useRef([]);
 
   //este le he puesto como en bestSellers xo eso no lo arregla. Lo arregla la condición añadida en el 3º
   useEffect(() => {
@@ -43,15 +42,12 @@ const CategoryPage = () => {
     );
     setProductsToRender(categoryProducts);
     setCategoryItems(categoryProducts);
-  
-  setSelectedPrice(roundedHighestPrice);
-  setSelectedTypes(''),
-  setSelectedGender('')
-  
-  setProductsToRender(categoryProducts);
 
+    setSelectedPrice(roundedHighestPrice);
+    setSelectedTypes(''), setSelectedGender('');
+
+    setProductsToRender(categoryProducts);
   }, [allProducts, currentPath]);
-
 
   //Añado otro useEffect para los nombres del tipo de producto
   useEffect(() => {
@@ -59,30 +55,24 @@ const CategoryPage = () => {
     setProductTypes([...new Set(itemTypes)]);
   }, [categoryItems]);
 
-
-const filterProducts = categoryItems?.filter((product) => {
-  console.log(selectedTypes)
+  const filterProducts = categoryItems?.filter((product) => {
+    console.log(selectedTypes);
     if (
-      (selectedTypes.includes(product.name.split(' ')[0]) ||
-      selectedTypes === '') || selectedTypes.length === 0 &&
-      
-      (product.name.toLowerCase().includes(selectedGender) ||
-        selectedGender === '') &&
-        
-      (Number(product.price.slice(0, -2).replace(',', '.')) <= selectedPrice || 
-      selectedPrice === roundedHighestPrice)
+      (selectedTypes.includes(product.name.split(' ')[0]) || selectedTypes.length === 0) &&
+      (product.name.toLowerCase().includes(selectedGender) || selectedGender === '') &&
+      (Number(product.price.slice(0, -2).replace(',', '.')) <= selectedPrice ||
+        selectedPrice === roundedHighestPrice)
     ) {
       return product;
-    } 
+    }
   });
-
 
   //añadir en esta condición que categoryItems no estuviera vacío.
   useEffect(() => {
-   if (categoryItems.length > 0) {
+    if (categoryItems.length > 0) {
       setProductsToRender(filterProducts);
     }
-    }, [selectedTypes, selectedGender, selectedPrice]);
+  }, [selectedTypes, selectedGender, selectedPrice]);
 
   return (
     <div>
@@ -96,10 +86,11 @@ const filterProducts = categoryItems?.filter((product) => {
             setSelectedTypes={setSelectedTypes}
             productTypeRefs={productTypeRefs}
           />
-          <GenderFilter inputOptions={genders} 
-          selectedGender={selectedGender}
-          setSelectedGender={setSelectedGender} 
-          genderRefs={genderRefs}
+          <GenderFilter
+            inputOptions={genders}
+            selectedGender={selectedGender}
+            setSelectedGender={setSelectedGender}
+            genderRefs={genderRefs}
           />
           <PriceFilter
             selectedPrice={selectedPrice}
@@ -109,15 +100,15 @@ const filterProducts = categoryItems?.filter((product) => {
           />
           {/* promo */}
           <ClearFilters
-           setSelectedPrice={setSelectedPrice}
+            setSelectedPrice={setSelectedPrice}
             roundedHighestPrice={roundedHighestPrice}
             setSelectedTypes={setSelectedTypes}
             setSelectedGender={setSelectedGender}
             productTypeRefs={productTypeRefs}
             genderRefs={genderRefs}
-           />
+          />
         </section>
-          <ProductCard />
+        <ProductCard />
       </main>
 
       <Footer />

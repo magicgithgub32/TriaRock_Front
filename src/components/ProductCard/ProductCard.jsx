@@ -13,7 +13,10 @@ const ProductCard = () => {
   };
 
   return (
-    <section className={`product-card-wrapper${productsToRender?.length === 1 ? '-one-product' : ''}`}>
+    <section
+      className={`product-card-wrapper${productsToRender?.length === 1 ? '-one-product' : ''}`}
+    >
+      {/* // <section className="product-card-wrapper"> */}
       {productsToRender?.map((product) => (
         <figure className="product-card" key={product._id}>
           <div className="product-img-price-wrapper">

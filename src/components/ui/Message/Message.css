@@ -1,6 +1,8 @@
 .message-container {
     background-color: var(--color-tertiary);
     border-radius: var(--border-radius);
+    margin: 20px 20px 0 20px;
+      text-align: center;
 }
 
 .message {

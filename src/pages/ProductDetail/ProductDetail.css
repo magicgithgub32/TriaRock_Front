@@ -16,7 +16,7 @@
     display: flex;
     align-items: center; 
    justify-content: space-around;
-   margin: 3rem;
+   margin: 2rem;
 
 }
 
@@ -73,11 +73,11 @@ flex-direction: column;
 
 }
 
-@media screen and (max-width: 360px) {
+@media screen and (max-width: 980px) {
     .product-detail-wrapper {
         display: flex;
        flex-direction: column;
-    margin: 1rem
+        margin: 1rem
     }
     .product-detail {
         height: auto;

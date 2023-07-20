@@ -25,7 +25,7 @@
 
 }
 
-@media screen and (min-width: 361px) and (max-width: 768px)  {
+@media screen and (min-width: 361px) and (max-width: 900px)  {
     .icon-text {
         display: none
     }

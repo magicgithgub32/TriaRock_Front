@@ -6,7 +6,7 @@ display: flex;
 padding-left: 20px;
 }
 
-@media screen and (max-width: 360px) {
+@media screen and (max-width: 768px) {
     .filter-section {
         display: none;
         }

@@ -11,7 +11,6 @@ import { loginPostFetch } from '../../services/loginPostFetch';
 import Input from '../../components/ui/Input/Input';
 import Button from '../../components/ui/Button/Button';
 
-
 const Register = () => {
   const navigate = useNavigate();
 
@@ -22,13 +21,11 @@ const Register = () => {
 
   const { setError, error, userLogged, setUserLogged } = useContext(UserContext);
 
-
   const handleFormSubmit = (event) => {
-    event.preventDefault()
+    event.preventDefault();
     registerPostFetch(userRegistered, setError, navigate, setUserLogged);
-    event.target.reset()
-   }
-     
+    event.target.reset();
+  };
 
   const handleInputChange = (event) => {
     setUserRegistered({
@@ -36,38 +33,35 @@ const Register = () => {
       [event.target.name]: event.target.value
     });
   };
-  
 
   return (
-<div>
-    <Header />
-    <div className="register-login-container">
-      <p className="register-cta">Create your account and start saving your favorites!</p>
-      <form onSubmit={handleFormSubmit} className="register-login-form">
-        <Input
-         type="email"
-         placeholder="email address"
-         name="email"
-         value={userRegistered.email}
-         onChange={handleInputChange}
-         />
-        
-        <Input
-         type="password"
-         placeholder="password"
-         name="email"
-         value={userRegistered.password}
-         onChange={handleInputChange}
-         />
-<Button type="submit" buttonText="Submit"/>
-      </form>
+    <div>
+      <Header />
+      <div className="register-login-container">
+        <p className="register-cta">Create your account and start saving your favorites!</p>
+        <form onSubmit={handleFormSubmit} className="register-login-form">
+          <Input
+            type="email"
+            placeholder="email address"
+            name="email"
+            value={userRegistered.email}
+            onChange={handleInputChange}
+          />
 
-      {error && <Message messageText={error} />}
+          <Input
+            type="password"
+            placeholder="password"
+            name="password"
+            value={userRegistered.password}
+            onChange={handleInputChange}
+          />
+          <Button type="submit" buttonText="Submit" />
+        </form>
 
-
+        {error && <Message messageText={error} />}
+      </div>
+      <Footer />
     </div>
-          <Footer />
-          </div>
   );
 };
 
