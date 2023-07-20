@@ -14,10 +14,10 @@ const ClearFilters = ({
 
   const handleClearFilters = () => {
     setSelectedPrice(roundedHighestPrice);
-    setSelectedTypes([]),
+    setSelectedTypes(''),
     setSelectedGender('')
-    productTypeRefs.current.forEach((productType) => productType.checked = false)
-    genderRefs.current.forEach((gender) => gender.checked = false)
+    // productTypeRefs.current.forEach((productType) => productType.checked = false)
+    // genderRefs.current.forEach((gender) => gender.checked = false)
   };
 
 

@@ -43,9 +43,12 @@ const CategoryPage = () => {
     );
     setProductsToRender(categoryProducts);
     setCategoryItems(categoryProducts);
+  
   setSelectedPrice(roundedHighestPrice);
   setSelectedTypes(''),
   setSelectedGender('')
+  
+  setProductsToRender(categoryProducts);
 
   }, [allProducts, currentPath]);
 
@@ -56,18 +59,12 @@ const CategoryPage = () => {
     setProductTypes([...new Set(itemTypes)]);
   }, [categoryItems]);
 
-  // const filteredProducts = filterProducts(
-  //   categoryItems,
-  //   selectedTypes,
-  //   selectedGender,
-  //   selectedPrice,
-  //   roundedHighestPrice
-  // );
 
 const filterProducts = categoryItems?.filter((product) => {
+  console.log(selectedTypes)
     if (
       (selectedTypes.includes(product.name.split(' ')[0]) ||
-      selectedTypes === '') &&
+      selectedTypes === '') || selectedTypes.length === 0 &&
       
       (product.name.toLowerCase().includes(selectedGender) ||
         selectedGender === '') &&
@@ -76,7 +73,7 @@ const filterProducts = categoryItems?.filter((product) => {
       selectedPrice === roundedHighestPrice)
     ) {
       return product;
-    }
+    } 
   });
 
 
