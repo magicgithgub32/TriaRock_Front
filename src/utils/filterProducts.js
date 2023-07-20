@@ -1,53 +1,57 @@
 export const genders = ['hombre', 'mujer', 'infantil'];
 
 
-// const filteredProducts = PRODUCTS.filter((product) => {
+// export const filterProducts = categoryItems.filter((product) => {
 //   if (
-//     (categoriesChecked.includes(product.category) ||
-//       categoriesChecked.length === 0) &&
-//     (inputPriceMin.value <= product.price || inputPriceMin.value === '') &&
-//     (product.price <= inputPriceMax.value || inputPriceMax.value === '')
-//   ) {
+//     (selectedTypes.includes(product.name.split(' ')[0]) ||
+//     selectedTypes !== []) &&
+
+//     (product.name.toLowerCase().includes(selectedGender) ||
+//       selectedGender === '') &&
+      
+//     (Number(product.price.slice(0, -2).replace(',', '.')) <= selectedPrice || 
+//     selectedPrice === roundedHighestPrice)
+//     ) 
+//   {
 //     return product;
 //   }
 // });
 
-export const filterProducts = (
-  categoryItems,
-  selectedTypes,
-  selectedGender,
-  selectedPrice,
-  roundedHighestPrice
-) => {
-  console.log(selectedGender)
-  let filteredProducts = categoryItems;
 
-  if (selectedTypes !== []) {
-    filteredProducts = [...filteredProducts]?.filter((product) =>
-      selectedTypes.includes(product.name.split(' ')[0])
-    );
-  } else {  filteredProducts = [...filteredProducts]?.filter((product) =>
-    selectedTypes.includes(''))
-  }
+// export const filterProducts = (
+//   categoryItems,
+//   selectedTypes,
+//   selectedGender,
+//   selectedPrice,
+//   roundedHighestPrice
+// ) => {
+//   console.log(selectedGender)
+//   let filteredProducts = categoryItems;
 
-  if (selectedGender === 'hombre' || selectedGender === 'mujer') {
-    const excludedGenders = genders.filter((gender) => gender !== selectedGender);
-    filteredProducts = [...filteredProducts]?.filter(
-      (product) =>
-        !excludedGenders.some((word) => product.name.toLowerCase().includes(word.toLowerCase()))
-    );
-  } else if (selectedGender === 'infantil') {
-    filteredProducts = [...filteredProducts]?.filter((product) =>
-      product.name.toLowerCase().includes(selectedGender)
-    );
-  }
+//   if (selectedTypes !== []) {
+//     filteredProducts = [...filteredProducts]?.filter((product) =>
+//       selectedTypes.includes(product.name.split(' ')[0])
+//     );
+//   } 
 
-  if (selectedPrice < roundedHighestPrice) {
-    filteredProducts = [...filteredProducts]?.filter(
-      (product) => Number(product.price.slice(0, -2).replace(',', '.')) <= selectedPrice
-    );
-    console.log('abc', filteredProducts)
-  }
+//   if (selectedGender === 'hombre' || selectedGender === 'mujer') {
+//     const excludedGenders = genders.filter((gender) => gender !== selectedGender);
+//     filteredProducts = [...filteredProducts]?.filter(
+//       (product) =>
+//         !excludedGenders.some((word) => product.name.toLowerCase().includes(word.toLowerCase()))
+//     );
+//   } else if (selectedGender === 'infantil') {
+//     filteredProducts = [...filteredProducts]?.filter((product) =>
+//       product.name.toLowerCase().includes(selectedGender)
+//     );
+//   }
 
-  return filteredProducts;
-};
+//   if (selectedPrice < roundedHighestPrice) {
+//     filteredProducts = [...filteredProducts]?.filter(
+//       (product) => Number(product.price.slice(0, -2).replace(',', '.')) <= selectedPrice
+//     );
+   
+//   }
+
+//   return filteredProducts;
+// };

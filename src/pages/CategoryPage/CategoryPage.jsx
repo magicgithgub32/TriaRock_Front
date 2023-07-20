@@ -11,7 +11,7 @@ import GenderFilter from '../../components/ui/Filters/GenderFilter/GenderFilter'
 import PriceFilter from '../../components/ui/Filters/PriceFilter/PriceFilter';
 import ClearFilters from '../../components/ui/Filters/ClearFilters/ClearFilters';
 import { highestAndLowestPrices } from '../../utils/highestAndLowestPrices';
-import { filterProducts, genders } from '../../utils/filterProducts';
+import { genders } from '../../utils/filterProducts';
 import Title from '../../components/ui/Title/Title';
 
 const CategoryPage = () => {
@@ -27,7 +27,7 @@ const CategoryPage = () => {
   );
 
   const [productTypes, setProductTypes] = useState([]);
-  const [selectedTypes, setSelectedTypes] = useState([]);
+  const [selectedTypes, setSelectedTypes] = useState('');
   const [selectedPrice, setSelectedPrice] = useState(roundedHighestPrice);
   const [selectedGender, setSelectedGender] = useState('');
   const [categoryItems, setCategoryItems] = useState([]);
@@ -43,7 +43,12 @@ const CategoryPage = () => {
     );
     setProductsToRender(categoryProducts);
     setCategoryItems(categoryProducts);
+  setSelectedPrice(roundedHighestPrice);
+  setSelectedTypes(''),
+  setSelectedGender('')
+
   }, [allProducts, currentPath]);
+
 
   //Añado otro useEffect para los nombres del tipo de producto
   useEffect(() => {
@@ -51,18 +56,34 @@ const CategoryPage = () => {
     setProductTypes([...new Set(itemTypes)]);
   }, [categoryItems]);
 
-  const filteredProducts = filterProducts(
-    categoryItems,
-    selectedTypes,
-    selectedGender,
-    selectedPrice,
-    roundedHighestPrice
-  );
+  // const filteredProducts = filterProducts(
+  //   categoryItems,
+  //   selectedTypes,
+  //   selectedGender,
+  //   selectedPrice,
+  //   roundedHighestPrice
+  // );
+
+const filterProducts = categoryItems?.filter((product) => {
+    if (
+      (selectedTypes.includes(product.name.split(' ')[0]) ||
+      selectedTypes === '') &&
+      
+      (product.name.toLowerCase().includes(selectedGender) ||
+        selectedGender === '') &&
+        
+      (Number(product.price.slice(0, -2).replace(',', '.')) <= selectedPrice || 
+      selectedPrice === roundedHighestPrice)
+    ) {
+      return product;
+    }
+  });
+
 
   //añadir en esta condición que categoryItems no estuviera vacío.
   useEffect(() => {
    if (categoryItems.length > 0) {
-      setProductsToRender(filteredProducts);
+      setProductsToRender(filterProducts);
     }
     }, [selectedTypes, selectedGender, selectedPrice]);
 
@@ -78,7 +99,9 @@ const CategoryPage = () => {
             setSelectedTypes={setSelectedTypes}
             productTypeRefs={productTypeRefs}
           />
-          <GenderFilter inputOptions={genders} setSelectedGender={setSelectedGender} 
+          <GenderFilter inputOptions={genders} 
+          selectedGender={selectedGender}
+          setSelectedGender={setSelectedGender} 
           genderRefs={genderRefs}
           />
           <PriceFilter

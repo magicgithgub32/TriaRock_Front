@@ -1,6 +1,6 @@
 import React from 'react';
 
-const GenderFilter = ({ inputOptions, setSelectedGender, genderRefs }) => {
+const GenderFilter = ({ inputOptions, selectedGender, setSelectedGender, genderRefs }) => {
 
   const handleCheckbox = (event) => {
     genderRefs.current.map((genderRef) => {
@@ -9,9 +9,8 @@ const GenderFilter = ({ inputOptions, setSelectedGender, genderRefs }) => {
       } else if (genderRef.value !== event.target.value && !event.target.checked) {
         genderRef.disabled = false;
       }
-
-      setSelectedGender(event.target.value);
-      console.log(event.target.value);
+      const isChecked = event.target.checked;
+      isChecked ? setSelectedGender(event.target.value) : setSelectedGender('')
     });          
   };
 
@@ -29,6 +28,7 @@ const GenderFilter = ({ inputOptions, setSelectedGender, genderRefs }) => {
             value={option}
             onChange={handleCheckbox}
             ref={(el) => (genderRefs.current[index] = el)}
+            checked={selectedGender === option}
           />
           <label htmlFor={option}>{option}</label>
         </div>
