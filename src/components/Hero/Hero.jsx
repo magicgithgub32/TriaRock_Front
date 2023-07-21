@@ -15,7 +15,7 @@ const Hero = () => {
   return (
     <main>
     { searchClick && (
-      productsToRender?.length === 0 ? <Message messageText="No se han encontrado productos con este nombre."/> :
+      productsToRender?.length === 0 ? <Message messageText="No results found. Please, double check your spelling."/> :
       <ProductCard />
         )}
       <CategoryCard />

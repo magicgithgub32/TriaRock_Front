@@ -5,7 +5,7 @@ import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import ProductCard from '../../components/ProductCard/ProductCard';
 
-import { ProductContext, UserContext } from '../../App';
+import { ProductContext, SearchContext, UserContext } from '../../App';
 import ProductTypeFilter from '../../components/ui/Filters/ProductTypeFilter/ProductTypeFilter';
 import GenderFilter from '../../components/ui/Filters/GenderFilter/GenderFilter';
 import PriceFilter from '../../components/ui/Filters/PriceFilter/PriceFilter';
@@ -18,6 +18,8 @@ import Message from '../../components/ui/Message/Message';
 const CategoryPage = () => {
   const { setProductsToRender, productsToRender, categoriesData, allProducts } =
     useContext(ProductContext);
+
+    const { searchClick } = useContext(SearchContext);
 
   const location = useLocation();
   const currentPath = location.pathname;
@@ -108,9 +110,14 @@ const CategoryPage = () => {
             genderRefs={genderRefs}
           />
         </section>
-        {/* añado mensaje "no hay prodcutos" */}
-        {filterProducts.length === 0 ? <Message messageText="No se han encontrado productos con estas características."/> :
-        <ProductCard />}
+
+
+        { searchClick ?
+      (productsToRender?.length === 0 ? <Message messageText="No results found. Please, double check your spelling."/> :
+      <ProductCard />)
+        :
+        (filterProducts.length === 0 ? <Message messageText="There are no products matching your requirements."/> :
+        <ProductCard />)}
       </main>
 
       <Footer />

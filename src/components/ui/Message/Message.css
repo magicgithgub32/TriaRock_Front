@@ -1,13 +1,13 @@
-.message-container {
-    background-color: var(--color-tertiary);
-    border-radius: var(--border-radius);
+.message-container {  
     margin: 20px 20px 0 20px;
       text-align: center;
-      height: 50px
+      margin: 10% 0 0 10%
 }
 
 .message {
   padding: 14px 18px;
+  background-color: var(--color-tertiary);
+  border-radius: var(--border-radius);  
 }
 
 @media screen and (max-width: 360px) {

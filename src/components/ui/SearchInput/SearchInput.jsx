@@ -2,11 +2,15 @@ import React, { useEffect, useContext } from 'react'
 import './SearchInput.css'
 import { ProductContext, SearchContext } from '../../../App'
 import Input from '../Input/Input'
+import { useLocation } from 'react-router-dom'
 
 const SearchInput = ( { id } ) => {
 
-    const { allProducts, setProductsToRender } = useContext(ProductContext)
+    const { allProducts, setProductsToRender, productsToRender } = useContext(ProductContext)
     const {searchInput, setSearchInput, searchClick, setSearchClick } = useContext(SearchContext)
+
+    const location = useLocation();
+  const currentPath = location.pathname;
 
     const handleSearchInput = (event) => {
         setSearchInput(event.target.value)       
@@ -17,13 +21,26 @@ const SearchInput = ( { id } ) => {
     }
 
     useEffect(() => {
+  
     if (searchClick) {
+      if(currentPath !=="/") {
+        const validCurrentPath = currentPath.slice(1, currentPath.length)
+        console.log(validCurrentPath) 
+        setProductsToRender(allProducts.filter((product) =>
+        
+          (product.name.toLowerCase()).includes(searchInput.toLowerCase()) && 
+          product.category === validCurrentPath
+     
+        ));
+      } else {
       setProductsToRender(allProducts.filter((product) => 
     (product.name.toLowerCase()).includes(searchInput.toLowerCase())));
+  }
   } else {
       setProductsToRender(allProducts?.filter((product) => product.bestSeller === true))
       setSearchInput("")
-    }},[searchClick])
+    }
+    },[searchClick])
 
 
   return (
