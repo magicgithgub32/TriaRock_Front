@@ -14,12 +14,7 @@ import Button from '../../components/ui/Button/Button';
 const Register = () => {
   const navigate = useNavigate();
 
-  const [userRegistered, setUserRegistered] = useState({
-    email: '',
-    password: ''
-  });
-
-  const { setError, error, userLogged, setUserLogged } = useContext(UserContext);
+  const { setError, error, userRegistered, setUserRegistered, setUserLogged } = useContext(UserContext);
 
   const handleFormSubmit = (event) => {
     event.preventDefault();

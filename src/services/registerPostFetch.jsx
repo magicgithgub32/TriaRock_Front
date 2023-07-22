@@ -1,3 +1,5 @@
+import { loginPostFetch } from "./loginPostFetch";
+
 export const registerPostFetch = (userRegistered, setError, navigate, setUserLogged) => {
   fetch(`${import.meta.env.VITE_API_URL}/users/register`, {
     method: 'POST',
@@ -14,11 +16,12 @@ export const registerPostFetch = (userRegistered, setError, navigate, setUserLog
       } else {
         const userStored = {
         email: data.createdUser.email,
-password: data.createdUser.password
+password: data.createdUser.password //que llegue password
       }
       localStorage.setItem('userStored', JSON.stringify(userStored));
       setUserLogged(userStored)
-      navigate('/')
+      loginPostFetch(userStored, setError, navigate, setUserLogged)
+    
     }
  
   
