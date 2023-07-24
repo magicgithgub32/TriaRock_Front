@@ -23,7 +23,6 @@ const SearchInput = ({ id }) => {
   useEffect(() => {
     if (searchClick) {
       if (currentPath !== '/') {
-        console.log(validCurrentPath);
         setProductsToRender(
           allProducts.filter(
             (product) =>

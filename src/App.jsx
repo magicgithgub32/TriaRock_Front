@@ -12,7 +12,7 @@ import ProductDetail from './pages/ProductDetail/ProductDetail';
 import { productFetch } from '../src/services/productFetch';
 import { categoryFetch } from '../src/services/categoryFetch';
 
-// import { userStored } from './utils/localStorage';
+import { userStored } from './utils/localStorage';
 import { userFavsFetch } from './services/userFavsFetch';
 
 export const ProductContext = createContext();
@@ -26,24 +26,15 @@ const App = () => {
   const [productsToRender, setProductsToRender] = useState([]);
   const [productSelected, setProductSelected] = useState([]);
 
-  // const [userRegistered, setUserRegistered] = useState({
-  //   email: '',
-  //   password: ''
-  // });
+  const [isLoggedIn, setIsLoggedIn] = useState(() => {
+     if (localStorage.getItem('userStored')) {
+          return true;
+        } else {return false};
+        })
+console.log(isLoggedIn)
 
-  // const [userLogged, setUserLogged] = useState(() => {
-  //   if (localStorage.getItem('userStored')) {
-  //     return userStored;
-  //   } else {
-  //     return {
-  //       email: '',
-  //       password: ''
-  //     };
-  //   }
-  // });
 
-  // const { userFavs, setUserFavs } = userFavsFetch(userLogged);
-  const { userFavs, setUserFavs } = userFavsFetch('');
+  const { userFavs, setUserFavs } = userFavsFetch(userStored);
 
   const [error, setError] = useState('');
 
@@ -66,14 +57,8 @@ const App = () => {
       >
         <UserContext.Provider
           value={{
-            // userRegistered: userRegistered,
-            // setUserRegistered: setUserRegistered,
-            // userLogged: userLogged,
-            // setUserLogged: setUserLogged,
-            // isUserLogged: isUserLogged,
-            // setIsUserLogged: setIsUserLogged,
-            error: error,
-            setError: setError
+            setIsLoggedIn: setIsLoggedIn,
+            isLoggedIn: isLoggedIn
           }}
         >
           <SearchContext.Provider
@@ -87,8 +72,8 @@ const App = () => {
             <Routes>
               <Route path="/" element={<Home />}></Route>
 
-              <Route path="/login" element={<Login />}></Route>
-              <Route path="/register" element={<Register />}></Route>
+              <Route path="/login" element={<Login error={error} setError={setError}/>}></Route>
+              <Route path="/register" element={<Register error={error} setError={setError}/>}></Route>
 
               {categoriesData?.map((category) => (
                 <Route

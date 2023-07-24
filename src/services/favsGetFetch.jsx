@@ -1,5 +1,5 @@
-export const favsGetFetch = (userLogged, setUserFavs) => {  
-    fetch(`${import.meta.env.VITE_API_URL}/users/${userLogged?.email}`, {
+export const favsGetFetch = (userStored, setUserFavs) => {  
+    fetch(`${import.meta.env.VITE_API_URL}/users/${userStored?.email}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'

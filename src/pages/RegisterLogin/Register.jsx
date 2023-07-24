@@ -1,42 +1,35 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 import './RegisterLogin.css';
 
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
 import { registerPostFetch } from '../../services/registerPostFetch';
-import { UserContext } from '../../App';
 import { useNavigate } from 'react-router-dom';
 import Message from '../../components/ui/Message/Message';
-import { loginPostFetch } from '../../services/loginPostFetch';
 import Input from '../../components/ui/Input/Input';
 import Button from '../../components/ui/Button/Button';
 
 import { useForm } from 'react-hook-form';
+import { UserContext } from '../../App';
 
-const Register = () => {
-  const { register, handleSubmit } = useForm({ defaultValues: { email: '', password: '' } });
-  const onSubmit = (value) => {
-    console.log(value);
+const Register = ({error, setError}) => {
+  
+  const { register, handleSubmit, formState } = useForm({ defaultValues: { email: '', password: '' } });
+  const navigate = useNavigate();
+  const { setIsLoggedIn } = useContext(UserContext);
+
+  const onSubmit = (values) => {
+    registerPostFetch(values, navigate, setError)
+    console.log(values);
+   console.log('error en evento submit', formState.errors)
+   
   };
 
-  const navigate = useNavigate();
+  // const passwordValidation = (value) => {
+  //   const regex = /^(?=.*?[A-Z])(?=.*?[a-z]).{6,}$/
+  //   return regex.test(value) || 
 
-  // const { setError, error, userRegistered, setUserRegistered, setUserLogged } =
-  //   useContext(UserContext);
-
-  const { error } = useContext(UserContext);
-
-  // const handleFormSubmit = (event) => {
-  //   event.preventDefault();
-  //   registerPostFetch(userRegistered, setError, navigate, setUserLogged);
-  //   event.target.reset();
-  // };
-
-  // const handleInputChange = (event) => {
-  //   setUserRegistered({
-  //     ...userRegistered,
-  //     [event.target.name]: event.target.value
-  //   });
+  //   'Password must be at least 6 characters long and contain both uppercase and lowercase letters.';
   // };
 
   return (
@@ -52,18 +45,15 @@ const Register = () => {
             type="password"
             placeholder="password"
             id="password"
-            register={register('password', {
-              minLength: {
-                value: 6,
-                message:
-                  'Password must be at least 6 characters long and contain both uppercase and lowercase letters.'
-              }
-            })}
+            register={register('password')}
+            // {  validate: passwordValidation}
+              
           />
           <Button type="submit" buttonText="Submit" />
         </form>
-
         {error && <Message messageText={error} />}
+{/* {formState.errors.password && <Message messageText={formState.errors.password.message} />} */}
+
       </div>
 
       <Footer />

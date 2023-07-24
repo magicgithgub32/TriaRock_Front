@@ -9,21 +9,20 @@ import Footer from '../../components/Footer/Footer';
 import Title from '../../components/ui/Title/Title';
 import ProductCard from '../../components/ProductCard/ProductCard';
 import { favsGetFetch } from '../../services/favsGetFetch';
+import { userStored } from '../../utils/localStorage'
 
 const Favorites = () => {
   const { userFavs, setUserFavs, setProductsToRender } = useContext(ProductContext);
-  const { userLogged } = useContext(UserContext);
-
+  const { isLoggedIn } = useContext(UserContext);
   const [loaded, setLoaded] = useState(false)
 
   useEffect(() => {
-    console.log(userLogged.email)
-    if (userLogged.email === '') {
+    if (!isLoggedIn) {
       setUserFavs([]);
     } else {
-  favsGetFetch(userLogged, setUserFavs)
+  favsGetFetch(userStored, setUserFavs)
     }
-  }, [userLogged]);
+  }, [isLoggedIn]);
   
   useEffect(() => {
     setLoaded(false)
@@ -39,9 +38,11 @@ const Favorites = () => {
          userFavs?.length > 0 ? (
             <ProductCard />
           ) : (
-           userLogged.email === ''? 
+           isLoggedIn? 
+           <Message messageText="You have no favorite products at the moment." /> 
+           : 
            <Message messageText="Please log in or create your account and save your favorites." />
-           : <Message messageText="You have no favorite products at the moment." />
+          
           ) : <p>Loading...</p>
         }
       <CategoryCard />

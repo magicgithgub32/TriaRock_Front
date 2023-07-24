@@ -9,17 +9,16 @@ import { userStored } from '../../utils/localStorage';
 
 const Header = () => {
   const { setUserFavs } = useContext(ProductContext);
-  // const { userLogged, setUserLogged } = useContext(UserContext);
+  const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
   const navigate = useNavigate();
 
   const location = useLocation();
   const currentPath = location.pathname;
-  console.log(currentPath);
 
   const handleLogout = () => {
     localStorage.removeItem('userStored');
-    // setUserLogged({ email: '', password: '' });
-    // setUserFavs([]);
+    setIsLoggedIn(false)
+    setUserFavs([]);
     navigate('/');
   };
 
@@ -33,11 +32,10 @@ const Header = () => {
           <IconButton buttonLink="/" buttonText="HOME" srcImage="./src/assets/home-2.svg" />
 
           <IconButton
-            buttonLink="/login"
-            // buttonLink={userLogged.email !== "" ? "/" : "/login"}
-            // buttonText={userLogged.email !== "" ? "LOGOUT" : "REGISTER/LOGIN"}
+            buttonLink={isLoggedIn ?  "/" : "/login" }
+            buttonText={isLoggedIn ?  "LOG OUT" : "REGISTER/LOG IN"} //no lo hace en tiempo real
             srcImage="./src/assets/user-circle.svg"
-            // buttonEvent={userLogged.email !== '' && handleLogout}
+            buttonEvent={isLoggedIn && handleLogout}
           />
 
           <IconButton

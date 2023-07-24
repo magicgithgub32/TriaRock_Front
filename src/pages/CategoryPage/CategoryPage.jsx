@@ -5,7 +5,7 @@ import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import ProductCard from '../../components/ProductCard/ProductCard';
 
-import { ProductContext, SearchContext, UserContext } from '../../App';
+import { ProductContext, SearchContext } from '../../App';
 import ProductTypeFilter from '../../components/ui/Filters/ProductTypeFilter/ProductTypeFilter';
 import GenderFilter from '../../components/ui/Filters/GenderFilter/GenderFilter';
 import PriceFilter from '../../components/ui/Filters/PriceFilter/PriceFilter';
@@ -59,7 +59,6 @@ const CategoryPage = () => {
   }, [categoryItems]);
 
   const filterProducts = categoryItems?.filter((product) => {
-    console.log(selectedTypes);
     if (
       (selectedTypes.includes(product.name.split(' ')[0]) || selectedTypes.length === 0) &&
       (product.name.toLowerCase().includes(selectedGender) || selectedGender === '') &&

@@ -1,63 +1,55 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import './RegisterLogin.css';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { UserContext } from '../../App';
 import Message from '../../components/ui/Message/Message';
 import Input from '../../components/ui/Input/Input';
 import { loginPostFetch } from '../../services/loginPostFetch';
 import Button from '../../components/ui/Button/Button';
+import { useForm } from 'react-hook-form';
+import { UserContext } from '../../App';
 
-const Login = () => {
+const Login = ({error, setError}) => {
   const location = useLocation();
   const currentPath = location.pathname;
 
+  const { register, handleSubmit } = useForm({ defaultValues: { email: '', password: '' } });
   const navigate = useNavigate();
+  const { setIsLoggedIn } = useContext(UserContext);
 
-  const { userLogged, setUserLogged, setError, error } = useContext(UserContext);
-
-  const handleFormSubmit = (event) => {
-    event.preventDefault();
-    loginPostFetch(userLogged, setError, navigate, setUserLogged);
-    event.target.reset();
-  };
-
-  const handleInputChange = (event) => {
-    setUserLogged({
-      ...userLogged,
-      [event.target.name]: event.target.value
-    });
-  };
+  const onSubmit = (values) => {
+    loginPostFetch(values, navigate, setError, setIsLoggedIn);
+    console.log(values);
+  }
 
   useEffect(() => {
     setError('');
   }, [currentPath]);
 
+
+
   return (
     <div>
       <Header />
       <main className="register-login-container">
-        <form onSubmit={handleFormSubmit} className="register-login-form">
+        <form onSubmit={handleSubmit(onSubmit)} className="register-login-form">
           <Input
+            register={register('email')}
             type="email"
             placeholder="email address"
-            name="email"
-            value={userLogged?.email}
-            onChange={handleInputChange}
           />
 
           <Input
+           register={register('password')}
             type="password"
             placeholder="password"
-            name="password"
-            value={userLogged?.password}
-            onChange={handleInputChange}
           />
-          <Button buttonText="Submit" />
+          <Button type="submit" buttonText="Submit" />
         </form>
 
-        {error && <Message messageText={error} />}
+       {error && <Message messageText={error} />} 
+      
 
         <div className="register-container">
           <p className="register-cta" onClick={() => setError('')}>
