@@ -36,10 +36,10 @@
     gap: 20px
 }
 
-@media screen and (max-width: 360px) {
+@media screen and (max-width: 499px) {
     .first-header-section {
-        height: 9vh;
-        padding-top: 14px
+        height: 11vh;
+        padding-top: 16px
     }
     .logo-and-icons-container {
         display: flex;
@@ -54,10 +54,10 @@
     }
 }
 
-@media screen and (min-width: 361px) and (max-width: 900px)  {
+@media screen and (min-width: 500px) and (max-width: 900px)  {
     .first-header-section {
         height: 9vh;
-        padding-top: 14px
+        padding: 20px
     }
     .logo-and-icons-container {
         display: flex;

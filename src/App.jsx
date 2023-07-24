@@ -12,7 +12,7 @@ import ProductDetail from './pages/ProductDetail/ProductDetail';
 import { productFetch } from '../src/services/productFetch';
 import { categoryFetch } from '../src/services/categoryFetch';
 
-import { userStored } from './utils/localStorage';
+// import { userStored } from './utils/localStorage';
 import { userFavsFetch } from './services/userFavsFetch';
 
 export const ProductContext = createContext();
@@ -22,29 +22,28 @@ export const SearchContext = createContext();
 const App = () => {
   const allProducts = productFetch();
   const categoriesData = categoryFetch();
-  
+
   const [productsToRender, setProductsToRender] = useState([]);
   const [productSelected, setProductSelected] = useState([]);
-  
 
-  const [userRegistered, setUserRegistered] = useState({
-    email: '',
-    password: ''
-  });
+  // const [userRegistered, setUserRegistered] = useState({
+  //   email: '',
+  //   password: ''
+  // });
 
-  const [userLogged, setUserLogged] = useState(() => {
-    if (localStorage.getItem('userStored')) {
-      return userStored;
-    } else {
-      return {
-        email: '',
-        password: ''
-      };
-    }
-  });
+  // const [userLogged, setUserLogged] = useState(() => {
+  //   if (localStorage.getItem('userStored')) {
+  //     return userStored;
+  //   } else {
+  //     return {
+  //       email: '',
+  //       password: ''
+  //     };
+  //   }
+  // });
 
-
-  const { userFavs, setUserFavs } = userFavsFetch(userLogged)
+  // const { userFavs, setUserFavs } = userFavsFetch(userLogged);
+  const { userFavs, setUserFavs } = userFavsFetch('');
 
   const [error, setError] = useState('');
 
@@ -67,10 +66,10 @@ const App = () => {
       >
         <UserContext.Provider
           value={{
-            userRegistered: userRegistered,
-            setUserRegistered: setUserRegistered,
-            userLogged: userLogged,
-            setUserLogged: setUserLogged,
+            // userRegistered: userRegistered,
+            // setUserRegistered: setUserRegistered,
+            // userLogged: userLogged,
+            // setUserLogged: setUserLogged,
             // isUserLogged: isUserLogged,
             // setIsUserLogged: setIsUserLogged,
             error: error,
@@ -90,7 +89,6 @@ const App = () => {
 
               <Route path="/login" element={<Login />}></Route>
               <Route path="/register" element={<Register />}></Route>
-
 
               {categoriesData?.map((category) => (
                 <Route

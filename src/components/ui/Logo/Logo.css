@@ -20,7 +20,7 @@ font-size: 40px;
 
 
 
-@media screen and (max-width: 360px) {
+@media screen and (max-width: 499px) {
     .logo {
         height: 35px;
      margin-bottom: 14px;
@@ -31,11 +31,11 @@ font-size: 30px;
  }
  
  .logo-section {
-    align-items: flex-start
+    align-items: flex-start;
 }
 }
 
-@media screen and (min-width: 361px) and (max-width: 768px)  {
+@media screen and (min-width: 500px) and (max-width: 768px)  {
     .logo {
         height: 40px;
         margin-top: 15px;
