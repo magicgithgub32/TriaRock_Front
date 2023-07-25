@@ -10,7 +10,7 @@ import Button from '../../components/ui/Button/Button';
 import { useForm } from 'react-hook-form';
 import { UserContext } from '../../App';
 
-const Login = ({error, setError}) => {
+const Login = ({ error, setError }) => {
   const location = useLocation();
   const currentPath = location.pathname;
 
@@ -21,35 +21,29 @@ const Login = ({error, setError}) => {
   const onSubmit = (values) => {
     loginPostFetch(values, navigate, setError, setIsLoggedIn);
     console.log(values);
-  }
+  };
 
   useEffect(() => {
     setError('');
   }, [currentPath]);
-
-
 
   return (
     <div>
       <Header />
       <main className="register-login-container">
         <form onSubmit={handleSubmit(onSubmit)} className="register-login-form">
-          <Input
-            register={register('email')}
-            type="email"
-            placeholder="email address"
-          />
+          <Input register={register('email')} type="email" placeholder="email address" id="email" />
 
           <Input
-           register={register('password')}
+            register={register('password')}
             type="password"
             placeholder="password"
+            id="password"
           />
           <Button type="submit" buttonText="Submit" />
         </form>
 
-       {error && <Message messageText={error} />} 
-      
+        {error && <Message messageText={error} />}
 
         <div className="register-container">
           <p className="register-cta" onClick={() => setError('')}>

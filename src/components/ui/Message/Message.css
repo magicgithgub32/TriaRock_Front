@@ -1,7 +1,9 @@
 .message-container {  
-    margin: 20px 20px 0 20px;
+    /* margin: 20px 20px 0 20px; */
       text-align: center;
-      margin: 10% 0 0 10%
+      /* margin: 10% 0 0 10% */
+      height: 54vh;
+
 }
 
 .message {
@@ -10,9 +12,19 @@
   border-radius: var(--border-radius);  
 }
 
-@media screen and (max-width: 360px) {
+#category-message {
+margin: 10% 0 0 10%
+
+}
+
+@media screen and (max-width: 600px) {
   .message-container {
-      margin: 10px 20px 0 20px;
       text-align: center;
+      height: 54vh;
       }
+  #category-message {
+    margin: 10px 20px 0 20px;
+
+
+  }
 }

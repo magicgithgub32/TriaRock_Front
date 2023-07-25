@@ -1,46 +1,43 @@
-import React, { useContext } from 'react'
-import './Heart.css'
+import React, { useContext } from 'react';
+import './Heart.css';
 import { ProductContext, UserContext } from '../../../App';
 import { favPutFetch } from '../../../services/favPutFetch';
-import { userStored } from '../../../utils/localStorage'
+// import { userStored } from '../../../utils/localStorage';
 
-const Heart = ({product}) => {
+const Heart = ({ product }) => {
   const { userFavs, setUserFavs } = useContext(ProductContext);
-      const { isLoggedIn } = useContext(UserContext);
-    // const { userLogged } = useContext(UserContext);
+  const { isLoggedIn } = useContext(UserContext);
+  // const { userLogged } = useContext(UserContext);
 
-    const handleHeart = (product) => {
-  
-      if (!isLoggedIn) {
-        alert(
-          'Please log in to your account or create a new one so you can see and save your favorite products.'
-        );
-      } else {
-        const bodyData = { fav: product._id }
-        favPutFetch(userStored, bodyData, setUserFavs, userFavs);
-      }
-    };
-    
+  const handleHeart = (product) => {
+    if (!isLoggedIn) {
+      alert(
+        'Please log in to your account or create a new one so you can see and save your favorite products.'
+      );
+    } else {
+      const bodyData = { fav: product._id };
+      favPutFetch(bodyData, setUserFavs, userFavs);
+    }
+  };
+
   return (
     <div className="hearts-container">
-    <img
-      src={
-       
-        typeof userFavs[0] === 'string'
-          ? userFavs?.includes(product._id)
+      <img
+        src={
+          typeof userFavs[0] === 'string'
+            ? userFavs?.includes(product._id)
+              ? '../../src/assets/red-heart.png'
+              : '../../src/assets/yellow-heart.svg'
+            : userFavs?.some((favProduct) => favProduct._id === product._id)
             ? '../../src/assets/red-heart.png'
             : '../../src/assets/yellow-heart.svg'
-          : userFavs?.some((favProduct) => favProduct._id === product._id)
-          ? '../../src/assets/red-heart.png'
-          : '../../src/assets/yellow-heart.svg'
-          
-      }
-      className="heart"
-      alt="heart"
-      onClick={() => handleHeart(product)}
-    />
-  </div>
-  )
-}
+        }
+        className="heart"
+        alt="heart"
+        onClick={() => handleHeart(product)}
+      />
+    </div>
+  );
+};
 
-export default Heart
+export default Heart;

@@ -1,6 +1,6 @@
-// import { loginPostFetch } from "./loginPostFetch";
+import { loginPostFetch } from './loginPostFetch';
 
-export const registerPostFetch = (values, navigate, setError) => {
+export const registerPostFetch = (values, navigate, setError, setIsLoggedIn) => {
   fetch(`${import.meta.env.VITE_API_URL}/users/register`, {
     method: 'POST',
     headers: {
@@ -13,21 +13,20 @@ export const registerPostFetch = (values, navigate, setError) => {
       if (data.message) {
         setError(data.message);
       } else {
-        setError("")
+        setError('');
         const userStored = {
           email: data.createdUser.email,
-          password: data.createdUser.password //que llegue password
+          password: data.createdUser.password
         };
         localStorage.setItem('userStored', JSON.stringify(userStored));
-        navigate("/")
-        // loginPostFetch(values, navigate, setError, setIsLoggedIn)
+        loginPostFetch(values, navigate, setError, setIsLoggedIn);
+        // navigate('/'); //comentado porque no va a la home, sino a myfavs (el navigate del login)
       }
     })
     .catch((error) => {
       console.log('Error:', error);
     });
 };
-
 
 // export const registerPostFetch = (userRegistered, setUserLogged, navigate, setError) => {
 //   fetch(`${import.meta.env.VITE_API_URL}/users/register`, {

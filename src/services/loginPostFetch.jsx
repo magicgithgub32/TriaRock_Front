@@ -8,24 +8,25 @@ export const loginPostFetch = (values, navigate, setError, setIsLoggedIn) => {
   })
     .then((response) => response.json())
     .then((data) => {
-      if (data.message) { 
+      if (data.message) {
         setError(data.message);
       } else {
-        setError("")
-      const userStored = {
-        email: data.user.email,
-        token: data.token
-      };
-      localStorage.setItem('userStored', JSON.stringify(userStored));
-      navigate('/favorites');
-     setIsLoggedIn(true);
-    }
+        setError('');
+        const userStored = {
+          email: data.user.email,
+          token: data.token
+        };
+        localStorage.setItem('userStored', JSON.stringify(userStored));
+
+        navigate('/favorites');
+
+        setIsLoggedIn(true);
+      }
     })
     .catch((error) => {
       console.log('error:', error.message);
     });
 };
-
 
 // export const loginPostFetch = (userLogged, setError, navigate, setUserLogged) => {
 //   fetch(`${import.meta.env.VITE_API_URL}/users/login`, {
@@ -38,10 +39,10 @@ export const loginPostFetch = (values, navigate, setError, setIsLoggedIn) => {
 //     .then((response) => response.json())
 //     .then((data) => {
 // console.log('logueado')
-//       if (data.message) { 
+//       if (data.message) {
 //       setError(data.message)
 //       setUserLogged({ email: '', password: '' });
-//       } else {  
+//       } else {
 //       const userStored = {
 //         email: data.user.email,
 //         token: data.token

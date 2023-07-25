@@ -12,22 +12,22 @@ import Button from '../../components/ui/Button/Button';
 import { useForm } from 'react-hook-form';
 import { UserContext } from '../../App';
 
-const Register = ({error, setError}) => {
-  
-  const { register, handleSubmit, formState } = useForm({ defaultValues: { email: '', password: '' } });
+const Register = ({ error, setError }) => {
+  const { register, handleSubmit, formState } = useForm({
+    defaultValues: { email: '', password: '' }
+  });
   const navigate = useNavigate();
   const { setIsLoggedIn } = useContext(UserContext);
 
   const onSubmit = (values) => {
-    registerPostFetch(values, navigate, setError)
+    registerPostFetch(values, navigate, setError, setIsLoggedIn);
     console.log(values);
-   console.log('error en evento submit', formState.errors)
-   
+    console.log('error en evento submit', formState.errors);
   };
 
   // const passwordValidation = (value) => {
   //   const regex = /^(?=.*?[A-Z])(?=.*?[a-z]).{6,}$/
-  //   return regex.test(value) || 
+  //   return regex.test(value) ||
 
   //   'Password must be at least 6 characters long and contain both uppercase and lowercase letters.';
   // };
@@ -47,13 +47,11 @@ const Register = ({error, setError}) => {
             id="password"
             register={register('password')}
             // {  validate: passwordValidation}
-              
           />
           <Button type="submit" buttonText="Submit" />
         </form>
         {error && <Message messageText={error} />}
-{/* {formState.errors.password && <Message messageText={formState.errors.password.message} />} */}
-
+        {/* {formState.errors.password && <Message messageText={formState.errors.password.message} />} */}
       </div>
 
       <Footer />

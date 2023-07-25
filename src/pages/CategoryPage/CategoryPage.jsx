@@ -19,7 +19,7 @@ const CategoryPage = () => {
   const { setProductsToRender, productsToRender, categoriesData, allProducts } =
     useContext(ProductContext);
 
-    const { searchClick } = useContext(SearchContext);
+  const { searchClick } = useContext(SearchContext);
 
   const location = useLocation();
   const currentPath = location.pathname;
@@ -38,7 +38,6 @@ const CategoryPage = () => {
   const genderRefs = useRef([]);
   const productTypeRefs = useRef([]);
 
-  
   useEffect(() => {
     const categoryProducts = allProducts?.filter(
       (product) => product.category === currentPath.slice(1, currentPath.length)
@@ -52,7 +51,6 @@ const CategoryPage = () => {
     setProductsToRender(categoryProducts);
   }, [allProducts, currentPath]);
 
-  
   useEffect(() => {
     const itemTypes = categoryItems.map((product) => product.name.split(' ')[0]);
     setProductTypes([...new Set(itemTypes)]);
@@ -110,13 +108,23 @@ const CategoryPage = () => {
           />
         </section>
 
-
-        { searchClick ?
-      (productsToRender?.length === 0 ? <Message messageText="No results found. Please, double check your spelling."/> :
-      <ProductCard />)
-        :
-        (filterProducts.length === 0 ? <Message messageText="There are no products matching your requirements."/> :
-        <ProductCard />)}
+        {searchClick ? (
+          productsToRender?.length === 0 ? (
+            <Message
+              messageText="No results found. Please, double check your spelling."
+              id="category-message"
+            />
+          ) : (
+            <ProductCard />
+          )
+        ) : filterProducts.length === 0 ? (
+          <Message
+            messageText="There are no products matching your requirements."
+            id="category-message"
+          />
+        ) : (
+          <ProductCard />
+        )}
       </main>
 
       <Footer />
