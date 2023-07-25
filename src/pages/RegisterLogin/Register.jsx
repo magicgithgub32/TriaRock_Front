@@ -25,13 +25,6 @@ const Register = ({ error, setError }) => {
     console.log('error en evento submit', formState.errors);
   };
 
-  // const passwordValidation = (value) => {
-  //   const regex = /^(?=.*?[A-Z])(?=.*?[a-z]).{6,}$/
-  //   return regex.test(value) ||
-
-  //   'Password must be at least 6 characters long and contain both uppercase and lowercase letters.';
-  // };
-
   return (
     <div>
       <Header />
@@ -40,7 +33,6 @@ const Register = ({ error, setError }) => {
         <p className="register-cta">Create your account and start saving your favorites!</p>
         <form onSubmit={handleSubmit(onSubmit)} className="register-login-form">
           <Input type="email" placeholder="email address" id="email" register={register('email')} />
-
           <Input
             type="password"
             placeholder="password"

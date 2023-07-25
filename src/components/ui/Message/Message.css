@@ -1,30 +1,15 @@
 .message-container {  
-    /* margin: 20px 20px 0 20px; */
-      text-align: center;
-      /* margin: 10% 0 0 10% */
-      height: 54vh;
-
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 75%;
+  margin: 15px
 }
 
 .message {
   padding: 14px 18px;
   background-color: var(--color-tertiary);
   border-radius: var(--border-radius);  
-}
-
-#category-message {
-margin: 10% 0 0 10%
-
-}
-
-@media screen and (max-width: 600px) {
-  .message-container {
-      text-align: center;
-      height: 54vh;
-      }
-  #category-message {
-    margin: 10px 20px 0 20px;
-
-
-  }
+  height: 40px;
+  font-weight: 700;
 }

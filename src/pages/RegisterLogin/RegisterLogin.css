@@ -3,9 +3,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 59.5vh;
-    padding: 20px;
+    padding-top: 20px;
 }
+
+  
 
 .register-login-form {
     display: flex;
@@ -19,7 +20,7 @@
 
 .register-cta {
     color: var(--primary-text-color);
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 600;
     text-align: center
 }
@@ -30,15 +31,21 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 gap: 10px;
-padding: 20px;
+padding: 20px 0;
 }
 
-@media screen and (max-width: 915px) {
+#footer-register-login {
+    position: absolute;
+    bottom: 0;
+    width: 100%
+}
 
-.register-login-container {
-        height: 69vh;
-    }
+@media screen and (max-width: 500px) {
 .register-cta {
+    font-size: 14px;
     padding: 0 12px 0 12px
+}
+.register-login-container {
+    padding: 20px
 }
 }

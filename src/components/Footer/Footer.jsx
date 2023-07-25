@@ -1,9 +1,9 @@
 import './Footer.css';
 import React from 'react';
 
-const Footer = () => {
+const Footer = ({id}) => {
   return (
-    <footer>
+    <footer id={id}>
       <p className="footer">
     Created by {' '}
       <a href="https://www.linkedin.com/in/beatrizrodriguezmaya/"

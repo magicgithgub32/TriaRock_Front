@@ -86,7 +86,7 @@ display: flex;
     padding-top: 10px
 }
 
-@media screen and (max-width: 360px) {
+@media screen and (max-width: 490px) {
 .product-card-wrapper {
      display: grid;
       grid-template-columns: 1fr 1fr;

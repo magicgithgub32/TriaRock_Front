@@ -3,8 +3,8 @@ import './Message.css';
 
 const Message = ({ messageText, id }) => {
   return (
-    <div id={id} className="message-container">
-      <h3 className="message">{messageText}</h3>
+    <div  className="message-container" id={id}>
+      <p className="message">{messageText}</p>
     </div>
   );
 };

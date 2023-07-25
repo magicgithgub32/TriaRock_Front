@@ -28,12 +28,12 @@ const Login = ({ error, setError }) => {
   }, [currentPath]);
 
   return (
-    <div>
+    <>
       <Header />
       <main className="register-login-container">
+     
         <form onSubmit={handleSubmit(onSubmit)} className="register-login-form">
           <Input register={register('email')} type="email" placeholder="email address" id="email" />
-
           <Input
             register={register('password')}
             type="password"
@@ -53,9 +53,10 @@ const Login = ({ error, setError }) => {
             <Button buttonText="Register" className="register-button" />
           </Link>
         </div>
+
       </main>
-      <Footer />
-    </div>
+      <Footer id="footer-register-login"/>
+    </>
   );
 };
 
