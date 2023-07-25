@@ -51,7 +51,8 @@ const SearchInput = ({ id }) => {
 
   return (
     <div className="search-input-section" id={id}>
-      <Input
+      <input
+        className="input"
         type="text"
         placeholder="Find your product"
         onChange={handleSearchInput}

@@ -46,7 +46,7 @@ const Register = ({ error, setError }) => {
         {/* {formState.errors.password && <Message messageText={formState.errors.password.message} />} */}
       </div>
 
-      <Footer />
+      <Footer id="footer-register-login" />
     </div>
   );
 };

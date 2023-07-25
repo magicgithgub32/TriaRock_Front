@@ -97,7 +97,6 @@ const CategoryPage = () => {
             roundedHighestPrice={roundedHighestPrice}
             roundedLowestPrice={roundedLowestPrice}
           />
-          {/* promo */}
           <ClearFilters
             setSelectedPrice={setSelectedPrice}
             roundedHighestPrice={roundedHighestPrice}
@@ -127,7 +126,7 @@ const CategoryPage = () => {
         )}
       </main>
 
-      <Footer />
+      <Footer id={filterProducts.length === 0 ? 'footer-category-page' : ''} />
     </div>
   );
 };
