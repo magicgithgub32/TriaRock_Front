@@ -15,7 +15,7 @@ button {
     background-color: var(--color-tertiary);
   }
 
-  .register-button {
+  .white-button {
     background-color: whitesmoke;
     border: 2px solid var(--color-tertiary);
   }

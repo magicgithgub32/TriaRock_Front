@@ -28,7 +28,8 @@ export const CollapsibleFilter = ({
 
   return (
     <section className="collapsible-filter-section">
-      <Collapsible trigger="FILTROS &#9661;">
+      <Collapsible trigger="FILTROS ☰" triggerClassName="main-filter-title"
+      triggerOpenedClassName="main-filter-title">
       <div className="collapsible-filters">
       <Collapsible trigger="TIPO DE PRODUCTO + ">
         <ProductTypeFilter

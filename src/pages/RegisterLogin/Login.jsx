@@ -50,7 +50,7 @@ const Login = ({ error, setError }) => {
             Create your account if you don't have one yet.
           </p>
           <Link to="/register">
-            <Button buttonText="Register" className="register-button" />
+            <Button buttonText="Register" className="white-button" />
           </Link>
         </div>
 

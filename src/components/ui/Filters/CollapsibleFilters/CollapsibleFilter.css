@@ -21,11 +21,11 @@ text-transform: uppercase;
    font-weight: 600;
 }
 
-/* cómo distinguir el título del 1º collapsable del 2º
-.Collapsible__trigger {
-    justify-self: center;
-    font-weight: 700;
-    } */
+.main-filter-title {
+       font-weight: 700;
+       font-size:20px;
+       padding-bottom: 10px;
+    }
 
 
 .Collapsible {
@@ -41,3 +41,13 @@ text-transform: uppercase;
             border-bottom: 1px solid var(--color-input)
             }
     }
+
+    @media screen and (max-width: 500px) {
+    
+    .collapsible-filters {
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 10px;
+        gap: 8px
+        }
+        }

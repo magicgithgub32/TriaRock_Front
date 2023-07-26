@@ -19,7 +19,7 @@ const ClearFilters = ({
 
   return (
     <div className="button-container">
-      <button onClick={handleClearFilters}>Clear</button>
+      <button className="white-button" onClick={handleClearFilters}>Clear</button>
     </div>
   );
 };

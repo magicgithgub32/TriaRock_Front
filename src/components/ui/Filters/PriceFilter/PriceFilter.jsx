@@ -16,7 +16,7 @@ const PriceFilter = ({
   return (
     <div className="filter-label-and-options">
       <label className="filter-label" id={id}>
-        precio máximo
+        precio
       </label>
       <input
         type="range"
