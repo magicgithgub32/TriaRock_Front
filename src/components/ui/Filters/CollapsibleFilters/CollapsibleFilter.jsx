@@ -1,10 +1,11 @@
 import React from 'react';
 import './CollapsibleFilter.css';
+import Collapsible from 'react-collapsible';
 import ProductTypeFilter from '../ProductTypeFilter/ProductTypeFilter';
 import GenderFilter from '../GenderFilter/GenderFilter';
 import PriceFilter from '../PriceFilter/PriceFilter';
 import ClearFilters from '../ClearFilters/ClearFilters';
-import Collapsible from 'react-collapsible';
+
 
 export const CollapsibleFilter = ({
   productTypes,
@@ -20,9 +21,16 @@ export const CollapsibleFilter = ({
   roundedHighestPrice,
   roundedLowestPrice
 }) => {
+
+  const showFilters = () => {
+    
+  }
+
   return (
     <section className="collapsible-filter-section">
-      <Collapsible trigger="TIPO DE PRODUCTO + " className="filter-label">
+      <Collapsible trigger="FILTROS &#9661;">
+      <div className="collapsible-filters">
+      <Collapsible trigger="TIPO DE PRODUCTO + ">
         <ProductTypeFilter
           id="collapsible-filter-label"
           inputOptions={productTypes}
@@ -32,7 +40,7 @@ export const CollapsibleFilter = ({
         />
       </Collapsible>
 
-      <Collapsible trigger="GÉNERO + " className="filter-label">
+      <Collapsible trigger="GÉNERO + ">
         <GenderFilter
           id="collapsible-filter-label"
           inputOptions={genders}
@@ -42,7 +50,7 @@ export const CollapsibleFilter = ({
         />
       </Collapsible>
 
-      <Collapsible trigger="PRECIO + " className="filter-label">
+      <Collapsible trigger="PRECIO + ">
         <PriceFilter
           id="collapsible-filter-label"
           selectedPrice={selectedPrice}
@@ -51,7 +59,7 @@ export const CollapsibleFilter = ({
           roundedLowestPrice={roundedLowestPrice}
         />
       </Collapsible>
-
+      </div>
       <ClearFilters
         setSelectedPrice={setSelectedPrice}
         roundedHighestPrice={roundedHighestPrice}
@@ -60,6 +68,7 @@ export const CollapsibleFilter = ({
         productTypeRefs={productTypeRefs}
         genderRefs={genderRefs}
       />
+      </Collapsible>
     </section>
   );
 };

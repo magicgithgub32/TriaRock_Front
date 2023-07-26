@@ -22,8 +22,6 @@ const Register = ({ error, setError }) => {
 
   const onSubmit = (values) => {
     registerPostFetch(values, navigate, setError, setIsLoggedIn);
-    console.log(values);
-    console.log('error en evento submit', formState.errors);
   };
 
   return (

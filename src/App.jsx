@@ -33,7 +33,6 @@ const App = () => {
       return false;
     }
   });
-  console.log(isLoggedIn);
 
   const { userFavs, setUserFavs } = userFavsFetch(userStored);
 

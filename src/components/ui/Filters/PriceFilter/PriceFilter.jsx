@@ -1,4 +1,5 @@
 import React from 'react';
+import './PriceFilter.css'
 
 const PriceFilter = ({
   selectedPrice,
@@ -15,7 +16,7 @@ const PriceFilter = ({
   return (
     <div className="filter-label-and-options">
       <label className="filter-label" id={id}>
-        precio
+        precio máximo
       </label>
       <input
         type="range"
@@ -27,7 +28,7 @@ const PriceFilter = ({
       />
       <div className="price-numbers">
         <p>{`${roundedLowestPrice} €`}</p>
-        <p>{`${selectedPrice} €`}</p>
+        <p className="selected-price">{`${selectedPrice} €`}</p>
         <p>{`${roundedHighestPrice} €`}</p>
       </div>
     </div>

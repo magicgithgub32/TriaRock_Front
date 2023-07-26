@@ -6,9 +6,7 @@ const ClearFilters = ({
   setSelectedTypes,
   setSelectedGender, 
   setSelectedPrice,
-  roundedHighestPrice,
-  productTypeRefs,
-  genderRefs
+  roundedHighestPrice
 }) => {
   
 
@@ -16,13 +14,11 @@ const ClearFilters = ({
     setSelectedPrice(roundedHighestPrice);
     setSelectedTypes(''),
     setSelectedGender('')
-    // productTypeRefs.current.forEach((productType) => productType.checked = false)
-    // genderRefs.current.forEach((gender) => gender.checked = false)
   };
 
 
   return (
-    <div>
+    <div className="button-container">
       <button onClick={handleClearFilters}>Clear</button>
     </div>
   );

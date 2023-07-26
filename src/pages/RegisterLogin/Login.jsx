@@ -21,7 +21,6 @@ const Login = ({ error, setError }) => {
 
   const onSubmit = (values) => {
     loginPostFetch(values, navigate, setError, setIsLoggedIn);
-    console.log(values);
   };
 
   useEffect(() => {

@@ -1,9 +1,43 @@
 .collapsible-filter-section {
-display: none
+    display: none;
+    }
+
+    .collapsible-filters {
+        display: flex;
+        justify-content: space-around;
+        padding-bottom: 10px
+        }
+
+.filters-title {
+text-transform: uppercase;
+text-align: center;
+font-weight: 800;
+font-size: 18px;
+padding: 10px
 }
 
-@media screen and (max-width: 768px) {
-    .collapsible-filter-section {
-        display: flex;
-        }
+.Collapsible__trigger {
+text-transform: uppercase;
+   font-weight: 600;
 }
+
+/* cómo distinguir el título del 1º collapsable del 2º
+.Collapsible__trigger {
+    justify-self: center;
+    font-weight: 700;
+    } */
+
+
+.Collapsible {
+    display: flex;
+    flex-direction: column;
+}
+
+    @media screen and (max-width: 768px) {
+        .collapsible-filter-section {
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            border-bottom: 1px solid var(--color-input)
+            }
+    }

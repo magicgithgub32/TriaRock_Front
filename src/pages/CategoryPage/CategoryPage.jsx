@@ -94,7 +94,8 @@ const CategoryPage = () => {
             roundedHighestPrice={roundedHighestPrice}
             roundedLowestPrice={roundedLowestPrice}
           />
-          <section className="filter-section">
+          <section className="filters-section">
+            <p className="filters-section-title">FILTROS</p>
             <ProductTypeFilter
               inputOptions={productTypes}
               selectedTypes={selectedTypes}
