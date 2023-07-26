@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './Header.css';
 import React, { useContext } from 'react';
 import Logo from '../ui/Logo/Logo';
@@ -6,14 +6,15 @@ import IconButton from '../ui/IconButton/IconButton';
 import SearchInput from '../ui/SearchInput/SearchInput';
 import { ProductContext, UserContext } from '../../App';
 import NavBar from '../ui/NavBar/NavBar';
+import { getCurrentPath } from '../../utils/currentPath'
 
 const Header = () => {
   const { setUserFavs } = useContext(ProductContext);
   const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
   const navigate = useNavigate();
 
-  const location = useLocation();
-  const currentPath = location.pathname;
+  
+  const {currentPath} = getCurrentPath()
 
   const handleLogout = () => {
     localStorage.removeItem('userStored');

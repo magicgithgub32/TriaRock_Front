@@ -30,3 +30,9 @@ footer {
         width: 100%
     }
   }
+
+  @media screen and (max-width: 1000px) {
+  #footer-register-login {
+    position: fixed;
+}
+  }

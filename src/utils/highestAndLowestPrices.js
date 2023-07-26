@@ -1,8 +1,8 @@
-export const highestAndLowestPrices = (categoriesData, currentPath) => {
+export const highestAndLowestPrices = (categoriesData, currentPath, validCurrentPath) => {
   if ((categoriesData, currentPath)) {
     const getLowestPrice = () => {
       const currentCategory = categoriesData.filter(
-        (category) => category.name === currentPath.slice(1, currentPath.length)
+        (category) => category.name === validCurrentPath
       );
 
       const prices = currentCategory[0].items.map((product) =>
@@ -15,7 +15,7 @@ export const highestAndLowestPrices = (categoriesData, currentPath) => {
 
     const getHighestPrice = () => {
       const currentCategory = categoriesData.filter(
-        (category) => category.name === currentPath.slice(1, currentPath.length)
+        (category) => category.name === validCurrentPath
       );
 
       const prices = currentCategory[0].items.map((product) =>

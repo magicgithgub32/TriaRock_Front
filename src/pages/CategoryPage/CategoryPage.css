@@ -1,4 +1,8 @@
-.main-category-page {
+/* .main-category-page {
+    display: flex;
+} */
+
+.filter-and-products {
 display: flex;
 }
 
@@ -14,7 +18,8 @@ padding: 20px;
     .filter-section {
         display: none;
         }
-        .main-category-page {
+        .filter-and-products {
+            flex-direction: column;
             justify-content: center;
             }
   }

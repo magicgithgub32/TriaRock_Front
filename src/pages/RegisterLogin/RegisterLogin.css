@@ -3,10 +3,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-top: 20px;
-}
-
-  
+}  
 
 .register-login-form {
     display: flex;
@@ -40,8 +37,5 @@ padding: 20px 0;
 .register-cta {
     font-size: 14px;
     padding: 0 12px 0 12px
-}
-.register-login-container {
-    padding: 20px
 }
 }

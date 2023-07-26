@@ -11,6 +11,7 @@ import Button from '../../components/ui/Button/Button';
 
 import { useForm } from 'react-hook-form';
 import { UserContext } from '../../App';
+import Title from '../../components/ui/Title/Title';
 
 const Register = ({ error, setError }) => {
   const { register, handleSubmit, formState } = useForm({
@@ -29,7 +30,8 @@ const Register = ({ error, setError }) => {
     <div>
       <Header />
 
-      <div className="register-login-container">
+      <main className="register-login-container">
+      <Title textTitle="register" id="register-login-title"/> 
         <p className="register-cta">Create your account and start saving your favorites!</p>
         <form onSubmit={handleSubmit(onSubmit)} className="register-login-form">
           <Input type="email" placeholder="email address" id="email" register={register('email')} />
@@ -44,7 +46,7 @@ const Register = ({ error, setError }) => {
         </form>
         {error && <Message messageText={error} />}
         {/* {formState.errors.password && <Message messageText={formState.errors.password.message} />} */}
-      </div>
+      </main>
 
       <Footer id="footer-register-login" />
     </div>

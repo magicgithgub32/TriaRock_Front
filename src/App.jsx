@@ -20,6 +20,8 @@ export const UserContext = createContext();
 export const SearchContext = createContext();
 
 const App = () => {
+
+
   const allProducts = productFetch();
   const categoriesData = categoryFetch();
 
@@ -75,6 +77,8 @@ console.log(isLoggedIn)
               <Route path="/login" element={<Login error={error} setError={setError}/>}></Route>
               <Route path="/register" element={<Register error={error} setError={setError}/>}></Route>
 
+
+
               {categoriesData?.map((category) => (
                 <Route
                   key={category.name}
@@ -85,16 +89,8 @@ console.log(isLoggedIn)
 
               <Route path="/favorites" element={<Favorites />}></Route>
               <Route path="/product-detail" element={<ProductDetail />}></Route>
+            
 
-              <Route path="/favorites/swimming" element={<CategoryPage />} />
-
-              {/* {categoriesData?.map((category) => (
-              <Route
-                key={category.name}
-                path={`/favorites/${category.name}`}
-                element={<CategoryPage />}
-              ></Route>
-            ))} */}
             </Routes>
           </SearchContext.Provider>
         </UserContext.Provider>

@@ -9,7 +9,7 @@ import Footer from '../../components/Footer/Footer';
 import Title from '../../components/ui/Title/Title';
 import ProductCard from '../../components/ProductCard/ProductCard';
 import { favsGetFetch } from '../../services/favsGetFetch';
-// import { userStored } from '../../utils/localStorage';
+
 
 const Favorites = () => {
   const { userFavs, setUserFavs, setProductsToRender } = useContext(ProductContext);
@@ -18,14 +18,10 @@ const Favorites = () => {
 
   useEffect(() => {
     const userStored = JSON.parse(localStorage.getItem('userStored'));
-    console.log('isLoggedIn', isLoggedIn);
-    console.log('userStored', userStored);
-
+  
     if (!isLoggedIn) {
       setUserFavs([]);
     } else {
-      console.log('userStored', userStored);
-
       favsGetFetch(setUserFavs);
     }
   }, [isLoggedIn]);
@@ -39,7 +35,8 @@ const Favorites = () => {
   return (
     <div>
       <Header />
-      <Title textTitle="My favorite products"></Title>
+      <main>
+      <Title textTitle="My favorite products"/>
       {loaded ? (
         userFavs?.length > 0 ? (
           <ProductCard />
@@ -52,6 +49,7 @@ const Favorites = () => {
         <p>Loading...</p>
       )}
       <CategoryCard />
+      </main>
       <Footer />
     </div>
   );

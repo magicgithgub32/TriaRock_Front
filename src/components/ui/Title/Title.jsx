@@ -1,16 +1,13 @@
 import React from 'react'
 import './Title.css'
 
-const Title = ({textTitle}) => {
+const Title = ({textTitle, id}) => {
+
   return (
-    <div className="title-container">
-          <h2 className={`title${textTitle === "My favorite products" || 
-          textTitle === "swimming" ||
-          textTitle === "cycling" ||
-          textTitle === "running" ? '-mobile' : ''}`}
-          >{textTitle}</h2>
-    </div>
-  )
+      <div className="title-container" id={id}>
+            <h2 className="title" id={id}>{textTitle}</h2>
+      </div>
+    )
 }
 
 export default Title

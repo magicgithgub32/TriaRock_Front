@@ -1,0 +1,9 @@
+.collapsible-filter-section {
+display: none
+}
+
+@media screen and (max-width: 768px) {
+    .collapsible-filter-section {
+        display: flex;
+        }
+}

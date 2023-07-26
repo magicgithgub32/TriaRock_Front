@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext, useRef } from 'react';
-import { useLocation } from 'react-router-dom';
 import './CategoryPage.css';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
@@ -14,6 +13,8 @@ import { highestAndLowestPrices } from '../../utils/highestAndLowestPrices';
 import { genders } from '../../utils/filterProducts';
 import Title from '../../components/ui/Title/Title';
 import Message from '../../components/ui/Message/Message';
+import { CollapsibleFilter } from '../../components/ui/Filters/CollapsibleFilters/CollapsibleFilter';
+import { getCurrentPath } from '../../utils/currentPath';
 
 const CategoryPage = () => {
   const { setProductsToRender, productsToRender, categoriesData, allProducts } =
@@ -21,12 +22,12 @@ const CategoryPage = () => {
 
   const { searchClick } = useContext(SearchContext);
 
-  const location = useLocation();
-  const currentPath = location.pathname;
+  const { currentPath, validCurrentPath } = getCurrentPath()
 
   const { roundedHighestPrice, roundedLowestPrice } = highestAndLowestPrices(
     categoriesData,
-    currentPath
+    currentPath,
+    validCurrentPath
   );
 
   const [productTypes, setProductTypes] = useState([]);
@@ -40,7 +41,7 @@ const CategoryPage = () => {
 
   useEffect(() => {
     const categoryProducts = allProducts?.filter(
-      (product) => product.category === currentPath.slice(1, currentPath.length)
+      (product) => product.category === validCurrentPath
     );
     setProductsToRender(categoryProducts);
     setCategoryItems(categoryProducts);
@@ -74,10 +75,12 @@ const CategoryPage = () => {
   }, [selectedTypes, selectedGender, selectedPrice]);
 
   return (
-    <div>
+    <>
       <Header />
-      <Title textTitle={currentPath.slice(1, currentPath.length)} />
       <main className="main-category-page">
+      <Title textTitle={currentPath.slice(1, currentPath.length)} />
+      <div className="filter-and-products">
+        <CollapsibleFilter/>
         <section className="filter-section">
           <ProductTypeFilter
             inputOptions={productTypes}
@@ -124,10 +127,11 @@ const CategoryPage = () => {
         ) : (
           <ProductCard />
         )}
+        </div>
       </main>
 
       <Footer id={filterProducts.length === 0 ? 'footer-category-page' : ''} />
-    </div>
+    </>
   );
 };
 

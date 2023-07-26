@@ -1,15 +1,13 @@
 import React, { useEffect, useContext } from 'react';
 import './SearchInput.css';
 import { ProductContext, SearchContext } from '../../../App';
-import Input from '../Input/Input';
-import { useLocation } from 'react-router-dom';
+import { getCurrentPath } from '../../../utils/currentPath';
 
 const SearchInput = ({ id }) => {
   const { allProducts, setProductsToRender, productsToRender } = useContext(ProductContext);
   const { searchInput, setSearchInput, searchClick, setSearchClick } = useContext(SearchContext);
 
-  const location = useLocation();
-  const currentPath = location.pathname;
+  const { currentPath, validCurrentPath } = getCurrentPath()
 
   const handleSearchInput = (event) => {
     setSearchInput(event.target.value);
@@ -19,7 +17,13 @@ const SearchInput = ({ id }) => {
     setSearchClick(!searchClick);
   };
 
-  const validCurrentPath = currentPath.slice(1, currentPath.length);
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') 
+    handleSearchClick()
+  };
+
+ 
   useEffect(() => {
     if (searchClick) {
       if (currentPath !== '/') {
@@ -57,11 +61,13 @@ const SearchInput = ({ id }) => {
         placeholder="Find your product"
         onChange={handleSearchInput}
         value={searchInput}
+        onKeyDown={handleKeyDown} 
       />
       <img
         src={searchClick ? './src/assets/x.svg' : './src/assets/search.svg'}
         className="search-icon"
         onClick={handleSearchClick}
+       
       />
     </div>
   );
