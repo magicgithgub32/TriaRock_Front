@@ -4,7 +4,8 @@ const PriceFilter = ({
   selectedPrice,
   setSelectedPrice,
   roundedHighestPrice,
-  roundedLowestPrice
+  roundedLowestPrice,
+  id
 }) => {
   const handlePriceChange = (event) => {
     const newselectedPrice = parseInt(event.target.value);
@@ -13,7 +14,9 @@ const PriceFilter = ({
 
   return (
     <div className="filter-label-and-options">
-      <label className="filter-label">precio</label>
+      <label className="filter-label" id={id}>
+        precio
+      </label>
       <input
         type="range"
         id="price-range"

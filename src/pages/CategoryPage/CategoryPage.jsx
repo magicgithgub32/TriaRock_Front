@@ -22,7 +22,7 @@ const CategoryPage = () => {
 
   const { searchClick } = useContext(SearchContext);
 
-  const { currentPath, validCurrentPath } = getCurrentPath()
+  const { currentPath, validCurrentPath } = getCurrentPath();
 
   const { roundedHighestPrice, roundedLowestPrice } = highestAndLowestPrices(
     categoriesData,
@@ -78,55 +78,68 @@ const CategoryPage = () => {
     <>
       <Header />
       <main className="main-category-page">
-      <Title textTitle={currentPath.slice(1, currentPath.length)} />
-      <div className="filter-and-products">
-        <CollapsibleFilter/>
-        <section className="filter-section">
-          <ProductTypeFilter
-            inputOptions={productTypes}
+        <Title textTitle={currentPath.slice(1, currentPath.length)} />
+        <div className="filter-and-products">
+          <CollapsibleFilter
+            productTypes={productTypes}
             selectedTypes={selectedTypes}
             setSelectedTypes={setSelectedTypes}
             productTypeRefs={productTypeRefs}
-          />
-          <GenderFilter
-            inputOptions={genders}
+            genders={genders}
             selectedGender={selectedGender}
             setSelectedGender={setSelectedGender}
             genderRefs={genderRefs}
-          />
-          <PriceFilter
             selectedPrice={selectedPrice}
             setSelectedPrice={setSelectedPrice}
             roundedHighestPrice={roundedHighestPrice}
             roundedLowestPrice={roundedLowestPrice}
           />
-          <ClearFilters
-            setSelectedPrice={setSelectedPrice}
-            roundedHighestPrice={roundedHighestPrice}
-            setSelectedTypes={setSelectedTypes}
-            setSelectedGender={setSelectedGender}
-            productTypeRefs={productTypeRefs}
-            genderRefs={genderRefs}
-          />
-        </section>
+          <section className="filter-section">
+            <ProductTypeFilter
+              inputOptions={productTypes}
+              selectedTypes={selectedTypes}
+              setSelectedTypes={setSelectedTypes}
+              productTypeRefs={productTypeRefs}
+            />
+            <GenderFilter
+              inputOptions={genders}
+              selectedGender={selectedGender}
+              setSelectedGender={setSelectedGender}
+              genderRefs={genderRefs}
+            />
+            <PriceFilter
+              selectedPrice={selectedPrice}
+              setSelectedPrice={setSelectedPrice}
+              roundedHighestPrice={roundedHighestPrice}
+              roundedLowestPrice={roundedLowestPrice}
+            />
+            <ClearFilters
+              setSelectedPrice={setSelectedPrice}
+              roundedHighestPrice={roundedHighestPrice}
+              setSelectedTypes={setSelectedTypes}
+              setSelectedGender={setSelectedGender}
+              productTypeRefs={productTypeRefs}
+              genderRefs={genderRefs}
+            />
+          </section>
 
-        {searchClick ? (
-          productsToRender?.length === 0 ? (
+          {searchClick ? (
+            productsToRender?.length === 0 ? (
+              <Message
+                messageText="No results found. Please, double check your spelling."
+                id="category-message"
+              />
+            ) : (
+              <ProductCard />
+            )
+          ) : filterProducts.length === 0 ? (
             <Message
-              messageText="No results found. Please, double check your spelling."
+              messageText="There are no products matching your requirements."
               id="category-message"
             />
           ) : (
             <ProductCard />
-          )
-        ) : filterProducts.length === 0 ? (
-          <Message
-            messageText="There are no products matching your requirements."
-            id="category-message"
-          />
-        ) : (
-          <ProductCard />
-        )}
+          )}
         </div>
       </main>
 

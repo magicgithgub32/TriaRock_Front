@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import React, { useState, createContext } from 'react';
 
 import Home from './pages/Home/Home';
@@ -20,8 +20,6 @@ export const UserContext = createContext();
 export const SearchContext = createContext();
 
 const App = () => {
-
-
   const allProducts = productFetch();
   const categoriesData = categoryFetch();
 
@@ -29,12 +27,13 @@ const App = () => {
   const [productSelected, setProductSelected] = useState([]);
 
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
-     if (localStorage.getItem('userStored')) {
-          return true;
-        } else {return false};
-        })
-console.log(isLoggedIn)
-
+    if (localStorage.getItem('userStored')) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+  console.log(isLoggedIn);
 
   const { userFavs, setUserFavs } = userFavsFetch(userStored);
 
@@ -74,10 +73,11 @@ console.log(isLoggedIn)
             <Routes>
               <Route path="/" element={<Home />}></Route>
 
-              <Route path="/login" element={<Login error={error} setError={setError}/>}></Route>
-              <Route path="/register" element={<Register error={error} setError={setError}/>}></Route>
-
-
+              <Route path="/login" element={<Login error={error} setError={setError} />}></Route>
+              <Route
+                path="/register"
+                element={<Register error={error} setError={setError} />}
+              ></Route>
 
               {categoriesData?.map((category) => (
                 <Route
@@ -87,10 +87,16 @@ console.log(isLoggedIn)
                 ></Route>
               ))}
 
+              {categoriesData?.map((category) => (
+                <Route
+                  key={category.name}
+                  path={`/favorites/${category.name}`}
+                  element={<Navigate to={`/${category.name}`} />}
+                ></Route>
+              ))}
+
               <Route path="/favorites" element={<Favorites />}></Route>
               <Route path="/product-detail" element={<ProductDetail />}></Route>
-            
-
             </Routes>
           </SearchContext.Provider>
         </UserContext.Provider>

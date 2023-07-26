@@ -6,8 +6,7 @@ import { getCurrentPath } from '../../../utils/currentPath';
 const SearchInput = ({ id }) => {
   const { allProducts, setProductsToRender, productsToRender } = useContext(ProductContext);
   const { searchInput, setSearchInput, searchClick, setSearchClick } = useContext(SearchContext);
-
-  const { currentPath, validCurrentPath } = getCurrentPath()
+  const { currentPath, validCurrentPath } = getCurrentPath();
 
   const handleSearchInput = (event) => {
     setSearchInput(event.target.value);
@@ -17,13 +16,10 @@ const SearchInput = ({ id }) => {
     setSearchClick(!searchClick);
   };
 
-
   const handleKeyDown = (event) => {
-    if (event.key === 'Enter') 
-    handleSearchClick()
+    if (event.key === 'Enter') handleSearchClick();
   };
 
- 
   useEffect(() => {
     if (searchClick) {
       if (currentPath !== '/') {
@@ -61,13 +57,12 @@ const SearchInput = ({ id }) => {
         placeholder="Find your product"
         onChange={handleSearchInput}
         value={searchInput}
-        onKeyDown={handleKeyDown} 
+        onKeyDown={handleKeyDown}
       />
       <img
         src={searchClick ? './src/assets/x.svg' : './src/assets/search.svg'}
         className="search-icon"
         onClick={handleSearchClick}
-       
       />
     </div>
   );
