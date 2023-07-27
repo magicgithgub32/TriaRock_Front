@@ -10,7 +10,6 @@ import ProductDetail from './pages/ProductDetail/ProductDetail';
 
 import { productFetch } from '../src/services/productFetch';
 import { categoryFetch } from '../src/services/categoryFetch';
-import { userStored } from './utils/localStorage';
 import { userFavsFetch } from './services/userFavsFetch';
 
 export const ProductContext = createContext();
@@ -32,7 +31,7 @@ const App = () => {
     }
   });
 
-  const { userFavs, setUserFavs } = userFavsFetch(userStored);
+  const { userFavs, setUserFavs } = userFavsFetch();
 
   const [error, setError] = useState('');
 

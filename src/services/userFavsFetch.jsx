@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 
-export const userFavsFetch = (userStored) => {
+export const userFavsFetch = () => {
+  const userStored = JSON.parse(localStorage.getItem('userStored'));
   const [userFavs, setUserFavs] = useState([]);
 
   useEffect(() => {
