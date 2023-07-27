@@ -23,6 +23,7 @@ const Login = ({ error, setError }) => {
     loginPostFetch(values, navigate, setError, setIsLoggedIn);
   };
 
+
   useEffect(() => {
     setError('');
   }, [currentPath]);
