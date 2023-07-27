@@ -1,6 +1,4 @@
-import { useState, useEffect } from 'react';
-
-export const productFetch = () => {
+export const productFetch = (useState, useEffect) => {
   const [allProducts, setAllProducts] = useState();
 
   useEffect(() => {

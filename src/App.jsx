@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import React, { useState, createContext } from 'react';
+import React, { useState, useEffect, createContext } from 'react';
 
 import Home from './pages/Home/Home';
 import Login from './pages/RegisterLogin/Login';
@@ -10,19 +10,20 @@ import ProductDetail from './pages/ProductDetail/ProductDetail';
 
 import { productFetch } from '../src/services/productFetch';
 import { categoryFetch } from '../src/services/categoryFetch';
-import { userFavsFetch } from './services/userFavsFetch';
 
 export const ProductContext = createContext();
 export const UserContext = createContext();
 export const SearchContext = createContext();
 
 const App = () => {
-  const allProducts = productFetch();
-  const categoriesData = categoryFetch();
+  const allProducts = productFetch(useState, useEffect);
+  const categoriesData = categoryFetch(useState, useEffect);
 
   const [productsToRender, setProductsToRender] = useState([]);
   const [productSelected, setProductSelected] = useState([]);
 
+  const [userFavs, setUserFavs] = useState([])
+  
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
     if (localStorage.getItem('userStored')) {
       return true;
@@ -30,8 +31,6 @@ const App = () => {
       return false;
     }
   });
-
-  const { userFavs, setUserFavs } = userFavsFetch();
 
   const [error, setError] = useState('');
 

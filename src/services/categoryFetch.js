@@ -1,6 +1,4 @@
-import { useState, useEffect } from 'react';
-
-export const categoryFetch = () => {
+export const categoryFetch = (useState, useEffect) => {
   const [categoriesData, setCategoriesData] = useState();
 
   useEffect(() => {

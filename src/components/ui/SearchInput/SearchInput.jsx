@@ -1,13 +1,15 @@
 import React, { useEffect, useContext } from 'react';
 import './SearchInput.css';
+import { useLocation } from 'react-router-dom';
 
 import { ProductContext, SearchContext } from '../../../App';
 import { getCurrentPath } from '../../../utils/currentPath';
 
+
 const SearchInput = ({ id }) => {
   const { allProducts, setProductsToRender, productsToRender } = useContext(ProductContext);
   const { searchInput, setSearchInput, searchClick, setSearchClick } = useContext(SearchContext);
-  const { currentPath, validCurrentPath } = getCurrentPath();
+  const { currentPath, validCurrentPath } = getCurrentPath(useLocation);
 
   const handleSearchInput = (event) => {
     setSearchInput(event.target.value);

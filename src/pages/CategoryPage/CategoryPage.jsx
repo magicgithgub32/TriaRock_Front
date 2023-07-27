@@ -12,16 +12,18 @@ import Title from '../../components/ui/Title/Title';
 import Message from '../../components/ui/Message/Message';
 import CollapsibleFilter from '../../components/ui/Filters/CollapsibleFilters/CollapsibleFilter';
 
+import { useLocation } from 'react-router-dom';
 import { ProductContext, SearchContext } from '../../App';
 import { highestAndLowestPrices } from '../../utils/highestAndLowestPrices';
 import { genders } from '../../utils/filterProducts';
 import { getCurrentPath } from '../../utils/currentPath';
 
+
 const CategoryPage = () => {
   const { setProductsToRender, productsToRender, categoriesData, allProducts } =
     useContext(ProductContext);
   const { searchClick } = useContext(SearchContext);
-  const { currentPath, validCurrentPath } = getCurrentPath();
+  const { currentPath, validCurrentPath } = getCurrentPath(useLocation);
   const { roundedHighestPrice, roundedLowestPrice } = highestAndLowestPrices(
     categoriesData,
     currentPath,

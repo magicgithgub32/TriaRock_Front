@@ -1,5 +1,4 @@
 import React from 'react';
-import './ClearFilters.css';
 
 const ClearFilters = ({
   setSelectedTypes,

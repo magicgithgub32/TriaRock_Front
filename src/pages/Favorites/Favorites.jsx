@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react';
-import './Favorites.css';
 
 import Header from '../../components/Header/Header';
 import CategoryCard from '../../components/CategoryCard/CategoryCard';

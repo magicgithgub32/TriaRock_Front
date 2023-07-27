@@ -8,14 +8,14 @@ import Message from '../../components/ui/Message/Message';
 import Input from '../../components/ui/Input/Input';
 import Button from '../../components/ui/Button/Button';
 
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { UserContext } from '../../App';
 import { loginPostFetch } from '../../services/loginPostFetch';
 import { getCurrentPath } from '../../utils/currentPath';
 
 const Login = ({ error, setError }) => {
-  const { currentPath } = getCurrentPath();
+  const { currentPath } = getCurrentPath(useLocation);
   const { register, handleSubmit } = useForm({ defaultValues: { email: '', password: '' } });
   const navigate = useNavigate();
   const { setIsLoggedIn } = useContext(UserContext);
