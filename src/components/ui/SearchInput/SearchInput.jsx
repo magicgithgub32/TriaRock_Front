@@ -1,5 +1,6 @@
 import React, { useEffect, useContext } from 'react';
 import './SearchInput.css';
+
 import { ProductContext, SearchContext } from '../../../App';
 import { getCurrentPath } from '../../../utils/currentPath';
 

@@ -5,13 +5,11 @@ import Home from './pages/Home/Home';
 import Login from './pages/RegisterLogin/Login';
 import Register from './pages/RegisterLogin/Register';
 import CategoryPage from './pages/CategoryPage/CategoryPage';
-
 import Favorites from './pages/Favorites/Favorites';
 import ProductDetail from './pages/ProductDetail/ProductDetail';
 
 import { productFetch } from '../src/services/productFetch';
 import { categoryFetch } from '../src/services/categoryFetch';
-
 import { userStored } from './utils/localStorage';
 import { userFavsFetch } from './services/userFavsFetch';
 

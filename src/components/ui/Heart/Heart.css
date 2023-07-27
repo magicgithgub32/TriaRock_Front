@@ -1,11 +1,11 @@
 .hearts-container {
-    display: flex;
-    justify-content: center
+  display: flex;
+  justify-content: center;
 }
 
-.heart{
-    display: flex;
-    height: 25px;
-    cursor: pointer;
-    margin-top: 5px;
+.heart {
+  display: flex;
+  height: 25px;
+  cursor: pointer;
+  margin-top: 5px;
 }

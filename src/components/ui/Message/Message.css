@@ -1,14 +1,14 @@
-.message-container {  
-    display: flex;
+.message-container {
+  display: flex;
   justify-content: center;
   align-items: center;
   min-width: 75%;
-  margin: 15px
+  margin: 15px;
 }
 
 .message {
   padding: 14px 18px;
   background-color: var(--color-tertiary);
-  border-radius: var(--border-radius);  
+  border-radius: var(--border-radius);
   font-weight: 700;
 }

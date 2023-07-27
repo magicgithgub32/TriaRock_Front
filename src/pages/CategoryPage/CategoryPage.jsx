@@ -1,29 +1,27 @@
 import React, { useState, useEffect, useContext, useRef } from 'react';
 import './CategoryPage.css';
+
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import ProductCard from '../../components/ProductCard/ProductCard';
-
-import { ProductContext, SearchContext } from '../../App';
 import ProductTypeFilter from '../../components/ui/Filters/ProductTypeFilter/ProductTypeFilter';
 import GenderFilter from '../../components/ui/Filters/GenderFilter/GenderFilter';
 import PriceFilter from '../../components/ui/Filters/PriceFilter/PriceFilter';
 import ClearFilters from '../../components/ui/Filters/ClearFilters/ClearFilters';
-import { highestAndLowestPrices } from '../../utils/highestAndLowestPrices';
-import { genders } from '../../utils/filterProducts';
 import Title from '../../components/ui/Title/Title';
 import Message from '../../components/ui/Message/Message';
-import { CollapsibleFilter } from '../../components/ui/Filters/CollapsibleFilters/CollapsibleFilter';
+import CollapsibleFilter from '../../components/ui/Filters/CollapsibleFilters/CollapsibleFilter';
+
+import { ProductContext, SearchContext } from '../../App';
+import { highestAndLowestPrices } from '../../utils/highestAndLowestPrices';
+import { genders } from '../../utils/filterProducts';
 import { getCurrentPath } from '../../utils/currentPath';
 
 const CategoryPage = () => {
   const { setProductsToRender, productsToRender, categoriesData, allProducts } =
     useContext(ProductContext);
-
   const { searchClick } = useContext(SearchContext);
-
   const { currentPath, validCurrentPath } = getCurrentPath();
-
   const { roundedHighestPrice, roundedLowestPrice } = highestAndLowestPrices(
     categoriesData,
     currentPath,
@@ -37,7 +35,6 @@ const CategoryPage = () => {
   const [categoryItems, setCategoryItems] = useState([]);
 
   const genderRefs = useRef([]);
-  const productTypeRefs = useRef([]);
 
   useEffect(() => {
     const categoryProducts = allProducts?.filter(
@@ -84,7 +81,6 @@ const CategoryPage = () => {
             productTypes={productTypes}
             selectedTypes={selectedTypes}
             setSelectedTypes={setSelectedTypes}
-            productTypeRefs={productTypeRefs}
             genders={genders}
             selectedGender={selectedGender}
             setSelectedGender={setSelectedGender}
@@ -100,7 +96,6 @@ const CategoryPage = () => {
               inputOptions={productTypes}
               selectedTypes={selectedTypes}
               setSelectedTypes={setSelectedTypes}
-              productTypeRefs={productTypeRefs}
             />
             <GenderFilter
               inputOptions={genders}
@@ -119,7 +114,6 @@ const CategoryPage = () => {
               roundedHighestPrice={roundedHighestPrice}
               setSelectedTypes={setSelectedTypes}
               setSelectedGender={setSelectedGender}
-              productTypeRefs={productTypeRefs}
               genderRefs={genderRefs}
             />
           </section>

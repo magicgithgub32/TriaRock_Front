@@ -1,13 +1,12 @@
 import React, { useContext } from 'react';
 import './Heart.css';
+
 import { ProductContext, UserContext } from '../../../App';
 import { favPutFetch } from '../../../services/favPutFetch';
-// import { userStored } from '../../../utils/localStorage';
 
 const Heart = ({ product }) => {
   const { userFavs, setUserFavs } = useContext(ProductContext);
   const { isLoggedIn } = useContext(UserContext);
-  // const { userLogged } = useContext(UserContext);
 
   const handleHeart = (product) => {
     if (!isLoggedIn) {

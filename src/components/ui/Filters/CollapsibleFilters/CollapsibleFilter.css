@@ -1,53 +1,51 @@
 .collapsible-filter-section {
-    display: none;
-    }
+  display: none;
+}
 
-    .collapsible-filters {
-        display: flex;
-        justify-content: space-around;
-        padding-bottom: 10px
-        }
+.collapsible-filters {
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 10px;
+}
 
 .filters-title {
-text-transform: uppercase;
-text-align: center;
-font-weight: 800;
-font-size: 18px;
-padding: 10px
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 800;
+  font-size: 18px;
+  padding: 10px;
 }
 
 .Collapsible__trigger {
-text-transform: uppercase;
-   font-weight: 600;
+  text-transform: uppercase;
+  font-weight: 600;
 }
 
 .main-filter-title {
-       font-weight: 700;
-       font-size:20px;
-       padding-bottom: 10px;
-    }
-
-
-.Collapsible {
-    display: flex;
-    flex-direction: column;
+  font-weight: 700;
+  font-size: 20px;
+  padding-bottom: 10px;
 }
 
-    @media screen and (max-width: 768px) {
-        .collapsible-filter-section {
-            display: flex;
-            flex-direction: column;
-            padding: 10px;
-            border-bottom: 1px solid var(--color-input)
-            }
-    }
+.Collapsible {
+  display: flex;
+  flex-direction: column;
+}
 
-    @media screen and (max-width: 500px) {
-    
-    .collapsible-filters {
-        display: flex;
-        flex-direction: column;
-        padding-bottom: 10px;
-        gap: 8px
-        }
-        }
+@media screen and (max-width: 768px) {
+  .collapsible-filter-section {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border-bottom: 1px solid var(--color-input);
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .collapsible-filters {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10px;
+    gap: 8px;
+  }
+}

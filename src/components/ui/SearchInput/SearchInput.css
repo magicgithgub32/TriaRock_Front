@@ -1,31 +1,28 @@
 .search-input-section {
-    display: flex;
-    gap: .5rem;
-    width: 30%;
-    border-radius: var(--border-radius);
+  display: flex;
+  gap: 0.5rem;
+  width: 30%;
+  border-radius: var(--border-radius);
 }
 
 #search-input-mobile {
-    display: none
+  display: none;
 }
 
 .search-icon {
-    cursor:pointer
+  cursor: pointer;
 }
 
-
 @media screen and (max-width: 900px) {
-    #search-input-desktop {
-        display: none
-    }
-    
-    #search-input-mobile {
+  #search-input-desktop {
+    display: none;
+  }
+
+  #search-input-mobile {
     display: flex;
     width: 100%;
     background-color: var(--color-primary);
     padding: 10px 30px 20px 30px;
     border-radius: 0;
-    }   
+  }
 }
-
-

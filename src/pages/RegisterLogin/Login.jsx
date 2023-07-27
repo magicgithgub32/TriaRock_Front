@@ -1,20 +1,21 @@
 import React, { useEffect, useContext } from 'react';
 import './RegisterLogin.css';
+
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
-import { Link, useNavigate } from 'react-router-dom';
+import Title from '../../components/ui/Title/Title';
 import Message from '../../components/ui/Message/Message';
 import Input from '../../components/ui/Input/Input';
-import { loginPostFetch } from '../../services/loginPostFetch';
 import Button from '../../components/ui/Button/Button';
+
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { UserContext } from '../../App';
-import Title from '../../components/ui/Title/Title';
+import { loginPostFetch } from '../../services/loginPostFetch';
 import { getCurrentPath } from '../../utils/currentPath';
 
 const Login = ({ error, setError }) => {
-  
-  const {currentPath} = getCurrentPath();
+  const { currentPath } = getCurrentPath();
   const { register, handleSubmit } = useForm({ defaultValues: { email: '', password: '' } });
   const navigate = useNavigate();
   const { setIsLoggedIn } = useContext(UserContext);
@@ -22,7 +23,6 @@ const Login = ({ error, setError }) => {
   const onSubmit = (values) => {
     loginPostFetch(values, navigate, setError, setIsLoggedIn);
   };
-
 
   useEffect(() => {
     setError('');
@@ -32,7 +32,7 @@ const Login = ({ error, setError }) => {
     <>
       <Header />
       <main className="register-login-container">
-      <Title textTitle="log in" id="register-login-title"/> 
+        <Title textTitle="log in" id="register-login-title" />
         <form onSubmit={handleSubmit(onSubmit)} className="register-login-form">
           <Input register={register('email')} type="email" placeholder="email address" id="email" />
           <Input
@@ -54,9 +54,8 @@ const Login = ({ error, setError }) => {
             <Button buttonText="Register" className="white-button" />
           </Link>
         </div>
-
       </main>
-      <Footer id="footer-register-login"/>
+      <Footer id="footer-register-login" />
     </>
   );
 };

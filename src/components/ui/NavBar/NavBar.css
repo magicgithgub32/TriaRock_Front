@@ -1,16 +1,16 @@
 .category-navbar {
-    display: flex;
-    justify-content: space-around;
-    padding: 20px 10px;
-    background-color: var(--color-secondary);
+  display: flex;
+  justify-content: space-around;
+  padding: 20px 10px;
+  background-color: var(--color-secondary);
 }
 
 .category-link {
-    text-decoration: none;
-    color: var(--color-primary); 
-    font-size: 20px;
-    font-weight: 600;
-    transition: var(--transition)
+  text-decoration: none;
+  color: var(--color-primary);
+  font-size: 20px;
+  font-weight: 600;
+  transition: var(--transition);
 }
 
 .category-link:hover {
@@ -18,7 +18,7 @@
 }
 
 @media screen and (max-width: 500px) {
-    .category-navbar {
-        display: none;
-    }
+  .category-navbar {
+    display: none;
+  }
 }

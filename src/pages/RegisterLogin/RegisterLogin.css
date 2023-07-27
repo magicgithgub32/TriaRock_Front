@@ -1,41 +1,39 @@
 .register-login-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
 .register-login-form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    padding: 20px;
-    width: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 20px;
+  width: 350px;
 }
 
 .register-cta {
-    color: var(--primary-text-color);
-    font-size: 16px;
-    font-weight: 600;
-    text-align: center
+  color: var(--primary-text-color);
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
 }
 
 .register-container {
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-gap: 10px;
-padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 0;
 }
-
-
 
 @media screen and (max-width: 500px) {
-.register-cta {
+  .register-cta {
     font-size: 14px;
-    padding: 0 12px 0 12px
-}
+    padding: 0 12px 0 12px;
+  }
 }

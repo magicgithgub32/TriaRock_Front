@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import './CategoryCard.css';
+
 import { Link } from 'react-router-dom';
 import { ProductContext } from '../../App';
 

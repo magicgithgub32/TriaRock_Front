@@ -1,21 +1,21 @@
 button {
-    padding: .3rem .5rem;
-    height: auto;
-    font-size: 18px;
-    font-weight: 600;
-    border-radius: var(--border-radius);
-    background-color: var(--color-secondary);
-    border: 2px solid var(--color-tertiary);
-    color: var(--color-primary);
-    cursor: pointer;
-    transition: var(--transition);
-  }
-  
-  button:hover {
-    background-color: var(--color-tertiary);
-  }
+  padding: 0.3rem 0.5rem;
+  height: auto;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: var(--border-radius);
+  background-color: var(--color-secondary);
+  border: 2px solid var(--color-tertiary);
+  color: var(--color-primary);
+  cursor: pointer;
+  transition: var(--transition);
+}
 
-  .white-button {
-    background-color: whitesmoke;
-    border: 2px solid var(--color-tertiary);
-  }
+button:hover {
+  background-color: var(--color-tertiary);
+}
+
+.white-button {
+  background-color: whitesmoke;
+  border: 2px solid var(--color-tertiary);
+}

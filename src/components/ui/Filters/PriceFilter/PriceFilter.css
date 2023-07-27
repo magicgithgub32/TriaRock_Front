@@ -1,8 +1,8 @@
 .price-numbers {
-    display: flex;
-    justify-content: space-between
+  display: flex;
+  justify-content: space-between;
 }
 
 .selected-price {
-    font-weight: 800
+  font-weight: 800;
 }

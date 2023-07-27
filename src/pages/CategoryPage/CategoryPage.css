@@ -1,31 +1,27 @@
-/* .main-category-page {
-    display: flex;
-} */
-
 .filter-and-products {
-display: flex;
+  display: flex;
 }
 
 .message-and-products {
-    display: flex
+  display: flex;
 }
 
 .filters-section {
-padding: 20px;
-border-right: 1px solid var(--color-input)
+  padding: 20px;
+  border-right: 1px solid var(--color-input);
 }
 
 .filters-section-title {
-    font-weight: 700;
-    font-size: 20px
-    }
+  font-weight: 700;
+  font-size: 20px;
+}
 
 @media screen and (max-width: 768px) {
-    .filters-section {
-        display: none;
-        }
-        .filter-and-products {
-            flex-direction: column;
-            justify-content: center;
-            }
+  .filters-section {
+    display: none;
   }
+  .filter-and-products {
+    flex-direction: column;
+    justify-content: center;
+  }
+}

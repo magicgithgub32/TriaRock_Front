@@ -2,14 +2,14 @@
 
 :root {
   --main-bg-color: whitesmoke;
-  --color-primary: #008ab8; 
-  --color-secondary: #f3f30b;  
-  --color-tertiary: #fbc02d; 
-  --color-red: #f44034; 
+  --color-primary: #008ab8;
+  --color-secondary: #f3f30b;
+  --color-tertiary: #fbc02d;
+  --color-red: #f44034;
   --primary-text-color: #020202;
   --color-input: #98b7c2;
 
-  --border-radius: .5rem;
+  --border-radius: 0.5rem;
 
   --transition: 0.8s ease-in-out;
 }
@@ -32,11 +32,10 @@ body {
   color: var(--primary-text-color);
   min-height: 100%;
   transition: var(--transition);
-
 }
 
-a, link {
+a,
+link {
   transition: var(--transition);
-  text-decoration:none
+  text-decoration: none;
 }
-

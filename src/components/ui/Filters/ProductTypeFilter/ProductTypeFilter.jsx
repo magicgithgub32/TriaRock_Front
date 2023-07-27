@@ -5,7 +5,6 @@ const ProductTypeFilter = ({
   inputOptions,
   selectedTypes,
   setSelectedTypes,
-  productTypeRefs,
   id
 }) => {
   const handleCheckbox = (event) => {
@@ -14,16 +13,15 @@ const ProductTypeFilter = ({
 
     setSelectedTypes((prevSelectedTypes) => {
       if (isChecked) {
-        // Add the value to the selected types if it's not already present
+      
         if (!prevSelectedTypes.includes(value)) {
           return [...prevSelectedTypes, value];
         }
       } else {
-        // Remove the value from the selected types
         return prevSelectedTypes.filter((selectedOption) => selectedOption !== value);
       }
 
-      return prevSelectedTypes; // Return the previous state if no changes are made
+      return prevSelectedTypes; 
     });
   };
 
@@ -40,7 +38,6 @@ const ProductTypeFilter = ({
             name="tipo de producto"
             value={option}
             onChange={handleCheckbox}
-            ref={(el) => (productTypeRefs.current[index] = el)}
             checked={selectedTypes.includes(option)}
           />
           <label htmlFor={option}>{option}</label>

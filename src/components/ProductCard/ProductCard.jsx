@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
 import './ProductCard.css';
 
+import Heart from '../ui/Heart/Heart';
+
 import { ProductContext } from '../../App';
 import { Link } from 'react-router-dom';
-import Heart from '../ui/Heart/Heart';
 
 const ProductCard = () => {
   const { productsToRender, setProductSelected } = useContext(ProductContext);
@@ -13,8 +14,6 @@ const ProductCard = () => {
   };
 
   return (
-
-    
     <section
       className={`product-card-wrapper${productsToRender?.length === 1 ? '-one-product' : ''}`}
     >

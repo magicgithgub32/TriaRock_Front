@@ -1,9 +1,11 @@
 import React, { useContext } from 'react';
 import './ProductDetail.css';
+
 import Header from '../../components/Header/Header';
-import { ProductContext } from '../../App';
 import Footer from '../../components/Footer/Footer';
 import Heart from '../../components/ui/Heart/Heart';
+
+import { ProductContext } from '../../App';
 
 const ProductDetail = () => {
   const { productSelected } = useContext(ProductContext);
@@ -15,11 +17,10 @@ const ProductDetail = () => {
         {productSelected ? (
           <figure className="product-detail-figure">
             <div className="product-detail-wrapper">
-
-            <div className="name-and-heart-mobile">
-                  <h3 className="product-detail-name">{productSelected.name}</h3>
-                  <Heart product={productSelected} />
-                </div>
+              <div className="name-and-heart-mobile">
+                <h3 className="product-detail-name">{productSelected.name}</h3>
+                <Heart product={productSelected} />
+              </div>
 
               <img
                 className="product-detail-image"
