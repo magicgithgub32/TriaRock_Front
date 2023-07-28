@@ -1,35 +1,17 @@
-import { React, useContext } from 'react';
+import React from 'react';
 import './Modal.css';
-import Modal from 'react-modal';
-import { UserContext } from '../../App';
+import Message from '../ui/Message/Message';
 
-const AlertModal = ({ contentLabel, isOpen, onRequestClose, onClick }) => {
-  const { isModalOpen, setIsModalOpen } = useContext(UserContext);
 
-  //   const closeModal = () => {
-  //     setIsModalOpen(false);
-  //   };
+const Modal = ( {isModalOpen, closeModal} ) => {
+
 
   return (
-    <div>
-      <Modal
-        isOpen={isOpen}
-        // onAfterOpen={afterOpenModal}
-        onRequestClose={onRequestClose}
-        contentLabel={contentLabel}
-      >
-        <button onClick={onClick}>close</button>
-        <div>I am a modal</div>
-        <form>
-          <input />
-          <button>tab navigation</button>
-          <button>stays</button>
-          <button>inside</button>
-          <button>the modal</button>
-        </form>
-      </Modal>
+    <div className={isModalOpen ? "open-modal" : "closed-modal"}>
+      <Message messageText="Please log in to your account or create a new one so you can see and save your favorite products." />
+    <button onClick={closeModal}>X</button>
     </div>
   );
 };
 
-export default AlertModal;
+export default Modal;

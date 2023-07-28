@@ -31,7 +31,6 @@ const App = () => {
       return false;
     }
   });
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [error, setError] = useState('');
 
@@ -55,9 +54,7 @@ const App = () => {
         <UserContext.Provider
           value={{
             setIsLoggedIn: setIsLoggedIn,
-            isLoggedIn: isLoggedIn,
-            isModalOpen: isModalOpen,
-            setIsModalOpen: setIsModalOpen
+            isLoggedIn: isLoggedIn
           }}
         >
           <SearchContext.Provider

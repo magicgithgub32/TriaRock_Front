@@ -1,9 +1,10 @@
-.modal {
-  
-    top: '50%';
-    left: '50%';
-    right: 'auto';
-    bottom: 'auto';
-    margin-right: '-50%';
-    transform: 'translate(-50%, -50%)';
+.open-modal {
+  display: flex;
+  align-items: center;
+  z-index: 1;
+      position: fixed;
+  }
+
+ .closed-modal {
+   display: none
   }

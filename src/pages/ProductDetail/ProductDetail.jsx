@@ -5,34 +5,22 @@ import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import Heart from '../../components/ui/Heart/Heart';
 
-import { ProductContext, UserContext } from '../../App';
-import AlertModal from '../../components/Modal/Modal';
+import { ProductContext } from '../../App';
 
 const ProductDetail = () => {
   const { productSelected } = useContext(ProductContext);
-  const { setIsModalOpen, isModalOpen } = useContext(UserContext);
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
+  
 
   return (
     <div>
       <Header />
-      <AlertModal
-        isOpen={isModalOpen}
-        // onAfterOpen={afterOpenModal}
-        onRequestClose={closeModal}
-        contentLabel="Text"
-        onClick={closeModal}
-      />
       <section className="product-detail">
         {productSelected ? (
           <figure className="product-detail-figure">
             <div className="product-detail-wrapper">
               <div className="name-and-heart-mobile">
                 <h3 className="product-detail-name">{productSelected.name}</h3>
-                <Heart product={productSelected} />
+                <Heart product={productSelected}/>
               </div>
 
               <img
@@ -43,7 +31,7 @@ const ProductDetail = () => {
               <div className="product-detail-text">
                 <div className="name-and-heart-desktop">
                   <h3 className="product-detail-name">{productSelected.name}</h3>
-                  <Heart product={productSelected} />
+                  <Heart product={productSelected}/>
                 </div>
                 {productSelected.promo ? (
                   <div className="promo-container">
