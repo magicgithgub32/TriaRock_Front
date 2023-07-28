@@ -34,19 +34,19 @@ const Header = () => {
         )}
 
         <div className="icons-section">
-          <IconButton buttonLink="/" buttonText="HOME" srcImage="./src/assets/home-2.svg" />
+          <IconButton buttonLink="/" buttonText="HOME" srcImage="./public/home-2.svg" />
 
           <IconButton
             buttonLink={isLoggedIn ? '/' : '/login'}
             buttonText={isLoggedIn ? 'LOG OUT' : 'REGISTER/LOG IN'}
-            srcImage="./src/assets/user-circle.svg"
+            srcImage="./public/user-circle.svg"
             buttonEvent={isLoggedIn && handleLogout}
           />
 
           <IconButton
             buttonLink="/favorites"
             buttonText="MY FAVS"
-            srcImage="./src/assets/yellow-heart.svg"
+            srcImage="./public//yellow-heart.svg"
           />
         </div>
       </div>

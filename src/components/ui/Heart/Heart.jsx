@@ -25,11 +25,11 @@ const Heart = ({ product }) => {
         src={
           typeof userFavs[0] === 'string'
             ? userFavs?.includes(product._id)
-              ? '../../src/assets/red-heart.png'
-              : '../../src/assets/yellow-heart.svg'
+              ? '../public/red-heart.png'
+              : '../public/yellow-heart.svg'
             : userFavs?.some((favProduct) => favProduct._id === product._id)
-            ? '../../src/assets/red-heart.png'
-            : '../../src/assets/yellow-heart.svg'
+            ? '../public/red-heart.png'
+            : '../public/yellow-heart.svg'
         }
         className="heart"
         alt="heart"

@@ -5,7 +5,6 @@ import { useLocation } from 'react-router-dom';
 import { ProductContext, SearchContext } from '../../../App';
 import { getCurrentPath } from '../../../utils/currentPath';
 
-
 const SearchInput = ({ id }) => {
   const { allProducts, setProductsToRender, productsToRender } = useContext(ProductContext);
   const { searchInput, setSearchInput, searchClick, setSearchClick } = useContext(SearchContext);
@@ -63,7 +62,7 @@ const SearchInput = ({ id }) => {
         onKeyDown={handleKeyDown}
       />
       <img
-        src={searchClick ? './src/assets/x.svg' : './src/assets/search.svg'}
+        src={searchClick ? './public/x.svg' : './public/search.svg'}
         className="search-icon"
         onClick={handleSearchClick}
       />
