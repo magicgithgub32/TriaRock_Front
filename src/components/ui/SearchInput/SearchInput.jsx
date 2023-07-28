@@ -62,7 +62,7 @@ const SearchInput = ({ id }) => {
         onKeyDown={handleKeyDown}
       />
       <img
-        src={searchClick ? './public/x.svg' : './public/search.svg'}
+        src={searchClick ? './x.svg' : './search.svg'}
         className="search-icon"
         onClick={handleSearchClick}
       />

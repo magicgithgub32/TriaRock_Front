@@ -34,20 +34,16 @@ const Header = () => {
         )}
 
         <div className="icons-section">
-          <IconButton buttonLink="/" buttonText="HOME" srcImage="./public/home-2.svg" />
+          <IconButton buttonLink="/" buttonText="HOME" srcImage="./home-2.svg" />
 
           <IconButton
             buttonLink={isLoggedIn ? '/' : '/login'}
             buttonText={isLoggedIn ? 'LOG OUT' : 'REGISTER/LOG IN'}
-            srcImage="./public/user-circle.svg"
+            srcImage="./user-circle.svg"
             buttonEvent={isLoggedIn && handleLogout}
           />
 
-          <IconButton
-            buttonLink="/favorites"
-            buttonText="MY FAVS"
-            srcImage="./public//yellow-heart.svg"
-          />
+          <IconButton buttonLink="/favorites" buttonText="MY FAVS" srcImage="./yellow-heart.svg" />
         </div>
       </div>
       {currentPath === '/product-detail' ? null : currentPath === '/login' ||
