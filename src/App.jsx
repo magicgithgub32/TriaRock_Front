@@ -22,8 +22,8 @@ const App = () => {
   const [productsToRender, setProductsToRender] = useState([]);
   const [productSelected, setProductSelected] = useState([]);
 
-  const [userFavs, setUserFavs] = useState([])
-  
+  const [userFavs, setUserFavs] = useState([]);
+
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
     if (localStorage.getItem('userStored')) {
       return true;
@@ -31,6 +31,7 @@ const App = () => {
       return false;
     }
   });
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [error, setError] = useState('');
 
@@ -54,7 +55,9 @@ const App = () => {
         <UserContext.Provider
           value={{
             setIsLoggedIn: setIsLoggedIn,
-            isLoggedIn: isLoggedIn
+            isLoggedIn: isLoggedIn,
+            isModalOpen: isModalOpen,
+            setIsModalOpen: setIsModalOpen
           }}
         >
           <SearchContext.Provider

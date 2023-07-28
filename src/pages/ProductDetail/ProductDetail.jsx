@@ -5,14 +5,27 @@ import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import Heart from '../../components/ui/Heart/Heart';
 
-import { ProductContext } from '../../App';
+import { ProductContext, UserContext } from '../../App';
+import AlertModal from '../../components/Modal/Modal';
 
 const ProductDetail = () => {
   const { productSelected } = useContext(ProductContext);
+  const { setIsModalOpen, isModalOpen } = useContext(UserContext);
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <div>
       <Header />
+      <AlertModal
+        isOpen={isModalOpen}
+        // onAfterOpen={afterOpenModal}
+        onRequestClose={closeModal}
+        contentLabel="Text"
+        onClick={closeModal}
+      />
       <section className="product-detail">
         {productSelected ? (
           <figure className="product-detail-figure">

@@ -6,13 +6,15 @@ import { favPutFetch } from '../../../services/favPutFetch';
 
 const Heart = ({ product }) => {
   const { userFavs, setUserFavs } = useContext(ProductContext);
-  const { isLoggedIn } = useContext(UserContext);
+  const { isLoggedIn, setIsModalOpen } = useContext(UserContext);
 
   const handleHeart = (product) => {
     if (!isLoggedIn) {
-      alert(
-        'Please log in to your account or create a new one so you can see and save your favorite products.'
-      );
+      // alert(
+      //   'Please log in to your account or create a new one so you can see and save your favorite products.'
+      // );
+
+      setIsModalOpen(true);
     } else {
       const bodyData = { fav: product._id };
       favPutFetch(bodyData, setUserFavs, userFavs);
