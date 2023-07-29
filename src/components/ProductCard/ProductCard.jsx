@@ -11,20 +11,17 @@ import { useModal } from '../../customHooks/useModal';
 
 const ProductCard = () => {
   const { productsToRender, setProductSelected } = useContext(ProductContext);
-  const { isModalOpen, openModal, closeModal } = useModal()
 
   const handleClick = (product) => {
     setProductSelected(product);
   };
 
   return (
-    // <section  className="modal-and-products">
     
     <div
       className={`product-cards-wrapper${productsToRender?.length === 1 ? '-one-product' : ''}`}
     >
-     
-       <Modal isModalOpen={isModalOpen} closeModal={closeModal}/>
+    
       
       {productsToRender?.map((product) => (
         <figure className="product-card" key={product._id}>
@@ -46,7 +43,7 @@ const ProductCard = () => {
               </div>
 
               {product.promo ? <span className="promo-label">SALE</span> : <span></span>}
-              <Heart product={product} openModal={openModal}/>
+              <Heart product={product}/>
             </div>
           </div>
           <div className="product-description">
@@ -55,7 +52,6 @@ const ProductCard = () => {
         </figure>
       ))}
     </div>
-  //  </section>
       );
 };
 

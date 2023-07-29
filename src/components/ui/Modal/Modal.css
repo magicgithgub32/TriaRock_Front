@@ -1,7 +1,4 @@
 .open-modal {
- display: flex;
-  align-items: center;
-  gap: 10px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -10,13 +7,29 @@
   background-color: var(--color-input);
   padding: 30px;
   border-radius: var(--border-radius);
-  max-width: 350px
+  width: 100%
   }
 
  .closed-modal {
    display: none
   }
 
+.modal-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .modal-button {
-  position: relative;
+  position: absolute;
+  left: 90%;
+  top: 5%
+}
+
+
+@media screen and (max-width: 490px) {
+.open-modal {
+ top: 10vh;
+ width: 180px
+  }
 }

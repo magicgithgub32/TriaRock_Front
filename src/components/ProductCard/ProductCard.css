@@ -1,8 +1,5 @@
-.modal-and-products {
-position: relative;
-}
-
 .product-cards-wrapper {
+  position: relative;
   flex: 1;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -10,7 +7,7 @@ position: relative;
   margin: 30px;
 }
 
-.product-card-wrapper-one-product {
+.product-cards-wrapper-one-product {
   display: flex;
   gap: 30px;
   margin: 30px;

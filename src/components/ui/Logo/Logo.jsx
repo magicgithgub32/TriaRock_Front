@@ -7,7 +7,7 @@ const Logo = () => {
   return (
     <Link to="/">
       <div className="logo-section">
-        <img className="logo" src="./triarock-logo.png" alt="logo" />
+        <img className="logo" src="./assets/triarock-logo.png" alt="logo" />
         <p className="brand">TRIAROCK</p>
       </div>
     </Link>

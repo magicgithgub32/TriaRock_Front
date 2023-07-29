@@ -4,23 +4,27 @@ import './ProductDetail.css';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import Heart from '../../components/ui/Heart/Heart';
+import Modal from '../../components/ui/Modal/Modal';
 
 import { ProductContext } from '../../App';
+import { useModal } from '../../customHooks/useModal';
+
 
 const ProductDetail = () => {
   const { productSelected } = useContext(ProductContext);
-  
+  const {isModalOpen, openModal, closeModal} = useModal()
 
   return (
     <div>
       <Header />
       <section className="product-detail">
+      <Modal isModalOpen={isModalOpen} closeModal={closeModal}/>
         {productSelected ? (
           <figure className="product-detail-figure">
             <div className="product-detail-wrapper">
               <div className="name-and-heart-mobile">
                 <h3 className="product-detail-name">{productSelected.name}</h3>
-                <Heart product={productSelected}/>
+                <Heart product={productSelected} openModal={openModal}/>
               </div>
 
               <img
@@ -31,7 +35,7 @@ const ProductDetail = () => {
               <div className="product-detail-text">
                 <div className="name-and-heart-desktop">
                   <h3 className="product-detail-name">{productSelected.name}</h3>
-                  <Heart product={productSelected}/>
+                  <Heart product={productSelected} openModal={openModal}/>
                 </div>
                 {productSelected.promo ? (
                   <div className="promo-container">
