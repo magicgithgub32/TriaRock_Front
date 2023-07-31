@@ -140,7 +140,7 @@ const CategoryPage = () => {
         </div>
       </main>
 
-      <Footer id={filterProducts.length === 0 ? 'footer-category-page' : ''} />
+      <Footer/>
     </>
   );
 };

@@ -23,11 +23,6 @@ footer {
   .footer {
     padding-bottom: 1.5rem;
   }
-  #footer-category-page {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-  }
 }
 
 @media screen and (max-width: 1000px) {
